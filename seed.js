@@ -23,7 +23,6 @@ var User = db.model('user');
 var Promise = require('sequelize').Promise;
 
 var seedUsers = function () {
-
     var users = [
         {
             email: 'testing@fsa.com',
