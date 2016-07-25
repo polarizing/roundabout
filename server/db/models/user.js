@@ -6,6 +6,12 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 
 module.exports = db.define('user', {
+    name: {
+        type: Sequelize.STRING,
+    },
+    photo: {
+        type: Sequelize.STRING,
+    },
     email: {
         type: Sequelize.STRING,
         isNull: false
@@ -17,10 +23,10 @@ module.exports = db.define('user', {
     salt: {
         type: Sequelize.STRING
     },
-    phone_number: {
+    phone: {
         type: Sequelize.STRING
     },
-    isAdmin: {
+    is_admin: {
         type: Sequelize.BOOLEAN
     },
     twitter_id: {
