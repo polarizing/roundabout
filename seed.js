@@ -17,35 +17,65 @@ name in the environment files.
 
 */
 
+var chance = require('chance')();
 var chalk = require('chalk');
 var db = require('./server/db');
 var User = db.model('user');
 var Promise = require('sequelize').Promise;
 
-var seedUsers = function () {
+const numUsers = 100;
+const emails = chance.unique(chance.email, numUsers);
 
-    var users = [
-        {
-            email: 'testing@fsa.com',
-            password: 'password'
-        },
-        {
-            email: 'obama@gmail.com',
-            password: 'potus'
-        }
-    ];
+// Does a function N times and pushes result to array. 
+function doTimes (n, fn) {
+  var results = [];
+  while (n--) {
+    results.push(fn());
+  }
+  return results;
+}
 
-    var creatingUsers = users.map(function (userObj) {
-        return User.create(userObj);
+function randPhoto () {
+    var g = chance.pick(['men', 'women']);
+    var n = chance.integer({min: 0, max: 99});
+    return 'https://randomuser.me/api/portraits/' + g + '/' + n + '.jpg'
+}
+
+function randUser () {
+    return User.build({
+        name: [chance.first(), chance.last()].join(' '),
+        photo: randPhoto(),
+        email: emails.pop(),
+        password: chance.word(),
+        phone: chance.phone(),
+        is_admin: chance.weighted([true, false], [5, 95])
     });
+}
 
-    return Promise.all(creatingUsers);
+function generateUsers() {
+    var users = doTimes(numUsers, randUser);
+    users.push(User.build({
+        name: 'Ishaan',
+        photo: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAARNAAAAJDQyYzJkYjljLTFmZDYtNGY3My1iYmI0LTdmNWNmYjkwZTdiOQ.jpg',
+        email: 'ishaan@gmail.com',
+        password: 'ishaan',
+        phone: '(718) 762-6752',
+        is_admin: true
+    }));
+    return users;
+}
 
-};
+function createUsers () {
+    return Promise.map(generateUsers(), user => user.save());
+}
+
+function seed () {
+    return createUsers();
+}
 
 db.sync({ force: true })
     .then(function () {
-        return seedUsers();
+        return seed();
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));
