@@ -8,7 +8,7 @@ var db = require('../../../server/db');
 var User = db.model('user');
 var Tour = db.model('tour')
 
-describe('User model', function () {
+xdescribe('User model', function () {
 
     beforeEach('Sync DB', function () {
      return db.sync({ force: true });

@@ -8,35 +8,44 @@ var supertest = require('supertest');
 
 describe('User routes', function () {
 
-    var app, User;
+    var app, User, guestAgent;
 
     beforeEach('Sync DB', function () {
         return db.sync({ force: true });
     });
 
-    beforeEach('Create app', function () {
+    beforeEach('Create app', function (done) {
         app = require('../../../server/app')(db);
         User = db.model('user');
+
+        User
+        .create({name: 'Ishaan', email: 'ishaan@nagpal.com', password: 'kittycat'})
+        .then(function() {
+          return User.create({name: 'Kevin', email: 'kevinTheDestroyer@richBoyChina.com', password: 'youcantstopme'})
+        })
+        .then(function() {
+          guestAgent = supertest.agent(app);
+          done();
+        })
+
     });
 
   describe('Getting users', function () {
 
-    var guestAgent;
-
-    beforeEach('Create guest agent', function () {
-      guestAgent = supertest.agent(app);
-    });
-
     it('should get all users', function (done) {
-      guestAgent.get('/api/users/')
+      guestAgent
+        .get('/api/users/')
+        .expect(function(res) {
+          res.body.length = 2
+        })
         .expect(200)
         .end(done);
     });
 
     it('should get a particular user', function(done) {
-      guestAgent.get('/api/users/101')
+      guestAgent.get('/api/users/1')
         .expect(function(res) {
-          res.body.id = 101,
+          res.body.id = 1
           res.body.name = 'Ishaan'
         })
         .expect(200)
@@ -45,34 +54,33 @@ describe('User routes', function () {
 
   });
 
-  xdescribe('Authenticated request', function () {
+  describe('Creating new users', function () {
 
-    var loggedInAgent;
-
-    var userInfo = {
-      email: 'joe@gmail.com',
-      password: 'shoopdawoop'
-    };
-
-    beforeEach('Create a user', function (done) {
-      return User.create(userInfo).then(function (user) {
-                done();
-            }).catch(done);
+    it('should create a new user', function (done) {
+      guestAgent
+        .post('/api/users/')
+        .send({name: 'Voldy', email: 'horcrux@hogwarts.edu', password: 'its_a_riddle,get_it?'})
+        .expect(function(res) {
+          console.log(res.body)
+          res.body.id = 3,
+          res.body.name = 'Voldy'
+        })
+        .expect(201)
+        .end(done);
     });
 
-    beforeEach('Create loggedIn user agent and authenticate', function (done) {
-      loggedInAgent = supertest.agent(app);
-      loggedInAgent.post('/login').send(userInfo).end(done);
-    });
-
-    it('should get with 200 response and with an array as the body', function (done) {
-      loggedInAgent.get('/api/members/secret-stash').expect(200).end(function (err, response) {
-        if (err) return done(err);
-        expect(response.body).to.be.an('array');
-        done();
-      });
-    });
+    xit('should get a particular user', function(done) {
+      guestAgent.get('/api/users/1')
+        .expect(function(res) {
+          res.body.id = 1
+          res.body.name = 'Ishaan'
+        })
+        .expect(200)
+        .end(done)
+    })
 
   });
+
+
 
 });
