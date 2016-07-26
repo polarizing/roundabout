@@ -39,6 +39,11 @@ module.exports = db.define('tour', {
    defaultValue: 180
  },
 
+ location: {
+  type: Sequelize.STRING,
+  defaultValue: 'New York City'
+ },
+
  book_by: {
    type: Sequelize.DATE
 }
