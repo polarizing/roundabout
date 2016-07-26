@@ -15,7 +15,7 @@ User.hasMany(Review, {foreignKey: 'guideId'});
 User.hasMany(Review, {foreignKey: 'userId'});
 
 Tour.hasOne(Booking, {foreignKey: 'tourId'});
-Tour.hasMany(Tag, {foreignKey: 'tourId'})
+Tour.hasMany(Tag, {as: 'categories'})
 Tour.belongsTo(User, {as: 'guide'});
 
 Booking.belongsTo(Tour, {as: 'tour'});
@@ -24,5 +24,3 @@ Booking.belongsTo(User, {as: 'guide'});
 
 Review.belongsTo(User, {as: 'guide'});
 Review.belongsTo(User, {as: 'user'})
-
-Tag.belongsToMany(Tour, {as: 'category'});
