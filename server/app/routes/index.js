@@ -7,6 +7,7 @@ router.use('/users', require('./users'));
 router.use('/tours', require('./tours'));
 router.use('/bookings', require('./bookings'));
 router.use('/reviews', require('./reviews'));
+router.use('/tags', require('./tags'));
 
 // Make sure this is after all of
 // the registered routes!

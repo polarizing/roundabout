@@ -24,6 +24,7 @@ router.get('/:id', function(req, res, next) {
     .catch(next);
 });
 
+// TODO: check possible authentication conflicts
 router.post('/:id', function(req, res, next) {
     User.create(req.body)
     .then(function(user) {
