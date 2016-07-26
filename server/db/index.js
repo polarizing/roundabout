@@ -15,7 +15,7 @@ User.hasMany(Review);
 Tour.hasMany(Tag)
 Tour.hasOne(Booking);
 Tour.hasOne(Review);
-Tour.belongsTo(User, { as: 'Guide'});
+Tour.belongsTo(User, { as: 'guide'});
 
 Booking.belongsTo(Tour);
 Booking.belongsTo(User);
