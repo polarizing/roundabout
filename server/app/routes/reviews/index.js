@@ -2,36 +2,36 @@
 var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
-var Booking = require('../../../db/models/booking');
+var Review = require('../../../db/models/review');
 
 router.param('id', function (req, res, next, id) {
-    Booking.findById(id)
-    .then(function (booking) {
-        req.requestedBooking = booking;
+    Review.findById(id)
+    .then(function (review) {
+        req.requestedReview = review;
         next();
     })
     .catch(next);
 });
 
 router.get('/:id', function(req, res, next) {//user and admin
-    req.requestedBooking.reload()
-    .then(function(booking) {
-        res.send(booking);
+    req.requestedReview.reload()
+    .then(function(review) {
+        res.send(review);
     })
     .catch(next);
 });
 
 router.post('/:id', function(req, res, next) {//user
-    Booking.create(req.body)
-    .then(function(booking) {
+    Review.create(req.body)
+    .then(function(review) {
         res.status(201);
-        res.send(booking);
+        res.send(review);
     })
     .catch(next);
 });
 
 router.delete('/:id', function(req, res, next) { //admin/user
-    req.requestedBooking.destroy()
+    req.requestedReview.destroy()
     .then(function () {
         res.status(204).end();
     })
@@ -39,9 +39,9 @@ router.delete('/:id', function(req, res, next) { //admin/user
 });
 
 router.get('/', function(req, res, next) { //admin
-    Booking.findAll()
-    .then(function(bookings) {
-        res.send(bookings)
+    Review.findAll()
+    .then(function(reviews) {
+        res.send(reviews)
     })
     .catch(next);
 });
