@@ -21,7 +21,7 @@ router.get('/:id', function(req, res, next) {//user and admin
     .catch(next);
 });
 
-router.post('/:id', function(req, res, next) {//user
+router.post('/', function(req, res, next) {//user
     Review.create(req.body)
     .then(function(review) {
         res.status(201);

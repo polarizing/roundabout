@@ -21,7 +21,7 @@ router.get('/:id', function(req, res, next) {
     .catch(next);
 });
 
-router.post('/:id', function(req, res, next) {
+router.post('/', function(req, res, next) {
     Tour.create(req.body)
     .then(function(tour) {
         res.status(201);
