@@ -8,19 +8,21 @@ var Booking = require('./models/booking');
 var Review = require('./models/review');
 var Tag = require('./models/tag');
 
-User.hasMany(Tour);
-User.hasMany(Booking);
-User.hasMany(Review);
+User.hasMany(Tour, {foreignKey: 'guideId'});
+User.hasMany(Booking, {foreignKey: 'userId'});
+User.hasMany(Booking, {foreignKey: 'guideId'});
+User.hasMany(Review, {foreignKey: 'guideId'});
+User.hasMany(Review, {foreignKey: 'userId'});
 
-Tour.hasMany(Tag)
-Tour.hasOne(Booking);
-Tour.hasOne(Review);
-Tour.belongsTo(User, { as: 'guide'});
+Tour.hasOne(Booking, {foreignKey: 'tourId'});
+Tour.hasMany(Tag, {foreignKey: 'tourId'})
+Tour.belongsTo(User, {as: 'guide'});
 
-Booking.belongsTo(Tour);
-Booking.belongsTo(User);
+Booking.belongsTo(Tour, {as: 'tour'});
+Booking.belongsTo(User, {as: 'user'});
+Booking.belongsTo(User, {as: 'guide'});
 
-Review.belongsTo(Tour);
-Review.belongsTo(User);
+Review.belongsTo(User, {as: 'guide'});
+Review.belongsTo(User, {as: 'user'})
 
-Tag.belongsToMany(Tour);
+Tag.belongsToMany(Tour, {as: 'category'});
