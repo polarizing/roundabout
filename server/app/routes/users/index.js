@@ -3,6 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
 var User = require('../../db/models/user');
+var Booking = require('../../db/models/booking');
 
 router.param('id', function (req, res, next, id) {
     User.findById(id)
@@ -53,3 +54,16 @@ router.get('/', function(req, res, next) {
     })
     .catch(next);
 });
+
+router.get('/:id/bookings', function(req, res, next) {
+    Booking.findAll({
+        where: {
+            userId: req.requestedUser.id
+        }
+    })
+    .then(function(bookings) {
+        res.send(bookings)
+    })
+    .catch(next);
+});
+
