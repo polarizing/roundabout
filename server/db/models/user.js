@@ -7,13 +7,21 @@ var db = require('../_db');
 
 module.exports = db.define('user', {
     email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        isNull: false
     },
     password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        isNull: false
     },
     salt: {
         type: Sequelize.STRING
+    },
+    phone_number: {
+        type: Sequelize.STRING
+    },
+    isAdmin: {
+        type: Sequelize.BOOLEAN
     },
     twitter_id: {
         type: Sequelize.STRING
