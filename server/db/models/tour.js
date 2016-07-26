@@ -29,6 +29,10 @@ module.exports = db.define('tour', {
    allowNull: false
  },
 
+ image: {
+  type: Sequelize.STRING
+ },
+
  duration: {
    type: Sequelize.INTEGER,
    defaultValue: 60
@@ -39,8 +43,18 @@ module.exports = db.define('tour', {
    defaultValue: 180
  },
 
+ location: {
+  type: Sequelize.STRING,
+  defaultValue: 'New York City'
+ },
+
  book_by: {
    type: Sequelize.DATE
+},
+
+is_booked: {
+  type: Sequelize.BOOLEAN,
+  defaultValue: false
 }
 
  //guideId will be set when we do tour.belongsTo(user, as guide)
