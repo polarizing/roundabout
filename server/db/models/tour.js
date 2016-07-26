@@ -29,6 +29,10 @@ module.exports = db.define('tour', {
    allowNull: false
  },
 
+ image: {
+  type: Sequelize.STRING
+ },
+
  duration: {
    type: Sequelize.INTEGER,
    defaultValue: 60
