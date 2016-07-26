@@ -4,6 +4,7 @@ module.exports = router;
 var _ = require('lodash');
 var User = require('../../db/models/user');
 var Booking = require('../../db/models/booking');
+var Tour = require('../../db/models/tour');
 
 router.param('id', function (req, res, next, id) {
     User.findById(id)
@@ -63,6 +64,18 @@ router.get('/:id/bookings', function(req, res, next) {
     })
     .then(function(bookings) {
         res.send(bookings)
+    })
+    .catch(next);
+});
+
+router.get('/:id/tours', function(req, res, next) {
+    Tour.findAll({
+        where: {
+            guideId: req.requestedUser.id
+        }
+    })
+    .then(function(tours) {
+        res.send(tours)
     })
     .catch(next);
 });
