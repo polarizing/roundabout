@@ -2,7 +2,7 @@
 var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
-var Booking = require('../../db/models/booking');
+var Booking = require('../../../db/models/booking');
 
 router.param('id', function (req, res, next, id) {
     Booking.findById(id)
@@ -45,5 +45,3 @@ router.get('/', function(req, res, next) { //admin
     })
     .catch(next);
 });
-
-

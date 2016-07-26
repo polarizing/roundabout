@@ -2,7 +2,7 @@
 var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
-var Review = require('../../db/models/review');
+var Review = require('../../../db/models/review');
 
 router.param('id', function (req, res, next, id) {
     Review.findById(id)
