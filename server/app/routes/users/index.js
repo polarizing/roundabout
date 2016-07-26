@@ -5,6 +5,7 @@ var _ = require('lodash');
 var User = require('../../db/models/user');
 var Booking = require('../../db/models/booking');
 var Tour = require('../../db/models/tour');
+var Review = require('../../db/models/review');
 
 router.param('id', function (req, res, next, id) {
     User.findById(id)
@@ -80,3 +81,15 @@ router.get('/:id/tours', function(req, res, next) {
     .catch(next);
 });
 
+// show all reviews for a guide
+router.get('/:id/reviews', function(req, res, next) {
+    Review.findAll({
+        where: {
+            guideId: req.requestedUser.id
+        }
+    })
+    .then(function(reviews) {
+        res.send(reviews)
+    })
+    .catch(next);
+});
