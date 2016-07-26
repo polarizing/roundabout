@@ -6,7 +6,6 @@ var User = require('./models/user');
 var Tour = require('./models/tour');
 var Booking = require('./models/booking');
 var Review = require('./models/review');
-var Tag = require('./models/tag');
 
 User.hasMany(Tour, {foreignKey: 'guideId'});
 User.hasMany(Booking, {foreignKey: 'userId'});
@@ -15,7 +14,6 @@ User.hasMany(Review, {foreignKey: 'guideId'});
 User.hasMany(Review, {foreignKey: 'userId'});
 
 Tour.hasOne(Booking, {foreignKey: 'tourId'});
-Tour.hasMany(Tag, {as: 'categories'})
 Tour.belongsTo(User, {as: 'guide'});
 
 Booking.belongsTo(Tour, {as: 'tour'});
