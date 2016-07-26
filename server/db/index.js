@@ -6,6 +6,7 @@ var User = require('./models/user');
 var Tour = require('./models/tour');
 var Booking = require('./models/booking');
 var Review = require('./models/review');
+var Tag = require('./models/tag');
 
 User.hasMany(Tour, {foreignKey: 'guideId'});
 User.hasMany(Booking, {foreignKey: 'userId'});
