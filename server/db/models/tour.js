@@ -50,6 +50,11 @@ module.exports = db.define('tour', {
 
  book_by: {
    type: Sequelize.DATE
+},
+
+is_booked: {
+  type: Sequelize.BOOLEAN,
+  defaultValue: false
 }
 
  //guideId will be set when we do tour.belongsTo(user, as guide)
