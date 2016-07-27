@@ -29,11 +29,11 @@ beforeEach('Create app', function (done) {
 });
 
 
-xdescribe('User routes', function () {
+describe('User routes', function () {
 
-  xdescribe('Getting users', function () {
+  describe('Getting users', function () {
 
-    xit('should get all users', function (done) {
+    it('should get all users', function (done) {
       guestAgent
       .get('/api/users/')
       .expect(200)
@@ -42,7 +42,7 @@ xdescribe('User routes', function () {
         done()});
     });
 
-    xit('should get a particular user', function(done) {
+    it('should get a particular user', function(done) {
       guestAgent.get('/api/users/1')
       .expect(200)
       .end(function(err, res) {
@@ -54,9 +54,9 @@ xdescribe('User routes', function () {
 
   });
 
-  xdescribe('Creating new users', function () {
+  describe('Creating new users', function () {
 
-    xit('should create a new user', function (done) {
+    it('should create a new user', function (done) {
       guestAgent
       .post('/api/users/')
       .send({name: 'Voldy', email: 'horcrux@hogwarts.edu', password: 'its_a_riddle,get_it?'})
@@ -67,7 +67,7 @@ xdescribe('User routes', function () {
         done()});
     });
 
-    xit('should get update the user just created', function(done) {
+    it('should get update the user just created', function(done) {
       guestAgent
       .put('/api/users/2')
       .send({name: 'Tom Riddle'})
@@ -80,8 +80,8 @@ xdescribe('User routes', function () {
 
   });
 
-  xdescribe('Deleting Users', function () {
-    xit('should delete a user', function (done) {
+  describe('Deleting Users', function () {
+    it('should delete a user', function (done) {
       guestAgent
       .delete('/api/users/2')
       .expect(204)
@@ -89,7 +89,7 @@ xdescribe('User routes', function () {
     });
   });
 
-   xdescribe('Getting other info from users', function () {
+   describe('Getting other info from users', function () {
     var Booking = db.model('booking');
     var Tour = db.model('tour');
     var Review = db.model('review');
@@ -109,21 +109,21 @@ xdescribe('User routes', function () {
       })
     })
 
-    xit('should get tours', function (done) {
+    it('should get tours', function (done) {
       guestAgent
       .get('/api/users/1/tours')
       .expect(200)
       .end(done);
     });
 
-    xit('should get bookings', function (done) {
+    it('should get bookings', function (done) {
       guestAgent
       .get('/api/users/1/bookings')
       .expect(200)
       .end(done);
     });
 
-    xit('should get tours', function (done) {
+    it('should get tours', function (done) {
       guestAgent
       .get('/api/users/1/tours')
       .expect(200)

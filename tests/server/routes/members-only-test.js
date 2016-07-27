@@ -7,7 +7,7 @@ var db = require('../../../server/db');
 
 var supertest = require('supertest');
 
-xdescribe('Members Route', function () {
+describe('Members Route', function () {
 
     var app, User;
 
@@ -20,7 +20,7 @@ xdescribe('Members Route', function () {
         User = db.model('user');
     });
 
-	xdescribe('Unauthenticated request', function () {
+	describe('Unauthenticated request', function () {
 
 		var guestAgent;
 
@@ -28,7 +28,7 @@ xdescribe('Members Route', function () {
 			guestAgent = supertest.agent(app);
 		});
 
-		xit('should get a 401 response', function (done) {
+		it('should get a 401 response', function (done) {
 			guestAgent.get('/api/members/secret-stash')
 				.expect(401)
 				.end(done);
@@ -36,7 +36,7 @@ xdescribe('Members Route', function () {
 
 	});
 
-	xdescribe('Authenticated request', function () {
+	describe('Authenticated request', function () {
 
 		var loggedInAgent;
 
@@ -56,7 +56,7 @@ xdescribe('Members Route', function () {
 			loggedInAgent.post('/login').send(userInfo).end(done);
 		});
 
-		xit('should get with 200 response and with an array as the body', function (done) {
+		it('should get with 200 response and with an array as the body', function (done) {
 			loggedInAgent.get('/api/members/secret-stash').expect(200).end(function (err, response) {
 				if (err) return done(err);
 				expect(response.body).to.be.an('array');
