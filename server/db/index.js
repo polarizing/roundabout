@@ -7,6 +7,7 @@ var Tour = require('./models/tour');
 var Booking = require('./models/booking');
 var Review = require('./models/review');
 var Tag = require('./models/tag');
+var Order = require('./models/order')
 
 User.hasMany(Tour, {foreignKey: 'guideId'});
 User.hasMany(Booking, {foreignKey: 'userId'});
@@ -21,7 +22,12 @@ Tour.belongsTo(User, {as: 'guide'});
 Booking.belongsTo(Tour, {as: 'tour'});
 Booking.belongsTo(User, {as: 'user'});
 Booking.belongsTo(User, {as: 'guide'});
+Booking.belongsTo(Order, {as: 'order'});
 
 Review.belongsTo(User, {as: 'user'});
 Review.belongsTo(User, {as: 'guide'});
+
+
+
+Order.hasMany(Booking, {as: 'bookings'});
 

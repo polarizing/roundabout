@@ -2,37 +2,45 @@
 var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
-var Booking = require('../../../db/models/booking');
+var Order = require('../../../db/models/order');
 var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
-    Booking.findById(id)
-    .then(function (booking) {
-        req.requestedBooking = booking;
+    Order.findById(id)
+    .then(function (order) {
+        req.requestedOrder = order;
         next();
     })
     .catch(next);
 });
 
 router.get('/:id', check.access, function(req, res, next) {//user and admin
-    req.requestedBooking.reload()
-    .then(function(booking) {
-        res.send(booking);
+    req.requestedOrder.reload()
+    .then(function(order) {
+        res.send(order);
     })
     .catch(next);
 });
 
 router.post('/', check.user, function(req, res, next) {//user
-    Booking.create(req.body)
-    .then(function(booking) {
+    Order.create(req.body)
+    .then(function(order) {
         res.status(201);
-        res.send(booking);
+        res.send(order);
+    })
+    .catch(next);
+});
+
+router.put('/:id', check.access, function(req, res, next) {
+    req.requestedOrder.update(req.body)
+    .then(function (order) {
+        res.send(order);
     })
     .catch(next);
 });
 
 router.delete('/:id', check.admin, function(req, res, next) { //admin/user
-    req.requestedBooking.destroy()
+    req.requestedOrder.destroy()
     .then(function () {
         res.status(204).end();
     })
@@ -40,9 +48,9 @@ router.delete('/:id', check.admin, function(req, res, next) { //admin/user
 });
 
 router.get('/', function(req, res, next) { //admin
-    Booking.findAll()
-    .then(function(bookings) {
-        res.send(bookings)
+    Order.findAll()
+    .then(function(orders) {
+        res.send(orders)
     })
     .catch(next);
 });

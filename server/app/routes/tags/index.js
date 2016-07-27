@@ -3,6 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
 var Tag = require('../../../db/models/tag');
+var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
     Tag.findById(id)
@@ -21,7 +22,7 @@ router.get('/:id', function(req, res, next) {
     .catch(next);
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', check.user, function(req, res, next) {
     Tag.findOrCreate({
         where: {
             name: req.body.name
@@ -34,7 +35,7 @@ router.post('/', function(req, res, next) {
     .catch(next);
 });
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', check.admin, function(req, res, next) {
     req.requestedTag.destroy()
     .then(function () {
         res.status(204).end();
