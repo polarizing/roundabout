@@ -1,0 +1,39 @@
+<!-- <div>{{ tour.id }}</div> -->
+<div class="col-md-4 col-sm-6 col-xs-12">
+  
+  <div class="card">
+
+    <div class="card-image">
+      <a ui-sref="tour({id: tour.id})">
+      <img src="http://c4.nrostatic.com/sites/default/files/styles/original_image_with_cropping/public/uploaded/pic_giant_052915_SM_Brooklyn-Bridge-DT.jpg?itok=-MTToI9Z">
+      </a>
+      <span class="card-title">{{tour.title}}</span>
+    </div>
+    <div class="card-price">
+      <div class="card-price-label">
+      	<span><sup class="card-price-subscript">$</sup>{{tour.price}}</span>
+      </div>
+    </div>
+
+    <div class="card-expires">  
+      <div class="card-expires-label">56m</div>
+    </div>
+
+    <a href="#">
+    	<div class="pull-right media-photo media-round card-profile-picture card-profile-picture-offset">
+    		<img src="{{tour.guide.photo}}">
+    	</div>
+    </a>
+    <div class="card-content">
+      <p>{{ tour.description | limitTo: 75 }}{{tour.description.length > 75 ? ' ...' : ''}}
+    </p>
+    </div>
+    <div class="card-action">
+            <input type="hidden" class="rating"/>
+
+        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+        <span class="card-duration">{{tour.duration}}<span class="duration-suffix">m</span>
+        <a class="book_class" href="#">BOOK NOW</a>
+    </div>
+  </div>
+</div>            
