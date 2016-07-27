@@ -8,7 +8,8 @@ var db = require('../_db');
 module.exports = db.define('order', {
 	date: {
 		type: Sequelize.DATE,
-		isNull: false
+		isNull: false,
+		defaultValue: Sequelize.NOW
 	}
 
 },
@@ -17,11 +18,14 @@ module.exports = db.define('order', {
 
 		totalPrice: function(){
 			var total = 0;
+			if(!this.orderId){
+				total = undefined;
+			} else {
+				this.orderId.forEach(function(booking){
+					total += booking.price;
+				})
+			}
 
-			this.orderId.forEach(function(booking){
-				total += booking.price;
-			})
-			
 			return total;
 		}
 	}
