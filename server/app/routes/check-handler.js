@@ -8,7 +8,7 @@ var checkUser = function (req, res, next) {
 }
 
 var checkAdmin = function(req, res, next) {
-    if (req.user.is_admin) next();
+     if (req.user && req.user.is_admin) next();
      else {
          var err = new Error('Unauthorized');
          err.status = 401;
@@ -17,7 +17,7 @@ var checkAdmin = function(req, res, next) {
 }
 
 var checkAccess = function (req, res, next) {
-    if (req.user === req.requestedUser || req.user.is_admin) next();
+    if (req.user.id === req.requestedUser.id || req.user.is_admin) next();
     else {
         var err = new Error('Unauthorized');
         err.status = 401;
