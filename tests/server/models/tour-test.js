@@ -14,7 +14,7 @@ xdescribe('User model', function () {
      return db.sync({ force: true });
  });
 
-    describe('Tour model', function () {
+    xdescribe('Tour model', function () {
 
 
         var createTour = function() {
@@ -22,7 +22,7 @@ xdescribe('User model', function () {
         }
 
 
-        describe('isActive method', function () {
+        xdescribe('isActive method', function () {
 
             it('should exist', function () {
                 createTour().then(function(tour){
