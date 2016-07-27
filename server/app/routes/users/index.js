@@ -43,7 +43,7 @@ router.put('/:id', check.access, function(req, res, next) {
     .catch(next);
 });
 
-router.delete('/:id', check.access, function(req, res, next) {
+router.delete('/:id', check.admin, function(req, res, next) {
     req.requestedUser.destroy()
     .then(function () {
         res.status(204).end();
@@ -73,7 +73,7 @@ router.get('/:id/bookings', check.access, function(req, res, next) {
     .catch(next);
 });
 
-router.get('/:id/tours', check.user, function(req, res, next) {
+router.get('/:id/tours', function(req, res, next) {
     Tour.findAll({
         where: {
             guideId: req.requestedUser.id
@@ -86,7 +86,7 @@ router.get('/:id/tours', check.user, function(req, res, next) {
 });
 
 // show all reviews for a guide
-router.get('/:id/reviews', check.user, function(req, res, next) {
+router.get('/:id/reviews', function(req, res, next) {
     Review.findAll({
         where: {
             guideId: req.requestedUser.id
