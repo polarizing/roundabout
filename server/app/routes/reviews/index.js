@@ -14,7 +14,7 @@ router.param('id', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/:id', function(req, res, next) {//user and admin
+router.get('/:id', function(req, res, next) {
     req.requestedReview.reload()
     .then(function(review) {
         res.send(review);
@@ -22,7 +22,7 @@ router.get('/:id', function(req, res, next) {//user and admin
     .catch(next);
 });
 
-router.post('/', check.user, function(req, res, next) {//user
+router.post('/', check.user, function(req, res, next) {
     Review.create(req.body)
     .then(function(review) {
         res.status(201);
@@ -31,7 +31,7 @@ router.post('/', check.user, function(req, res, next) {//user
     .catch(next);
 });
 
-router.delete('/:id', check.access, function(req, res, next) { //admin/user
+router.delete('/:id', check.access, function(req, res, next) {
     req.requestedReview.destroy()
     .then(function () {
         res.status(204).end();
@@ -39,7 +39,7 @@ router.delete('/:id', check.access, function(req, res, next) { //admin/user
     .catch(next);
 });
 
-router.get('/', function(req, res, next) { //admin
+router.get('/', function(req, res, next) {
     Review.findAll()
     .then(function(reviews) {
         res.send(reviews)
