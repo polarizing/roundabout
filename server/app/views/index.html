@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <base href="/" />
-    <title>Fullstack Academy Generated Application</title>
+    <title>Roundabout</title>
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap-rating.css">
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <script src="/lodash/index.js"></script>
     <script src="/angular/angular.js"></script>
@@ -11,11 +12,20 @@
     <script src="/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/angular-ui-bootstrap/ui-bootstrap.js"></script>
     <script src="/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- MATERIALIZE  -->
+    <link rel="stylesheet" type="text/css" href="/materialize-css/dist/css/materialize.css" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script src="/socket.io-client/socket.io.js"></script>
     <script src="/main.js"></script>
 </head>
 <body ng-app="FullstackGeneratedApp">
     <navbar></navbar>
     <div id="main" ui-view></div>
+
+    <!-- LOAD AFTER JQUERY -->
+    <script src="/materialize-css/dist/js/materialize.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap-rating.js"></script>
+
 </body>
 </html>
