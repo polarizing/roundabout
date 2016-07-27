@@ -25,7 +25,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 // TODO: check possible authentication conflicts
-router.post('/:id', function(req, res, next) {
+router.post('/', function(req, res, next) {
     User.create(req.body)
     .then(function(user) {
         res.status(201);
@@ -35,6 +35,7 @@ router.post('/:id', function(req, res, next) {
 });
 
 router.put('/:id', function(req, res, next) {
+
     req.requestedUser.update(req.body)
     .then(function (user) {
         res.send(user);
@@ -43,6 +44,7 @@ router.put('/:id', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
+    console.log(req.requestedUser)
     req.requestedUser.destroy()
     .then(function () {
         res.status(204).end();
