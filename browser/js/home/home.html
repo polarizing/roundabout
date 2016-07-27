@@ -36,5 +36,5 @@
     	</div>
     </div>
 
-    <tour-card ng-repeat="tour in ctrl.tours | filter: ctrl.searchText" tour-data="tour">
+    <tour-card ng-repeat="tour in ctrl.tours | filter: ctrl.searchText | orderBy: '+timeLeft'" tour-data="tour">
 </section>

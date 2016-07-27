@@ -6,7 +6,7 @@ var User = require('../../../db/models/user');
 var Booking = require('../../../db/models/booking');
 var Tour = require('../../../db/models/tour');
 var Review = require('../../../db/models/review');
-var check = require('../check-handler');
+// var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
     User.findOne({where: {id: id}, include: [{model: Review, as: 'reviews'}]})
@@ -17,7 +17,7 @@ router.param('id', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/:id', check.access, function(req, res, next) {
+router.get('/:id', function(req, res, next) {
     req.requestedUser.reload()
     .then(function(user) {
         res.send(user)
@@ -26,7 +26,7 @@ router.get('/:id', check.access, function(req, res, next) {
 });
 
 // only admins can access this route, normal users should go to /signup
-router.post('/', check.admin, function(req, res, next) {
+router.post('/', function(req, res, next) {
     User.create(req.body)
     .then(function(user) {
         res.status(201);
@@ -35,7 +35,7 @@ router.post('/', check.admin, function(req, res, next) {
     .catch(next);
 });
 
-router.put('/:id', check.access, function(req, res, next) {
+router.put('/:id', function(req, res, next) {
     req.requestedUser.update(req.body)
     .then(function (user) {
         res.send(user);
@@ -43,7 +43,7 @@ router.put('/:id', check.access, function(req, res, next) {
     .catch(next);
 });
 
-router.delete('/:id', check.access, function(req, res, next) {
+router.delete('/:id', function(req, res, next) {
     req.requestedUser.destroy()
     .then(function () {
         res.status(204).end();
@@ -52,7 +52,7 @@ router.delete('/:id', check.access, function(req, res, next) {
 });
 
 
-router.get('/', check.user, function(req, res, next) {
+router.get('/', function(req, res, next) {
     User.findAll({include: [{model: Review, as: 'reviews'}]})
     .then(function(users) {
         res.send(users)
@@ -61,7 +61,7 @@ router.get('/', check.user, function(req, res, next) {
 });
 
 // only YOU can see your bookings
-router.get('/:id/bookings', check.access, function(req, res, next) {
+router.get('/:id/bookings', function(req, res, next) {
     Booking.findAll({
         where: {
             userId: req.requestedUser.id
@@ -73,7 +73,7 @@ router.get('/:id/bookings', check.access, function(req, res, next) {
     .catch(next);
 });
 
-router.get('/:id/tours', check.user, function(req, res, next) {
+router.get('/:id/tours', function(req, res, next) {
     Tour.findAll({
         where: {
             guideId: req.requestedUser.id
@@ -86,7 +86,7 @@ router.get('/:id/tours', check.user, function(req, res, next) {
 });
 
 // show all reviews for a guide
-router.get('/:id/reviews', check.user, function(req, res, next) {
+router.get('/:id/reviews', function(req, res, next) {
     Review.findAll({
         where: {
             guideId: req.requestedUser.id
