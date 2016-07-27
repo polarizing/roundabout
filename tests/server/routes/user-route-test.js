@@ -116,14 +116,14 @@ describe('User routes', function () {
       .end(done);
     });
 
-     it('should get bookings', function (done) {
+    it('should get bookings', function (done) {
       guestAgent
       .get('/api/users/1/bookings')
       .expect(200)
       .end(done);
     });
 
-      it('should get tours', function (done) {
+    it('should get tours', function (done) {
       guestAgent
       .get('/api/users/1/tours')
       .expect(200)

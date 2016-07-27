@@ -9,6 +9,7 @@ module.exports = db.define('booking', {
 		type: Sequelize.INTEGER
 	},
 	date: {
-		type: Sequelize.DATE
+		type: Sequelize.DATE,
+		defaultValue: Sequelize.NOW
 	}
 });
