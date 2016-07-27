@@ -1,9 +1,12 @@
 <!-- <div>{{ tour.id }}</div> -->
-<div class="col-md-4 col-sm-12">
+<div class="col-md-4 col-sm-6 col-xs-12">
+  
   <div class="card">
 
     <div class="card-image">
+      <a ui-sref="tour({id: tour.id})">
       <img src="http://c4.nrostatic.com/sites/default/files/styles/original_image_with_cropping/public/uploaded/pic_giant_052915_SM_Brooklyn-Bridge-DT.jpg?itok=-MTToI9Z">
+      </a>
       <span class="card-title">{{tour.title}}</span>
     </div>
     <div class="card-price">

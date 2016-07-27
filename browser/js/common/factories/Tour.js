@@ -15,6 +15,13 @@ app.factory('Tour', function ($http) {
                     })
     }
 
+    Tour.fetch = function (id) {
+        return $http.get('/api/tours/' + id)
+                    .then(function (response) {
+                        return response.data;
+                    })
+    }
+
     Tour.attachGuide = function (tour) {
         return $http.get('/api/users/' + tour.guideId)
              .then(function (response) {
