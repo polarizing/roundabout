@@ -3,10 +3,12 @@ var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
 var Tour = require('../../../db/models/tour');
+var Guide = require('../../../db/models/user');
 var check = require('../check-handler');
 
+
 router.param('id', function (req, res, next, id) {
-    Tour.findById(id)
+    Tour.findOne({where: {id: id}, include: [{model: Guide, as: 'guide'}]})
     .then(function (tour) {
         req.requestedTour = tour;
         next();
@@ -48,8 +50,9 @@ router.delete('/:id', check.access, function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-    Tour.findAll()
+    Tour.findAll({include: [{model: Guide, as: 'guide'}]})
     .then(function(tours) {
+        tours = tours.filter(tour => tour.timeLeft > 0)
         res.send(tours)
     })
     .catch(next);

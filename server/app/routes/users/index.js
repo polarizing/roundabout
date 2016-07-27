@@ -9,7 +9,7 @@ var Review = require('../../../db/models/review');
 var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
-    User.findById(id)
+    User.findOne({where: {id: id}, include: [{model: Review, as: 'reviews'}]})
     .then(function (user) {
         req.requestedUser = user;
         next();
@@ -20,7 +20,7 @@ router.param('id', function (req, res, next, id) {
 router.get('/:id', check.access, function(req, res, next) {
     req.requestedUser.reload()
     .then(function(user) {
-        res.send(user);
+        res.send(user)
     })
     .catch(next);
 });
@@ -51,8 +51,9 @@ router.delete('/:id', check.access, function(req, res, next) {
     .catch(next);
 });
 
+
 router.get('/', check.user, function(req, res, next) {
-    User.findAll()
+    User.findAll({include: [{model: Review, as: 'reviews'}]})
     .then(function(users) {
         res.send(users)
     })

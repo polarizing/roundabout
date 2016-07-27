@@ -4,6 +4,7 @@ var _ = require('lodash');
 var Sequelize = require('sequelize');
 
 var db = require('../_db');
+var Review = require('./review');
 
 module.exports = db.define('user', {
    name: {
@@ -47,6 +48,19 @@ module.exports = db.define('user', {
            return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
        }
    },
+
+   getterMethods: {
+       avgRating: function() {
+        if (this.reviews && this.reviews.length) return (this.reviews.reduce((prev, curr) => prev.rating + curr.rating))/this.reviews.length;
+        else return -1
+       },
+
+      numReviews: function() {
+        if (this.reviews) return this.reviews.length;
+        else return 0
+      }
+   },
+
    classMethods: {
        generateSalt: function () {
            return crypto.randomBytes(16).toString('base64');
