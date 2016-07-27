@@ -43,11 +43,7 @@ router.put('/:id', function(req, res, next) {
     .catch(next);
 });
 
-<<<<<<< HEAD
 router.delete('/:id', function(req, res, next) {
-=======
-router.delete('/:id', check.admin, function(req, res, next) {
->>>>>>> ab3bd578c4cbac7dedd2bba0e13f872067d8c4eb
     req.requestedUser.destroy()
     .then(function () {
         res.status(204).end();
