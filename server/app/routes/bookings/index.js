@@ -3,6 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
 var Booking = require('../../../db/models/booking');
+var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
     Booking.findById(id)
@@ -13,7 +14,7 @@ router.param('id', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/:id', function(req, res, next) {//user and admin
+router.get('/:id', check.access, function(req, res, next) {//user and admin
     req.requestedBooking.reload()
     .then(function(booking) {
         res.send(booking);
@@ -21,7 +22,7 @@ router.get('/:id', function(req, res, next) {//user and admin
     .catch(next);
 });
 
-router.post('/', function(req, res, next) {//user
+router.post('/', check.user, function(req, res, next) {//user
     Booking.create(req.body)
     .then(function(booking) {
         res.status(201);
@@ -30,7 +31,7 @@ router.post('/', function(req, res, next) {//user
     .catch(next);
 });
 
-router.delete('/:id', function(req, res, next) { //admin/user
+router.delete('/:id', check.admin, function(req, res, next) { //admin/user
     req.requestedBooking.destroy()
     .then(function () {
         res.status(204).end();
