@@ -29,15 +29,15 @@ describe('Order model', function () {
 
     describe('totalPrice Method', function(){
 
-    	it('works', function(){
-    		createBookings().then(function(){
-    			return createOrder()
-    		}).then(function(order){
-    			console.log('_______________________________', order.totalPrice);
-    			expect(order.totalPrice).to.be.equal(51);
-    		});
-    	})
-    })
+    // 	it('works', function(){
+    // 		createBookings().then(function(){
+    // 			return createOrder()
+    // 		}).then(function(order){
+    // 			console.log('_______________________________', order.totalPrice);
+    // 			expect(order.totalPrice).to.be.equal(51);
+    // 		});
+    // 	})
+    // })
 
 
    
