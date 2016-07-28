@@ -14,7 +14,7 @@ router.param('id', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/:id', check.access, function(req, res, next) {//user and admin
+router.get('/:id', check.admin, function(req, res, next) {
     req.requestedOrder.reload()
     .then(function(order) {
         res.send(order);
@@ -22,7 +22,7 @@ router.get('/:id', check.access, function(req, res, next) {//user and admin
     .catch(next);
 });
 
-router.post('/', check.user, function(req, res, next) {//user
+router.post('/', check.user, function(req, res, next) {
     Order.create(req.body)
     .then(function(order) {
         res.status(201);
@@ -31,15 +31,7 @@ router.post('/', check.user, function(req, res, next) {//user
     .catch(next);
 });
 
-router.put('/:id', check.access, function(req, res, next) {
-    req.requestedOrder.update(req.body)
-    .then(function (order) {
-        res.send(order);
-    })
-    .catch(next);
-});
-
-router.delete('/:id', check.admin, function(req, res, next) { //admin/user
+router.delete('/:id', check.admin, function(req, res, next) {
     req.requestedOrder.destroy()
     .then(function () {
         res.status(204).end();
@@ -47,7 +39,7 @@ router.delete('/:id', check.admin, function(req, res, next) { //admin/user
     .catch(next);
 });
 
-router.get('/', function(req, res, next) { //admin
+router.get('/', check.admin, function(req, res, next) {
     Order.findAll()
     .then(function(orders) {
         res.send(orders)

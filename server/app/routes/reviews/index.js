@@ -31,7 +31,7 @@ router.post('/', check.user, function(req, res, next) {
     .catch(next);
 });
 
-router.delete('/:id', check.access, function(req, res, next) {
+router.delete('/:id', check.admin, function(req, res, next) {
     req.requestedReview.destroy()
     .then(function () {
         res.status(204).end();

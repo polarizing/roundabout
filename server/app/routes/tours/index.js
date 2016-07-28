@@ -33,7 +33,7 @@ router.post('/', check.user, function(req, res, next) {
     .catch(next);
 });
 
-router.put('/:id', check.access, function(req, res, next) {
+router.put('/:id', check.admin, function(req, res, next) {
     req.requestedTour.update(req.body)
     .then(function (tour) {
         res.send(tour);
@@ -41,7 +41,7 @@ router.put('/:id', check.access, function(req, res, next) {
     .catch(next);
 });
 
-router.delete('/:id', check.access, function(req, res, next) {
+router.delete('/:id', check.admin, function(req, res, next) {
     req.requestedTour.destroy()
     .then(function () {
         res.status(204).end();

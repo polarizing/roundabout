@@ -9,7 +9,14 @@ var Review = require('../../../db/models/review');
 var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
-    User.findOne({where: {id: id}, include: [{model: Review, as: 'reviews'}]})
+    User.findOne({
+        where: {
+            id: id
+        },
+        include: [
+            { model: Review, as: 'reviews' }
+        ]
+    })
     .then(function (user) {
         req.requestedUser = user;
         next();
@@ -35,6 +42,7 @@ router.post('/', check.admin, function(req, res, next) {
     .catch(next);
 });
 
+// only YOU can update your profile
 router.put('/:id', check.access, function(req, res, next) {
     req.requestedUser.update(req.body)
     .then(function (user) {
@@ -43,6 +51,7 @@ router.put('/:id', check.access, function(req, res, next) {
     .catch(next);
 });
 
+// only admins can delete your profile
 router.delete('/:id', check.admin, function(req, res, next) {
     req.requestedUser.destroy()
     .then(function () {
@@ -51,8 +60,7 @@ router.delete('/:id', check.admin, function(req, res, next) {
     .catch(next);
 });
 
-
-router.get('/', check.user, function(req, res, next) {
+router.get('/', function(req, res, next) {
     User.findAll({include: [{model: Review, as: 'reviews'}]})
     .then(function(users) {
         res.send(users)
@@ -60,7 +68,9 @@ router.get('/', check.user, function(req, res, next) {
     .catch(next);
 });
 
-// only YOU can see your bookings
+//===================================================
+//  only YOU can access/edit/delete your bookings
+//===================================================
 router.get('/:id/bookings', check.access, function(req, res, next) {
     Booking.findAll({
         where: {
@@ -73,6 +83,54 @@ router.get('/:id/bookings', check.access, function(req, res, next) {
     .catch(next);
 });
 
+router.get('/:id/bookings/:bookingId', check.access, function(req, res, next) {
+    Booking.findOne({
+        where: {
+            userId: req.requestedUser.id,
+            id: req.params.bookingId
+        }
+    })
+    .then(function(booking) {
+        res.send(booking)
+    })
+    .catch(next);
+});
+
+router.put('/:id/bookings/:bookingId', check.access, function(req, res, next) {
+    Booking.findOne({
+        where: {
+            userId: req.requestedUser.id,
+            id: req.params.bookingId
+        }
+    })
+    .then(function(booking) {
+        return booking.update(req.body)
+    })
+    .then(function(updatedBooking) {
+        res.send(updatedBooking)
+    })
+    .catch(next);
+});
+
+router.delete('/:id/bookings/:bookingId', check.access, function(req, res, next) {
+    Booking.findOne({
+        where: {
+            userId: req.requestedUser.id,
+            id: req.params.bookingId
+        }
+    })
+    .then(function(booking) {
+        return booking.destroy()
+    })
+    .then(function(deletedBooking) {
+        res.send(deletedBooking)
+    })
+    .catch(next);
+});
+
+//===================================================
+//       only YOU can edit/delete your tours
+//===================================================
 router.get('/:id/tours', function(req, res, next) {
     Tour.findAll({
         where: {
@@ -85,15 +143,69 @@ router.get('/:id/tours', function(req, res, next) {
     .catch(next);
 });
 
-// show all reviews for a guide
-router.get('/:id/reviews', function(req, res, next) {
-    Review.findAll({
+router.put('/:id/tours/:tourId', check.access, function(req, res, next) {
+    Tour.findOne({
         where: {
-            guideId: req.requestedUser.id
+            guideId: req.requestedUser.id,
+            id: req.params.tourId
         }
     })
-    .then(function(reviews) {
-        res.send(reviews)
+    .then(function(tour) {
+        return tour.update(req.body)
+    })
+    .then(function(tour) {
+        res.send(tour)
     })
     .catch(next);
 });
+
+router.delete('/:id/tours/:tourId', check.access, function(req, res, next) {
+    Tour.findOne({
+        where: {
+            guideId: req.requestedUser.id,
+            id: req.params.tourId
+        }
+    })
+    .then(function(tour) {
+        return tour.destroy(req.body)
+    })
+    .then(function(tour) {
+        res.send(tour)
+    })
+    .catch(next);
+});
+
+//===================================================
+//      only YOU can edit/delete your reviews
+//===================================================
+router.put('/:id/reviews/:reviewId', check.access, function(req, res, next) {
+    Review.findOne({
+        where: {
+            userId: req.requestedUser.id,
+            id: req.params.reviewId
+        }
+    })
+    .then(function(review) {
+        return review.update(req.body)
+    })
+    .then(function(review) {
+        res.send(review)
+    })
+    .catch(next);
+});
+
+router.delete('/:id/reviews/:reviewId', check.access, function(req, res, next) {
+    Review.findOne({
+        where: {
+            userId: req.requestedUser.id,
+            id: req.params.reviewId
+        }
+    })
+    .then(function(review) {
+        return review.destroy(req.body)
+    })
+    .then(function(review) {
+        res.send(review)
+    })
+    .catch(next);
+})
