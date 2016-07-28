@@ -1,11 +1,44 @@
 <section id="home">
 <!--     <fullstack-logo></fullstack-logo>
     <rando-greeting></rando-greeting> -->
-    <div class="search">
-    	<label>Search For Tours By Title and Description: 
-    	<input ng-model="ctrl.searchTitleDesc"></label>
-    </div>
-    <div class="filter">
+    <div id="video-container">
+	    <div id="video-player" class="fullscreen-video-player">
+	    	<video autoplay loop muted>
+	    	<source src="/video2.mp4" type="video/mp4">
+	    	</video>	
+	    </div>
+<!-- 	    <div class="video-middle">
+	    	<h2 class="text-branding-title">EXPLORE</h2>
+	    	<h4 class="text-branding-caption">Book local tour guides in 100+ cities and experience the place like
+	    	you have never before.</h4>
+	    </div> -->
+
+	    <div class="video-container-footer">
+	    	<div class="col-sm-12">
+	    		<div id="searchbar">
+	    			<div class="search-form">
+	    				<form action="/s" method="get">
+	    					<label class="input-searchterm-label">
+								 <div input-field class="input-searchterm">
+								    <input type="text" ng-model="ctrl.query">
+								    <label>Search for a tour</label>
+								</div>
+							</label>
+							<label class="input-location-label">
+								<div input-field class="input-location">
+								<auto-complete-input auto-data="ctrl.data" ac-title="'City'" color="ctrl.color" input-model="ctrl.location"></auto-complete-input>
+								</div>
+							</label>
+							  <a class="search-button waves-effect waves-light btn" ui-sref="tours({query: ctrl.query, location: ctrl.location})">Search</a>
+
+	    				</form>
+          
+	    			</div>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+<!--     <div class="filter">
     	<label>Filter by Tags</label>
 	 	<md-autocomplete
 	          ng-disabled="ctrl.isDisabled"
@@ -36,5 +69,5 @@
     	</div>
     </div>
 
-    <tour-card ng-repeat="tour in ctrl.tours | filter: ctrl.searchText | orderBy: '+timeLeft'" tour-data="tour">
+    <tour-card ng-repeat="tour in ctrl.tours | filter: ctrl.searchText | orderBy: '+timeLeft'" tour-data="tour"> -->
 </section>

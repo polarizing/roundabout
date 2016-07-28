@@ -50,10 +50,41 @@ router.delete('/:id', check.admin, function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-    Tour.findAll({include: [{model: Guide, as: 'guide'}]})
-    .then(function(tours) {
-        tours = tours.filter(tour => tour.timeLeft > 0)
-        res.send(tours)
-    })
-    .catch(next);
+    console.log('QUERY OBJECT', req.query);
+    if (Object.keys(req.query).length === 0) {
+        Tour.findAll({include: [{model: Guide, as: 'guide'}]})
+        .then(function(tours) {
+            tours = tours.filter(tour => tour.timeLeft > 0)
+            res.send(tours)
+        })
+        .catch(next);
+    }
+    else {
+        console.log('QUERRRY OBJECT', req.query);
+        Tour.findAll({where: { 
+                            $or: [
+                                {
+                                    title: {
+                                        $iLike: '%' + req.query.query + '%'
+                                    }
+                                },
+                                {
+                                    description: {
+                                        $iLike: '%' + req.query.query + '%'
+                                    }
+                                },
+                                {
+                                    tags: {
+                                        $contains: [req.query.query]
+                                    }
+                                }
+                            ]
+                        },include: [{model: Guide, as: 'guide'}]})
+                .then(function(tours) {
+                    console.log('TOURRRS', tours);
+                    tours = tours.filter(tour => tour.timeLeft > 0)
+                    res.send(tours)
+                })
+                .catch(next);
+    }
 });

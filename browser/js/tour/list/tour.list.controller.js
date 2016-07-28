@@ -1,17 +1,8 @@
 'use strict';
 
-app.controller('HomeCtrl', function ($timeout, $q, $log, $scope, $state, tours) {
+app.controller('TourList', function ($timeout, $q, $log, $scope, tours) {
 
     var self = this;
-    self.query = '';
-
-    self.location='';
-    self.data=["new york city", "chicago", "san francisco"];
-    self.color='#19A79A';
-
-    // self.clickHandler = function(){
-    //   $state.go('tours',{query:self.searchQuery, location:self.searchLocation});
-    // }
 
     self.tours = tours;
 
@@ -23,7 +14,6 @@ app.controller('HomeCtrl', function ($timeout, $q, $log, $scope, $state, tours) 
     self.selectedItemChange = selectedItemChange;
     self.searchTextChange   = searchTextChange;
     self.newState = newState;
-
     function newState(state) {
       alert("Sorry! You'll need to create a Constituion for " + state + " first!");
     }
@@ -82,4 +72,5 @@ app.controller('HomeCtrl', function ($timeout, $q, $log, $scope, $state, tours) 
         return (state.value.indexOf(lowercaseQuery) === 0);
       };
     }
+
 });

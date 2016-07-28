@@ -15,7 +15,7 @@ body {
 }
 
 #main {
-  padding-top: 60px;
+  padding-top: 0px;
   margin: 0 auto;
 }
 
@@ -24,4 +24,6 @@ body {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
-@import 'tour/detail/tour-detail.scss'
+@import 'tour/detail/tour-detail.scss';
+@import 'tour/list/tour-list.scss';
+@import 'materialize/materialize';
