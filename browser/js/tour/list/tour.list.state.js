@@ -17,11 +17,9 @@ app.config(function ($stateProvider) {
                     return true;
                 }
                 if (!checkProperties($stateParams)) {
-                    console.log('here1');
                     return Tour.fetchAll();
                 }
                 else {
-                    console.log('here2')
                     return Tour.queryAll($stateParams);
                 }
         	}
