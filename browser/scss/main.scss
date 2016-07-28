@@ -14,6 +14,17 @@ body {
   }
 }
 
+@font-face {
+	font-family: Circular;
+	src: url("/media/circular.ttf");
+}
+
+@font-face {
+	font-family: Circular;
+	src: url("/media/circular-bold.otf");
+	font-weight: bold;
+}
+
 #main {
   padding-top: 0px;
   margin: 0 auto;
