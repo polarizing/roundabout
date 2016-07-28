@@ -8,7 +8,7 @@ navbar {
   box-shadow: 1px 1px 14px -3px black;
 
   .navbar-custom {
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.6);
     box-shadow: none;
     margin-bottom: 0;
   }
@@ -48,21 +48,21 @@ navbar {
   .login-button {
     float: right;
     border: 1px solid black;
-    margin-top: 10px;
+
     background: none;
     outline: none !important;
   }
 
   .welcome {
+    height: 50px;
     float: right;
-    margin-top: 12px;
+    font-size: 1rem;
+    bottom: 7px;
+    position: relative;
     span {
-      color: black;
-      font-size: 16px;
       margin-right: 5px;
     }
     a {
-      color: #f30046;
       cursor: pointer;
     }
   }
