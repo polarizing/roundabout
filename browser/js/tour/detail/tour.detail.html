@@ -6,7 +6,45 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="summary">
+					<div class="row">
+
+						<div class="col-md-3 user-profile-name">
+							<div class="row">
+								<p>
+								<a href="#">
+							    	<div class="media-photo media-round card-profile-picture">
+							    		<img ng-src="{{tour.guide.photo}}">
+							    	</div>
+							    </a>
+							    </p>
+						    </div>
+
+						    <div class="row">
+						    	<div class="guide-name">{{tour.guide.name}}
+						    	</div>
+						    </div>
+						</div>
+						<div class="col-md-9 listing-info">
+							<div class="tour-title">{{tour.title}}</div>
+							<div class="tour-location">{{tour.location}}</div>
+							<div class="row tour-info-widgets">
+
+								<div class="col-sm-3"><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span class="tour-duration glyph-infotext"> {{tour.duration}}m</span></div>
+								<div class="col-sm-3"><i class="fa fa-users" aria-hidden="true"></i><span class="num-people glyph-infotext"> 1-4 people</span></div>
+								<div class="col-sm-4">
+									<i class="fa fa-star" aria-hidden="true"></i>
+									<i class="fa fa-star" aria-hidden="true"></i>
+									<i class="fa fa-star" aria-hidden="true"></i>
+									<i class="fa fa-star" aria-hidden="true"></i> 
+									<span class="glyph-infotext" > {{tour.guide.numReviews}} reviews</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
 					Summary (tour title, location, star rating, num reviews, profile pic, tags list + ... in the future (user defined options [ie, categories, family, etc])
+					}
 				</div>
 				<div class="details">
 					About this tour

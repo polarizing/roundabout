@@ -23,7 +23,7 @@
 	}
 
 	.book-it-panel {
-		min-height: 175px;
+		min-height: 225px;
 		border: 1px solid #dce0e0;
 		background-color: #fff;
 	}
@@ -76,7 +76,67 @@
 		float: right;
 	}
 	.summary {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
 
+	.card-profile-picture {
+		height: 90px;
+		width: 90px;
+	}
+
+	.card-profile-picture img {
+		height: 85px;
+		width: 85px;
+	}
+
+	.card-profile-picture-offset {
+		top: -40px;
+		right: 7px;
+		margin-bottom: -40px;
+	}
+
+	.media-photo {
+		backface-visibility:hidden;
+		position: relative;
+		display:inline-block;
+		vertical-align: bottom;
+		overflow: hidden;
+		background-color: #bbb;
+	}
+
+
+
+	.media-round {
+		border-radius: 50%;
+		border: 1px solid #fff;
+	}
+
+	.guide-name {
+		position: relative;
+		bottom: 5px;
+	}
+
+	.user-profile-name {
+		text-align: center;
+	}
+
+	.tour-title {
+		font-size: 24px;
+		margin-bottom: 6px;
+	}
+
+	.tour-location {
+		color: #757575;
+		font-size: 14px;
+	}
+
+	.tour-info-widgets {
+		margin-top: 5px;
+	}
+
+	.glyph-info-text {
+		padding-left: 5px;
 	}
 	.details {
 
