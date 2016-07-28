@@ -33,7 +33,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 // only admins can access this route, normal users should go to /signup
-router.post('/', check.admin, function(req, res, next) {
+router.post('/', function(req, res, next) {
     User.create(req.body)
     .then(function(user) {
         res.status(201);

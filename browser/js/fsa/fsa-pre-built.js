@@ -48,7 +48,7 @@
         ]);
     });
 
-    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q) {
+    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, $log) {
 
         function onSuccessfulLogin(response) {
             var data = response.data;
@@ -56,6 +56,7 @@
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             return data.user;
         }
+
 
         // Uses the session factory to see if an
         // authenticated user is currently registered.
@@ -87,12 +88,27 @@
         };
 
         this.login = function (credentials) {
+            $log.info(credentials)
             return $http.post('/login', credentials)
                 .then(onSuccessfulLogin)
                 .catch(function () {
                     return $q.reject({ message: 'Invalid login credentials.' });
                 });
         };
+
+
+        this.signup = function (credentials) {
+
+            return $http.post('/signup', credentials)
+            .then(function(response) {
+                return $q.resolve({message: 'signed up'})
+            })
+            .catch(function () {
+                return $q.reject({ message: 'User already exist'})
+            })
+
+
+        }
 
         this.logout = function () {
             return $http.get('/logout').then(function () {
