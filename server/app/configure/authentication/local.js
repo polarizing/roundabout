@@ -56,4 +56,27 @@ module.exports = function (app, db) {
 
     });
 
+    app.post('/signup', function(req, res, next) {
+        User.findOne({where: {
+            email: req.body.email
+        }})
+        .then(function(user) {
+            if (!user) return User.create(req.body)
+            else {
+                var error = new Error('User already exists');
+                error.status = 401;
+                throw error;
+            }
+        })
+        .then(function(createdUser) {
+            console.log("CREATED USER", createdUser)
+            res.sendStatus(200)
+        })
+        .catch(function(error) {
+            return next(error)
+        })
+
+
+    })
+
 };
