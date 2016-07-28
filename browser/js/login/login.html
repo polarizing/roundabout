@@ -1,16 +1,34 @@
-<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
-
-    <alert type="danger" ng-show="error">
-        {{ error }}
-    </alert>
-
-    <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="text" ng-model="login.email" class="form-control" id="email" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-        <label for="login-password">Password</label>
-        <input type="password" ng-model="login.password" class="form-control" id="login-password" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <form id="signup-form" name="signupForm" ng-submit="signupForm.$valid && sendSignup(signup)">
+        <div>CREATE A NEW ACCOUNT</div>
+        <alert type="danger" ng-show="error.signup">
+            {{ error.signup }}
+        </alert>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="text" ng-model="signup.email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" ng-model="signup.password" class="form-control" id="login-password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">SIGN UP</button>
+    </form>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+        <div>LOG IN</div>
+        <alert type="danger" ng-show="error.login">
+            {{ error.login }}
+        </alert>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="text" ng-model="login.email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" ng-model="login.password" class="form-control" id="login-password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">LOG IN</button>
+    </form>
+</div>

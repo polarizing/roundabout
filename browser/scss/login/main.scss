@@ -1,4 +1,19 @@
 #login-form {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
+}
+
+#signup-form {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media(max-width: 767px) {
+  #signup-form {
+    margin-bottom: 20px;
+  }
+
+  #login-form {
+    margin-top: 20px;
+  }
 }
