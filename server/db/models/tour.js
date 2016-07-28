@@ -68,7 +68,7 @@ module.exports = db.define('tour', {
     },
     getterMethods: {
         isActive: function() {
-            return Date.now() < this.book_by.getTime()
+            return !this.is_booked
         },
 
         timeLeft: function() {

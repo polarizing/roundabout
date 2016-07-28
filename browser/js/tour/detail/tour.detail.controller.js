@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TourDetail', function ($scope, tour) {
+app.controller('TourDetail', function ($scope, tour, $state, Tour, Session) {
 	var self = this;
 	$scope.tour = tour;
 	$scope.numTravellers = "1";
@@ -36,4 +36,10 @@ app.controller('TourDetail', function ($scope, tour) {
 	$scope.onStop = function () {
 	    console.log('onStop');
 	};
+  $scope.book = function() {
+    Tour.book($scope.tour, Session.user)
+    .then(function(data) {
+      $state.go('home')
+    })
+  }
 });
