@@ -70,7 +70,7 @@ router.get('/', function(req, res, next) {
                                 },
                                 {
                                     description: {
-                                        $iLike: req.query.query
+                                        $iLike: '%' + req.query.query + '%'
                                     }
                                 },
                                 {

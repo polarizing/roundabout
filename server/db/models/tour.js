@@ -12,7 +12,7 @@ module.exports = db.define('tour', {
     },
 
     description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
     },
 

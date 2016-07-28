@@ -5,7 +5,7 @@
 
     <div class="card-image">
       <a ui-sref="tour({id: tour.id})">
-      <img src="http://c4.nrostatic.com/sites/default/files/styles/original_image_with_cropping/public/uploaded/pic_giant_052915_SM_Brooklyn-Bridge-DT.jpg?itok=-MTToI9Z">
+      <img src="{{tour.image}}">
       </a>
       <span class="card-title">{{tour.title}}</span>
     </div>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="card-expires">  
-      <div class="card-expires-label">{{tour.timeLeft}}<span class="duration-suffix">m</span></div>
+      <div class="card-expires-label">Time Left: {{tour.timeLeft}}<span class="duration-suffix">m</span></div>
     </div>
 
     <a href="#">
