@@ -103,20 +103,9 @@
             .then(function(response) {
                 return $q.resolve({message: 'signed up'})
             })
-            // .then(function() {
-
-            // })
             .catch(function () {
                 return $q.reject({ message: 'User already exist'})
             })
-
-
-
-            // return $http.post('/login', credentials)
-            //     .then(onSuccessfulLogin)
-            //     .catch(function () {
-            //         return $q.reject({ message: 'Invalid login credentials.' });
-            //     });
 
 
         }

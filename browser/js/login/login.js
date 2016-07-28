@@ -43,15 +43,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $log) {
             $scope.error.signup = 'User already exists'
         })
 
-
-        // $scope.error = null;
-
-        // AuthService.login(signupInfo).then(function () {
-        //     $state.go('home');
-        // }).catch(function () {
-        //     $scope.error = 'Invalid login credentials.';
-        // });
-
     }
 
 });
