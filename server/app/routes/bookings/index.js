@@ -14,7 +14,7 @@ router.param('id', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/:id', check.access, function(req, res, next) {//user and admin
+router.get('/:id', check.admin, function(req, res, next) {
     req.requestedBooking.reload()
     .then(function(booking) {
         res.send(booking);
@@ -22,7 +22,7 @@ router.get('/:id', check.access, function(req, res, next) {//user and admin
     .catch(next);
 });
 
-router.post('/', check.user, function(req, res, next) {//user
+router.post('/', check.user, function(req, res, next) {
     Booking.create(req.body)
     .then(function(booking) {
         res.status(201);
@@ -31,7 +31,7 @@ router.post('/', check.user, function(req, res, next) {//user
     .catch(next);
 });
 
-router.delete('/:id', check.admin, function(req, res, next) { //admin/user
+router.delete('/:id', check.admin, function(req, res, next) {
     req.requestedBooking.destroy()
     .then(function () {
         res.status(204).end();
@@ -39,7 +39,7 @@ router.delete('/:id', check.admin, function(req, res, next) { //admin/user
     .catch(next);
 });
 
-router.get('/', function(req, res, next) { //admin
+router.get('/', check.admin, function(req, res, next) {
     Booking.findAll()
     .then(function(bookings) {
         res.send(bookings)
