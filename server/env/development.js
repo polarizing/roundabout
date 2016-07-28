@@ -2,9 +2,9 @@ module.exports = {
   "DATABASE_URI": "postgres://localhost:5432/roundabout",
   "SESSION_SECRET": "Optimus Prime is my real dad",
   "TWITTER": {
-    "consumerKey": "INSERT_TWITTER_CONSUMER_KEY_HERE",
-    "consumerSecret": "INSERT_TWITTER_CONSUMER_SECRET_HERE",
-    "callbackUrl": "INSERT_TWITTER_CALLBACK_HERE"
+    "consumerKey": "nZ1pfdI2vng8KFDCNYLlxnhOC",
+    "consumerSecret": "fJfll4RLBYqCLZbhIT6lb8CR1LZekJbC0r7MXkimSqftfgNVU8",
+    "callbackUrl": "/auth/twitter/callback"
   },
   "FACEBOOK": {
     "clientID": "1000131926773890",
@@ -12,9 +12,9 @@ module.exports = {
     "callbackURL": "/auth/facebook/callback"
   },
   "GOOGLE": {
-    "clientID": "INSERT_GOOGLE_CLIENTID_HERE",
-    "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
-    "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
+    "clientID": "1006179894365-sbssmminjbsomhuv8jb5d6mtp030c4j5.apps.googleusercontent.com",
+    "clientSecret": "gRpK4sYUKLVcBXz2R2Vja7MU",
+    "callbackURL": "/auth/google/callback"
   },
   "LOGGING": true
 };
