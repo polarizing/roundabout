@@ -8,17 +8,52 @@
     margin-top: 40px;
     text-align: center;
   }
-  .search {
-  	padding-left: 20px;
-  }
-  .filter {
-  	padding: 20px;
+
+  #video-container {
+    position:relative;
+    height: 480px;
+    width: 100%;
   }
 
   #video-player {
     height:550px;
-    top:-85px;
-    position: relative;
+    width:100%;
+    top:-70px;
+    position: absolute;
+    overflow: hidden;
+  }
+    video {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+  .video-container-footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0;
+    left: 0;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    position: absolute;
+    right: 0;
+    }
+
+  .search-form {
+      vertical-align: middle;
+      text-align:center;
+    }
+  .input-searchterm-label {
+      width: 400px;
+    }
+
+    .input-field label {
+      left: 0;
+    }
+
+    .search-button {
+      margin-left: 10px;
+    }
+  #auto-complete-id {
+    color: white;
   }
 }
 

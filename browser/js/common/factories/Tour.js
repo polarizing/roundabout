@@ -15,6 +15,13 @@ app.factory('Tour', function ($http) {
                     })
     }
 
+    Tour.queryAll = function (params) {
+        return $http.get('/api/tours?' + jQuery.param(params))
+                .then(function (response) {
+                    return response.data;
+                })
+    }
+
     Tour.fetch = function (id) {
         return $http.get('/api/tours/' + id)
                     .then(function (response) {
