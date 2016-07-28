@@ -8,7 +8,7 @@ navbar {
   box-shadow: 1px 1px 14px -3px black;
 
   .navbar-custom {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.5);
     box-shadow: none;
     margin-bottom: 0;
   }
@@ -33,12 +33,13 @@ navbar {
   .nav > li > a {
     cursor: pointer;
     transition: color 0.2s;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     &.active {
-      color: darken(#f31214, 10%);
+      color: darken(#19A79A, 10%);
     }
     &:hover {
       background: none;
-      color: #f31214;
+      color: #19A79A;
     }
     &:focus {
       background: none;
@@ -54,6 +55,7 @@ navbar {
   }
 
   .welcome {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     height: 50px;
     float: right;
     font-size: 1rem;
