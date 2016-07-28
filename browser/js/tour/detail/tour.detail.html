@@ -1,5 +1,4 @@
 <section id="tour-detail">
-	<div><book-now></book-now></div>
 	<div class="cover-img" style="background-image:url(https://d3dqioy2sca31t.cloudfront.net/Projects/cms/production/000/015/359/original/36924aca421a2b6ce62a19931d176598/marquee-tours-tour-news-venice-08-14.jpg)"><!-- GET BACKGROUND IMAGE FROM TOUR OBJECT ANGULAR-->
 	</div>
 	<div class="summary">
@@ -12,8 +11,93 @@
 			Table with additional information
 				Tour duration
 				Expires
+
+	<div class="cover-img" style="background-image:url({{tour.image}})"><!-- GET BACKGROUND IMAGE FROM TOUR OBJECT ANGULAR-->
 	</div>
-	<div class="reviews">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="summary">
+					Summary (tour title, location, star rating, num reviews, profile pic, tags list + ... in the future (user defined options [ie, categories, family, etc])
+				</div>
+				<div class="details">
+					About this tour
+						Tour Description
+
+						Table with additional information
+							Tour duration
+							Expires
+				</div>
+				<div class="reviews">
+				</div>
+					<div>{{tour}}</div>
+
+			</div>
+			<div class="col-lg-4">
+				<div class="book-it">
+					<div class="row">
+						<span class="col-sm-8 price">${{tour.price}}</span>
+						<span class="col-sm-4 price-per">Per Tour</span>
+					</div>
+				</div>
+				<div class="book-it-panel">
+					<div class="book-it-panel-body">
+						<div class="col-sm-8">
+						<label for="inputCreated">Date</label>
+						<input input-date
+						    type="text"
+						    name="created"
+						    id="inputCreated"
+						    ng-model="currentTime"
+						    container=""
+						    format="dd/mm/yyyy"
+						    months-full="{{ month }}"
+						    months-short="{{ monthShort }}"
+						    weekdays-full="{{ weekdaysFull }}"
+						    weekdays-short="{{ weekdaysShort }}"
+						    weekdays-letter="{{ weekdaysLetter }}"
+						    disable="disable"
+						    min="{{ minDate }}"
+						    max="{{ maxDate }}"
+						    today="today"
+						    clear="clear"
+						    close="close"
+						    select-years="15"
+						    on-start="onStart()"
+						    on-render="onRender()"
+						    on-open="onOpen()"
+						    on-close="onClose()"
+						    on-set="onSet()"
+						    on-stop="onStop()" />
+        </div>
+						<div class="col-sm-4">
+
+						<label for="inputSelected">Travellers</label>
+						<md-input-container>
+					        <md-select ng-model="numTravellers">
+					          <md-option ng-repeat="number in numbers" value="{{number}}">
+					            {{number}}
+					          </md-option>
+					        </md-select>
+					      </md-input-container>
+
+					</div>
+
+					<div class="col-sm-12">
+						<a class="waves-effect waves-light btn add-cart-btn">Add to Cart</a>
+					</div>
+
+					<div class="col-sm-12">
+					<a class="waves-effect waves-light btn request-btn">Request to Book Tour</a>
+					</div>
+
+
+					<!-- <div class="col-sm-12">
+					<a class="waves-effect waves-light btn request-btn">Add to Cart</a>
+					</div> -->
+
+				</div>
+			</div>
+		</div>
 	</div>
-	<div>{{tour}}</div>
 </section>
