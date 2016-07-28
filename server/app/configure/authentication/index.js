@@ -8,7 +8,7 @@ var ENABLED_AUTH_STRATEGIES = [
     'local',
     'twitter', // need to use 127.0.0.1:1337
     'facebook',
-    //'google'
+    'google'
 ];
 
 module.exports = function (app, db) {
