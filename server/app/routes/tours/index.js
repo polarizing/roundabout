@@ -54,14 +54,14 @@ router.get('/', function(req, res, next) {
     if (Object.keys(req.query).length === 0) {
         Tour.findAll({include: [{model: Guide, as: 'guide'}]})
         .then(function(tours) {
-            tours = tours.filter(tour => tour.timeLeft > 0)
+            tours = tours.filter(tour => tour.timeLeft > 0 && tour.isActive)
             res.send(tours)
         })
         .catch(next);
     }
     else {
         console.log('QUERRRY OBJECT', req.query);
-        Tour.findAll({where: { 
+        Tour.findAll({where: {
                             $or: [
                                 {
                                     title: {

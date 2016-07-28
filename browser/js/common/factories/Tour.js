@@ -1,4 +1,4 @@
-app.factory('Tour', function ($http) {
+app.factory('Tour', function ($http, $log) {
     var Tour = {};
 
     Tour.fetchAll = function () {
@@ -28,6 +28,14 @@ app.factory('Tour', function ($http) {
                 tour.guide = response.data;
                 return tour;
              })
+    }
+
+    Tour.book = function(tour, user) {
+        $log.info(tour)
+        return $http.post('/api/bookings', {userId: user.id, guideId: tour.guideId, tourId: tour.id, price: tour.price})
+        .then(function(response) {
+            return response.data
+        })
     }
 
     return Tour;
