@@ -28,11 +28,11 @@
     }
 
   .video-container-footer {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, .6);
     bottom: 0;
     left: 0;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     position: absolute;
     right: 0;
     }
@@ -72,6 +72,23 @@
     .text-branding-caption {
       font-size: 20px;
 
+    }
+  }
+
+  .step {
+    padding-top: 10px;
+    .card{
+      background-color: #544B3D;
+      color: white;
+      height: 250px;
+      .title {
+        font-size: 18px;
+        font-weight: bold;
+        padding-bottom: 15px;
+      }
+      .content {
+        font-size: 14px;
+      }
     }
   }
 
