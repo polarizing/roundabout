@@ -12,7 +12,6 @@ module.exports = function (app, db) {
         clientID: facebookConfig.clientID,
         clientSecret: facebookConfig.clientSecret,
         callbackURL: facebookConfig.callbackURL,
-        // passReqToCallback: true,
         profileFields: ['emails']
 
     };

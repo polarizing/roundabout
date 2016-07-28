@@ -6,7 +6,7 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 var ENABLED_AUTH_STRATEGIES = [
     'local',
-    //'twitter',
+    'twitter', // need to use 127.0.0.1:1337
     'facebook',
     //'google'
 ];
