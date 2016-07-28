@@ -28,7 +28,7 @@
     }
 
   .video-container-footer {
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, .5);
     bottom: 0;
     left: 0;
     padding-bottom: 10px;
@@ -76,18 +76,18 @@
   }
 
   .step {
-    padding-top: 10px;
+    padding-top: 5px;
     .card{
       background-color: #544B3D;
       color: white;
-      height: 250px;
+      height: 225px;
       .title {
+        font-family: Circular, Arial, sans-serif;
         font-size: 18px;
-        font-weight: bold;
         padding-bottom: 15px;
       }
       .content {
-        font-size: 14px;
+        font-size: 15px;
       }
     }
   }
