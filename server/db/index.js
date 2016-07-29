@@ -6,7 +6,7 @@ var User = require('./models/user');
 var Tour = require('./models/tour');
 var Booking = require('./models/booking');
 var Review = require('./models/review');
-var Tag = require('./models/tag');
+var Tag = require('./models/tag'); //needed for node seed
 var Order = require('./models/order')
 
 User.hasMany(Tour, {foreignKey: 'guideId'});

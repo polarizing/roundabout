@@ -1,9 +1,8 @@
 'use strict';
-var _ = require('lodash');
+
 var Sequelize = require('sequelize');
 
 var db = require('../_db');
-var Guide = db.model('user')
 
 module.exports = db.define('tour', {
     title: {
@@ -61,7 +60,7 @@ module.exports = db.define('tour', {
 
 }, {
     hooks: {
-        afterValidate: function(tour, options) {
+        afterValidate: function(tour) {
             var currTime = new Date();
             tour.book_by = new Date(currTime.getTime() + tour.expire_in * 60000);
         }

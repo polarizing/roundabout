@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('HomeCtrl', function ($timeout, $q, $log, $scope, $state, tours) {
+app.controller('HomeCtrl', function () {
 
     var self = this;
     self.query = '';
