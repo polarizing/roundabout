@@ -55,6 +55,7 @@
     "karma-mocha-reporter": "^1.0.2",
     "lodash": "^3.9.3",
     "materialize-css": "^0.97.7",
+    "ngkookies": "^0.2.0",
     "nodemon": "^1.3.7",
     "passport": "^0.2.1",
     "passport-facebook": "^1.0.3",

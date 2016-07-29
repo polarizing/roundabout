@@ -30,7 +30,7 @@
     }
 
   .video-container-footer {
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, .5);
     bottom: 0;
     left: 0;
     padding-bottom: 10px;
@@ -110,22 +110,21 @@
   }
 
   .step {
-    padding-top: 10px;
+
+    padding-top: 25px;
     .card{
-      background-color: #544B3D;
-      color: white;
-      height: 250px;
+      height: 300px;
       .title {
+        text-align: center;
+        font-family: Circular, Arial, sans-serif;
         font-size: 18px;
-        font-weight: bold;
-        padding-bottom: 15px;
+        padding-bottom: 10px;
       }
       .content {
-        font-size: 14px;
+        font-size: 15px;
       }
     }
   }
-
 
   .container-brand-dark {
     padding: 48px 0;
@@ -134,5 +133,13 @@
     height: 200px;
   }
 
+  .end {
+    background-color: #544B3D;
+    height: 400px;
+  }
+  .row {
+    margin-right: 12.5%;
+    margin-left: 12.5%;
+  }
 }
 
