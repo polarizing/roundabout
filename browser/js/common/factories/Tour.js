@@ -1,4 +1,4 @@
-app.factory('Tour', function ($http, $log) {
+app.factory('Tour', function ($http, $log, $kookies) {
     var Tour = {};
 
     Tour.fetchAll = function () {
@@ -36,6 +36,15 @@ app.factory('Tour', function ($http, $log) {
         .then(function(response) {
             return response.data
         })
+    }
+
+    Tour.addToCart = function(tour) {
+        if ($kookies.get(tour.id.toString())) $log.info('item already exists')
+        else $kookies.set(tour.id.toString(), tour, {path: '/'})
+    }
+
+    Tour.removeFromCart = function(tour) {
+        if ($kookies.get(tour.id.toString())) $kookies.remove(tour.id.toString(), {path: '/'})
     }
 
     return Tour;
