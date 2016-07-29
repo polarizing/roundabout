@@ -100,7 +100,7 @@
         this.signup = function (credentials) {
 
             return $http.post('/signup', credentials)
-            .then(function(response) {
+            .then(function() {
                 return $q.resolve({message: 'signed up'})
             })
             .catch(function () {

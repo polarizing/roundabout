@@ -1,10 +1,10 @@
 'use strict';
 var crypto = require('crypto');
-var _ = require('lodash');
 var Sequelize = require('sequelize');
+var _ = require('lodash');
+
 
 var db = require('../_db');
-var Review = require('./review');
 
 module.exports = db.define('user', {
    name: {

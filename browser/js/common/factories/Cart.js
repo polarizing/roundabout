@@ -1,7 +1,7 @@
 app.factory('Cart', function($kookies, Tour, $log, Session, $q) {
   var Cart = {};
 
-  Cart.empty = function(arr) {
+  Cart.empty = function() {
     let currentCart = $kookies.get();
     let tours = [];
     for (var items in currentCart) {
