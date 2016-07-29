@@ -1,4 +1,4 @@
-app.factory('Tour', function ($http, $log, $kookies) {
+app.factory('Tour', function ($http, $log) {
     var Tour = {};
 
     Tour.fetchAll = function () {
