@@ -1,4 +1,6 @@
 #home {
+
+  font-family: Circular;
   fullstack-logo {
     padding-top: 30px;
     width: 150px;
@@ -75,6 +77,38 @@
     }
   }
 
+  .info-box {
+    margin-top: 50px;
+    text-align: center;
+
+    .info-bar-sm {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .info-bar-lg {
+      font-weight: bold;
+    }
+
+    .info-bar-caption {
+      margin-top: 10px;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+  }
+
+  .step-box {
+    text-align: center;
+    .info-bar-how-lg {
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .info-bar-how-md {
+      font-size: 26px;
+    }
+
+  }
+
   .step {
 
     padding-top: 25px;
@@ -90,6 +124,13 @@
         font-size: 15px;
       }
     }
+  }
+
+  .container-brand-dark {
+    padding: 48px 0;
+    background-color: #2b2d2e;
+    color: white;
+    height: 200px;
   }
 
   .end {
