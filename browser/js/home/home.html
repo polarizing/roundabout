@@ -30,7 +30,7 @@
 	    					<label class="input-searchterm-label">
 								 <div input-field class="input-searchterm">
 								    <input type="text" ng-model="ctrl.query">
-								    <label>Search for a tour</label>
+								    <label>Search for a tour (i.e. brooklyn bridge)</label>
 								</div>
 							</label>
 							<label class="input-location-label">
@@ -47,7 +47,27 @@
 	    	</div>
 	    </div>
 	</div>
-	<div class="row">
+
+	<div class="container">
+	<div class="row info-box">
+		<div class="col-sm-12">
+			<div class="info-bar-sm">
+				Tour Guide in Minutes
+			</div>
+			<div class="info-bar-caption">
+				Wherever you’re travelling, use Roundabout to request a local tour guide in minutes. The Roundabout app matches you with local tour guides at the tap of a button. Just search, book, and go!
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row step-box">
+		<div class="col-sm-12">
+			<div class="info-bar-how-lg">
+				How Roundabout Works
+			</div>
+		</div>
+
 		<div class="step col-sm-4">
           <div class="card">
             <div class="card-content">
@@ -73,53 +93,11 @@
           </div>
         </div>
 	</div>
-	<footer class="footer">
-		
+
+	</div>
+
+
+	<footer id="footer" class="container-brand-dark">
+		test
 	</footer>
-<!--     <div class="filter">
-    	<label>Filter by Tags</label>
-	 	<md-autocomplete
-	          ng-disabled="ctrl.isDisabled"
-	          md-no-cache="ctrl.noCache"
-	          md-selected-item="ctrl.selectedItem"
-	          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-	          md-search-text="ctrl.searchText"
-	          md-selected-item-change="ctrl.selectedItemChange(item)"
-	          md-items="item in ctrl.querySearch(ctrl.searchText)"
-	          md-item-text="item.display"
-	          md-min-length="0"
-	          placeholder="What would you like to do?">
-	        <md-item-template>
-	          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-	        </md-item-template>
-	        <md-not-found>
-	          No states matching "{{ctrl.searchText}}" were found.
-	          <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
-	        </md-not-found>
-	    </md-autocomplete>
-    </div>
-    <div class="sort">
-    	<div class="col-md-6">
-    		<label>Tour Duration</label>
-    	</div>
-    	<div class="col-md-6">
-    		<label>Price Range</label>
-    	</div>
-    </div>
-
-    <tour-card ng-repeat="tour in ctrl.tours | filter: ctrl.searchText | orderBy: '+timeLeft'" tour-data="tour"> -->
-
-        <!-- Dropdown Trigger -->
-<!-- <a class='dropdown-button btn' href='javascript:void(0);' data-activates='demoDropdown' dropdown data-hover="true">
-    This is a dropdown
-</a> -->
-
-<!-- Dropdown Structure -->
-<!-- <ul id='demoDropdown' class='dropdown-content'>
-    <li><a href="javascript:void(0);">Link 1</a></li>
-    <li><a href="javascript:void(0);">Link 2</a></li>
-    <li><a href="javascript:void(0);">Link 3</a></li>
-    <li><a href="javascript:void(0);">Link 4</a></li>
-    <li><a href="javascript:void(0);">Link 5</a></li>
-</ul> -->
 </section>
