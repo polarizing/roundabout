@@ -76,15 +76,15 @@
   }
 
   .step {
-    padding-top: 5px;
+
+    padding-top: 25px;
     .card{
-      background-color: #544B3D;
-      color: white;
-      height: 225px;
+      height: 300px;
       .title {
+        text-align: center;
         font-family: Circular, Arial, sans-serif;
         font-size: 18px;
-        padding-bottom: 15px;
+        padding-bottom: 10px;
       }
       .content {
         font-size: 15px;
@@ -92,5 +92,13 @@
     }
   }
 
+  .end {
+    background-color: #544B3D;
+    height: 400px;
+  }
+  .row {
+    margin-right: 12.5%;
+    margin-left: 12.5%;
+  }
 }
 
