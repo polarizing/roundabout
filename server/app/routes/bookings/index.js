@@ -1,7 +1,6 @@
 'use strict';
 var router = require('express').Router();
 module.exports = router;
-var _ = require('lodash');
 var Booking = require('../../../db/models/booking');
 var Tour = require('../../../db/models/tour')
 var check = require('../check-handler');
@@ -33,7 +32,7 @@ router.post('/', check.user, function(req, res, next) {
     .then(function(tour) {
         return tour.update({is_booked: true})
     })
-    .then(function(updatedTour) {
+    .then(function() {
         res.status(201);
         res.send(_booking);
     })

@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
         	tours: function (Tour, $stateParams) {
                 function checkProperties(obj) {
                     for (var key in obj) {
-                        if (obj[key] == undefined || obj[key] == "") {
+                        if (obj[key] === undefined || obj[key] === "") {
                             return false;
                         }
                     }

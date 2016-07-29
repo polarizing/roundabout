@@ -1,7 +1,6 @@
 'use strict';
 var router = require('express').Router();
 module.exports = router;
-var _ = require('lodash');
 var User = require('../../../db/models/user');
 var Booking = require('../../../db/models/booking');
 var Tour = require('../../../db/models/tour');

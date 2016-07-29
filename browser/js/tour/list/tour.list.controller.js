@@ -6,14 +6,16 @@ app.controller('TourList', function ($timeout, $q, $log, $scope, tours) {
 
     self.tours = tours;
 
+
     self.simulateQuery = true;
-    self.isDisabled    = false;
+    self.isDisabled = false;
     // list of `state` value/display objects
-    self.states        = loadAll();
-    self.querySearch   = querySearch;
+    self.states = loadAll();
+    self.querySearch = querySearch;
     self.selectedItemChange = selectedItemChange;
-    self.searchTextChange   = searchTextChange;
+    self.searchTextChange = searchTextChange;
     self.newState = newState;
+
     function newState(state) {
       alert("Sorry! You'll need to create a Constituion for " + state + " first!");
     }
@@ -21,11 +23,20 @@ app.controller('TourList', function ($timeout, $q, $log, $scope, tours) {
     // Internal methods
     // ******************************
     /**
+     * Create filter function for a query string
+     */
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+      return function filterFn(state) {
+        return (state.value.indexOf(lowercaseQuery) === 0);
+      };
+    }
+    /**
      * Search for states... use $timeout to simulate
      * remote dataservice call.
      */
     function querySearch (query) {
-      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+      var results = query ? self.states.filter(createFilterFor(query) ) : self.states,
           deferred;
       if (self.simulateQuery) {
         deferred = $q.defer();
@@ -63,14 +74,4 @@ app.controller('TourList', function ($timeout, $q, $log, $scope, tours) {
         }
       })
     }
-    /**
-     * Create filter function for a query string
-     */
-    function createFilterFor(query) {
-      var lowercaseQuery = angular.lowercase(query);
-      return function filterFn(state) {
-        return (state.value.indexOf(lowercaseQuery) === 0);
-      };
-    }
-
 });

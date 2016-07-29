@@ -2,8 +2,6 @@
 
 app.controller('TourDetail', function ($scope, tour, $state, Tour, Session, Cart) {
 
-
-	var self = this;
 	$scope.tour = tour;
 	$scope.numTravellers = "1";
 	$scope.numbers = ['1', '2', '3', '4', '5'];
@@ -40,12 +38,12 @@ app.controller('TourDetail', function ($scope, tour, $state, Tour, Session, Cart
 	};
 	$scope.book = function() {
 		Tour.book($scope.tour, Session.user)
-		.then(function(data) {
+		.then(function() {
 			$state.go('tours')
 		})
 	};
 
-	$scope.addToCart = function(tour) {
+	$scope.addToCart = function() {
 		Cart.add(tour)
 	}
 });
