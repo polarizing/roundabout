@@ -1,0 +1,26 @@
+<section id="tour-add">
+    <md-card>
+        <md-content>
+            <form name="colorForm" ng-submit="addTour(tour)">
+                <h5>Give your tour a name</h5>
+                <md-input-container md-no-float class="md-block">
+                    <input name="tour-title" ng-model="tour.name" placeholder="Tour Name" required>
+                </md-input-container>
+                <h5>What is it about?</h5>
+                <md-input-container md-no-float class="md-block">
+                    <textarea name="tour-description" ng-model="tour.description" rows="5" placeholder="Tour Description"></textarea>
+                </md-input-container>
+                <h5>Set a price</h5>
+                <div class="slider-container">
+                    <rzslider class="price-slider" rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>
+                </div>
+                <h5>Get discovered</h5>
+                <div class="chips-container">
+                    <md-chips ng-model="tour.tags" placeholder="Enter a tag" secondary-placeholder="Enter another tag"></md-chips>
+                </div>
+                <br />
+                <md-button class="create-button">Create</md-button>
+            </form>
+        </md-content>
+    </md-card>
+</section>

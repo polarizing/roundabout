@@ -15,9 +15,8 @@
             <span>Sup,
             {{ user.name }}
             </span>
-            <a class="search-button waves-effect waves-light btn" ng-click="logout()">
-            Logout
-            </a>
+            <a ui-sref="addtour" class="search-button waves-effect waves-light btn">Create Tour</a>
+            <a ng-click="logout()" class="logout-button">Logout</a>
         </ul>
     </div>
 
