@@ -1,4 +1,4 @@
-<nav class="navbar navbar-custom navbar-static-top">
+<nav ng-class="{ transparent: atHome }" class="navbar navbar-custom navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <fullstack-logo></fullstack-logo>
@@ -8,17 +8,17 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
-            <ul ng-show="!user" class="welcome" ui-sref-active="active">
-                <a ui-sref="login" class="search-button waves-effect waves-light btn">Login</a>
-            </ul>
-            <ul ng-show="user" class="welcome" ui-sref-active="active">
-                <span>Sup, 
-                {{ user.email }}
-                </span>
-                <a class="search-button waves-effect waves-light btn" ng-click="logout()">
-                Logout
-                </a>
-            </ul>
+        <ul ng-show="!user" class="welcome" ui-sref-active="active">
+            <a ui-sref="login" class="search-button waves-effect waves-light btn">Login</a>
+        </ul>
+        <ul ng-show="user" class="welcome" ui-sref-active="active">
+            <span>Sup,
+            {{ user.name }}
+            </span>
+            <a class="search-button waves-effect waves-light btn" ng-click="logout()">
+            Logout
+            </a>
+        </ul>
     </div>
 
 </nav>

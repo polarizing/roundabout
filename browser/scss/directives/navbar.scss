@@ -1,22 +1,24 @@
-
-
 navbar {
-
+  nav {
+      margin-bottom: 0px;
+  }
+  height: 50px;
   display: block;
   background: white;
-  border-bottom: 1px solid black;
-  box-shadow: 1px 1px 14px -3px black;
+  // border-bottom: 1px solid black;
+  // box-shadow: 1px 1px 14px -3px black;
 
   .navbar-custom {
-    background-color: rgba(0,0,0,0.5);
+    height: 70px;
+    background-color: rgba(0,0,0,0);
     box-shadow: none;
-    margin-bottom: 0;
+    margin-bottom: -10;
   }
 
   .container {
     width: 91%;
     max-width: 1340px;
-    padding-top: 20px;
+    padding: 20px 0;
   }
 
   fullstack-logo {
@@ -33,7 +35,9 @@ navbar {
   .nav > li > a {
     cursor: pointer;
     transition: color 0.2s;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Circular, Arial, sans-serif;
+    font-weight: bold;
+    color: #d3d3d3;
     &.active {
       color: darken(#19A79A, 10%);
     }
@@ -55,7 +59,9 @@ navbar {
   }
 
   .welcome {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Circular, Arial, sans-serif;
+    font-weight: bold;
+    color: #d3d3d3;
     height: 50px;
     float: right;
     font-size: 1rem;
