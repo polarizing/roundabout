@@ -9,7 +9,7 @@ var Order = db.model('order');
 var Booking = db.model('booking');
 
 describe('Order model', function () {
-
+    beforeEach(module('factories'));
     beforeEach('Sync DB', function () {
        return db.sync({ force: true });
     });
