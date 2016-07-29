@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TourDetail', function ($scope, tour, $state, Tour, Session, $kookies, $log) {
+app.controller('TourDetail', function ($scope, tour, $state, Tour, Session, Cart) {
 
 
 	var self = this;
@@ -41,15 +41,11 @@ app.controller('TourDetail', function ($scope, tour, $state, Tour, Session, $koo
 	$scope.book = function() {
 		Tour.book($scope.tour, Session.user)
 		.then(function(data) {
-			$state.go('home')
+			$state.go('tours')
 		})
 	};
 
 	$scope.addToCart = function(tour) {
-		Tour.addToCart(tour)
-		// $log.info('first log', $kookies.get())
-		// if ($kookies.get(tour.id.toString())) $log.info('item already exists')
-		// else $kookies.set(tour.id.toString(), tour, {path: '/'})
-		// $log.info('second log', $kookies.get())
+		Cart.add(tour)
 	}
 });
