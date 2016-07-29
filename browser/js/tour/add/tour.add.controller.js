@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TourAdd', function($scope, Tour) {
+app.controller('TourAdd', function($scope, Tour, $state) {
     $scope.slider = {
         value: 150,
         options: {
@@ -18,7 +18,11 @@ app.controller('TourAdd', function($scope, Tour) {
         tags: []
     }
     $scope.addTour = function() {
-
+        console.log("in controller")
+        Tour.create($scope.tour)
+        .then(function(tour) {
+            $state.go('tour', { id: tour.id })
+        })
     }
 
 })
