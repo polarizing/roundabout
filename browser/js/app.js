@@ -1,5 +1,5 @@
 'use strict';
-window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ui.materialize', 'auto-complete', 'ngKookies'])
+window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ui.materialize', 'auto-complete', 'ngKookies', 'rzModule'])
 .config(['$kookiesProvider',
         function ($kookiesProvider) {
             $kookiesProvider.config.json = true;

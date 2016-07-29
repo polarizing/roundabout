@@ -1,0 +1,34 @@
+#tour-add {
+    md-card {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        md-content {
+            background-color: white;
+        }
+        .slider-container {
+            margin: 20px 0 40px 0;
+        }
+        .price-slider {
+            span {
+                outline: none;
+
+            }
+            span.rz-pointer {
+                background-color: #26a69a;
+                &:after {
+                    background-color: white;
+                }
+            }
+        }
+        md-chips-wrap {
+            box-shadow: none;
+        }
+        .create-button {
+            background-color: #26a69a;
+            color: white;
+            padding: 0 30px;
+            float: right;
+        }
+    }
+}

@@ -11,8 +11,7 @@ module.exports = db.define('tour', {
     },
 
     description: {
-        type: Sequelize.TEXT,
-        allowNull: false
+        type: Sequelize.TEXT
     },
 
     tags: {
@@ -21,11 +20,6 @@ module.exports = db.define('tour', {
 
     price: {
         type: Sequelize.FLOAT,
-        allowNull: false
-    },
-
-    tod: {
-        type: Sequelize.STRING,
         allowNull: false
     },
 

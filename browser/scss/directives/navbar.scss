@@ -4,7 +4,7 @@ navbar {
   }
   height: 50px;
   display: block;
-  background: white;
+  // background: white;
   // border-bottom: 1px solid black;
   // box-shadow: 1px 1px 14px -3px black;
 
@@ -18,7 +18,7 @@ navbar {
   .container {
     width: 91%;
     max-width: 1340px;
-    padding: 20px 0;
+    padding: 10px 0;
   }
 
   fullstack-logo {
@@ -56,6 +56,14 @@ navbar {
 
     background: none;
     outline: none !important;
+  }
+
+  .logout-button {
+    color: #d3d3d3;
+    display: inline-block;
+    &:hover {
+        background-color: transparent;
+    }
   }
 
   .welcome {
