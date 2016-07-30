@@ -82,7 +82,7 @@ router.get('/', function(req, res, next) {
                         },include: [{model: Guide, as: 'guide'}]})
                 .then(function(tours) {
                     console.log('TOURRRS', tours);
-                    tours = tours.filter(tour => tour.timeLeft > 0)
+                    tours = tours.filter(tour => tour.timeLeft > 0 && tour.isActive)
                     res.send(tours)
                 })
                 .catch(next);

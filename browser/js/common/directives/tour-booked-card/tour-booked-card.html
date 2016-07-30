@@ -30,31 +30,31 @@
   <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">{{tour.title}}</span>
-            <span class="md-subhead">${{tour.price}}</span>
+            <span class="md-headline">{{booking.tour.title}}</span>
+            <span class="md-subhead">${{booking.tour.price}}</span>
             <span class="md-subhead"> 
-              <span ng-repeat="tag in tour.tags track by $index" class="chip tour-tags">
+              <span ng-repeat="tag in booking.tour.tags track by $index" class="chip tour-tags">
                   <span class="single-tag">{{tag}}</span>
               </span>
               </span>
-            <span class="md-caption tour-desc">{{ tour.description | limitTo: 200 }}{{tour.description.length > 200 ? ' ...' : ''}}</span>
+            <span class="md-caption tour-desc">{{ booking.tour.description | limitTo: 200 }}{{booking.tour.description.length > 200 ? ' ...' : ''}}</span>
           </md-card-title-text>
           <md-card-title-media>
-            <div class="md-media-sm card-image" ng-style="{'background-image':'url({{tour.image}})'}"></div>
+            <div class="md-media-sm card-image" ng-style="{'background-image':'url({{booking.tour.image}})'}"></div>
           </md-card-title-media>
         </md-card-title>
 
         <md-card-actions layout="row" layout-align="end center">
           <div flex="60" class="order-info">
-  <i class="fa fa-barcode glyph-pad" aria-hidden="true"></i><span class="glyph-text-pad">Order #: 106-5361948</span>
+  <i class="fa fa-barcode glyph-pad" aria-hidden="true"></i><span class="glyph-text-pad">Order #: {{booking.orderId}}</span>
 <i class="fa fa-calendar-check-o glyph-pad" aria-hidden="true"></i> <span class="glyph-text-pad">Confirmed</span>
 <i class="fa fa-credit-card-alt glyph-pad" aria-hidden="true"></i><span class="glyph-text-pad">Paid</span>
-<i class="fa fa-info-circle glyph-pad" aria-hidden="true"></i><span class="glyph-text-pad">Guide: {{tour.guide.name | getFirstName}}</span>
+<i class="fa fa-info-circle glyph-pad" aria-hidden="true"></i><span class="glyph-text-pad">Guide: {{booking.guide.name | getFirstName}}</span>
 
 
           </div>
           <div flex="40">
-          <md-button><a href="mailto:{{tour.guide.email}}"><i class="fa fa-question-circle-o" aria-hidden="true"></i>
+          <md-button><a href="mailto:{{booking.guide.email}}"><i class="fa fa-question-circle-o" aria-hidden="true"></i>
 Contact Guide</md-button>
           <md-button><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 Write a Review</md-button>
