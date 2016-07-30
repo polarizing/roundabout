@@ -77,7 +77,8 @@ router.get('/u/:id/bookings', check.access, function(req, res, next) {
             userId: req.requestedUser.id
         },
         include: [
-        { model: Tour, as: 'tour' }
+        { model: Tour, as: 'tour' },
+        { model: User, as: 'guide'}
         ]
     })
     .then(function(bookings) {

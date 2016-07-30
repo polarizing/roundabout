@@ -4,9 +4,9 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/users/tours/users.tours.html',
         controller: 'UserTours',
         resolve: {
-        	tours: function (Tour, $stateParams) {
-        		console.log(Tour.fetchAll());
-        		return Tour.fetchAll();
+        	bookings: function (User, Session) {
+        		console.log(User.getUserBookings(Session.user.id));
+        		return User.getUserBookings(Session.user.id);
         	}
         },
     });

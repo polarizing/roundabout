@@ -15,7 +15,7 @@ app.factory('Cart', function($kookies, Tour, $log, Session, $q, Order) {
     Cart.bookAll = function() {
 
         var tourArr = Cart.empty();
-
+        $log.info(tourArr)
         return Order.create(Session.user.id)
             .then(function(order) {
                 var promises = tourArr.map(tour => Tour.book(tour, Session.user, order.id));
@@ -25,8 +25,13 @@ app.factory('Cart', function($kookies, Tour, $log, Session, $q, Order) {
     }
 
     Cart.add = function(tour) {
+        $log.info(tour)
         if ($kookies.get(tour.id.toString())) $log.info('item already exists');
-        else $kookies.set(tour.id.toString(), tour, { path: '/' });
+        else {
+            $log.info('setting cookie')
+            $kookies.set(tour.id.toString(), tour, { path: '/' });
+            $log.info($kookies.get())}
+        $log.info($kookies.get())
     }
 
     Cart.remove = function(tour) {
