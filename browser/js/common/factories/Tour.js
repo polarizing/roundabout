@@ -30,14 +30,16 @@ app.factory('Tour', function($http, $log) {
             })
     }
 
-    Tour.book = function(tour, user) {
+    Tour.book = function(tour, user, orderId) {
         return $http.post('/api/bookings', {
                 userId: user.id,
                 guideId: tour.guideId,
                 tourId: tour.id,
-                price: tour.price
+                price: tour.price,
+                orderId: orderId
             })
             .then(function(response) {
+                $log.info(response.data)
                 return response.data
             })
     }
