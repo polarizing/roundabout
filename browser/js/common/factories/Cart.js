@@ -27,6 +27,7 @@ app.factory('Cart', function($kookies, Tour, $log, Session, $q, Order) {
     Cart.add = function(tour) {
         if ($kookies.get(tour.id.toString())) $log.info('item already exists');
         else $kookies.set(tour.id.toString(), tour, { path: '/' });
+        $log.info($kookies.get())
     }
 
     Cart.remove = function(tour) {
