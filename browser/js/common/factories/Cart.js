@@ -25,13 +25,10 @@ app.factory('Cart', function($kookies, Tour, $log, Session, $q, Order) {
     }
 
     Cart.add = function(tour) {
-        $log.info(tour)
+     
         if ($kookies.get(tour.id.toString())) $log.info('item already exists');
-        else {
-            $log.info('setting cookie')
-            $kookies.set(tour.id.toString(), tour, { path: '/' });
-            $log.info($kookies.get())}
-        $log.info($kookies.get())
+        else $kookies.set(tour.id.toString(), tour, { path: '/' });
+
     }
 
     Cart.remove = function(tour) {

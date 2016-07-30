@@ -50,7 +50,7 @@ app.factory('Tour', function($http, $log) {
                 title: tour.name,
                 description: tour.description,
                 tags: tour.tags,
-                price: tour.price
+                price: tour.price.value
             })
             .then(function(response) {
                 return response.data
