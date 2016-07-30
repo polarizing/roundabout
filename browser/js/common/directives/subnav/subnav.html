@@ -1,0 +1,14 @@
+<nav class="subnav">
+    <div class="container">
+        <div class="col-sm-12">
+            <div class="row subnav-links">
+                <ul class="nav navbar-nav">
+                    <li ng-repeat="item in items">
+                        <a ui-sref-active="subnav-item-active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav>

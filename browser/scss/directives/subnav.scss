@@ -1,0 +1,19 @@
+.subnav {
+	font-family: Circular;
+	width: 100%;
+	background-color: #484848;
+
+	.container {
+		width: 91%;
+	}
+
+	.subnav-links {
+		margin-left: 115px;
+		margin-top: 8px;
+	}
+
+	.subnav-item-active {
+		background-color: #fff;
+		color: #23527c;
+	}
+}

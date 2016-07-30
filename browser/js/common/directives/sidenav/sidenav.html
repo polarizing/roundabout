@@ -1,0 +1,9 @@
+<div class="sidebar">
+    <ul class="sidebar-list">
+
+        <li ng-repeat="item in items">
+           <a class="sidebar-item" ui-sref-active="sidebar-item-active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+        </li>
+
+    </ul>
+</div>

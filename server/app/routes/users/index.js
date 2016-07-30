@@ -5,6 +5,7 @@ var User = require('../../../db/models/user');
 var Booking = require('../../../db/models/booking');
 var Tour = require('../../../db/models/tour');
 var Review = require('../../../db/models/review');
+var Order = require('../../../db/models/order');
 var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
@@ -13,7 +14,7 @@ router.param('id', function (req, res, next, id) {
             id: id
         },
         include: [
-            { model: Review, as: 'reviews' }
+        { model: Review, as: 'reviews' }
         ]
     })
     .then(function (user) {
@@ -70,11 +71,14 @@ router.get('/', function(req, res, next) {
 //===================================================
 //  only YOU can access/edit/delete your bookings
 //===================================================
-router.get('/:id/bookings', check.access, function(req, res, next) {
+router.get('/u/:id/bookings', check.access, function(req, res, next) {
     Booking.findAll({
         where: {
             userId: req.requestedUser.id
-        }
+        },
+        include: [
+        { model: Tour, as: 'tour' }
+        ]
     })
     .then(function(bookings) {
         res.send(bookings)
@@ -82,12 +86,15 @@ router.get('/:id/bookings', check.access, function(req, res, next) {
     .catch(next);
 });
 
-router.get('/:id/bookings/:bookingId', check.access, function(req, res, next) {
+router.get('/u/:id/bookings/:bookingId', check.access, function(req, res, next) {
     Booking.findOne({
         where: {
             userId: req.requestedUser.id,
             id: req.params.bookingId
-        }
+        },
+        include: [
+        { model: Tour, as: 'tour' }
+        ]
     })
     .then(function(booking) {
         res.send(booking)
@@ -95,7 +102,7 @@ router.get('/:id/bookings/:bookingId', check.access, function(req, res, next) {
     .catch(next);
 });
 
-router.put('/:id/bookings/:bookingId', check.access, function(req, res, next) {
+router.put('/u/:id/bookings/:bookingId', check.access, function(req, res, next) {
     Booking.findOne({
         where: {
             userId: req.requestedUser.id,
@@ -111,7 +118,7 @@ router.put('/:id/bookings/:bookingId', check.access, function(req, res, next) {
     .catch(next);
 });
 
-router.delete('/:id/bookings/:bookingId', check.access, function(req, res, next) {
+router.delete('/u/:id/bookings/:bookingId', check.access, function(req, res, next) {
     Booking.findOne({
         where: {
             userId: req.requestedUser.id,
@@ -127,6 +134,92 @@ router.delete('/:id/bookings/:bookingId', check.access, function(req, res, next)
     .catch(next);
 });
 
+
+//ROUTES FOR GETTING BOOKINGS FOR THE GUIDE
+
+router.get('/g/:id/bookings', check.access, function(req, res, next) {
+    Booking.findAll({
+        where: {
+            guideId: req.requestedUser.id
+        },
+        include: [
+        { model: Tour, as: 'tour' }
+        ]
+    })
+    .then(function(bookings) {
+        res.send(bookings)
+    })
+    .catch(next);
+});
+
+router.get('/g/:id/bookings/:bookingId', check.access, function(req, res, next) {
+    Booking.findOne({
+        where: {
+            guideId: req.requestedUser.id,
+            id: req.params.bookingId
+        },
+        include: [
+        { model: Tour, as: 'tour' }
+        ]
+    })
+    .then(function(booking) {
+        res.send(booking)
+    })
+    .catch(next);
+});
+
+router.put('/g/:id/bookings/:bookingId', check.access, function(req, res, next) {
+    Booking.findOne({
+        where: {
+            guideId: req.requestedUser.id,
+            id: req.params.bookingId
+        }
+    })
+    .then(function(booking) {
+        return booking.update(req.body)
+    })
+    .then(function(updatedBooking) {
+        res.send(updatedBooking)
+    })
+    .catch(next);
+});
+
+router.delete('/g/:id/bookings/:bookingId', check.access, function(req, res, next) {
+    Booking.findOne({
+        where: {
+            guideId: req.requestedUser.id,
+            id: req.params.bookingId
+        }
+    })
+    .then(function(booking) {
+        return booking.destroy()
+    })
+    .then(function(deletedBooking) {
+        res.send(deletedBooking)
+    })
+    .catch(next);
+});
+
+//ROUTES TO GET ALL ORDERS BELONGING TO A USER
+router.get('/:id/orders', function(req, res, next) {
+    Order.findAll({
+        where: {
+            userId: req.requestedUser.id
+        },
+        include: [{
+            model: Booking,
+            as: 'bookings',
+            include: [{
+                model: Tour,
+                as: 'tour'
+            }, {model: User, as: 'guide'}]
+        }]
+    })
+    .then(function(orders) {
+        res.send(orders)
+    })
+    .catch(next)
+})
 //===================================================
 //       only YOU can edit/delete your tours
 //===================================================
@@ -208,3 +301,4 @@ router.delete('/:id/reviews/:reviewId', check.access, function(req, res, next) {
     })
     .catch(next);
 })
+
