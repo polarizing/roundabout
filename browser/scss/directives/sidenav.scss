@@ -1,0 +1,27 @@
+.sidebar {
+	font-family: Circular;
+	.sidebar-list {
+		margin-bottom: 0;
+		padding-left: 0;
+		list-style: none;
+	}
+
+	.sidebar-item {
+		display: block;
+		padding: 6px 0;
+		font-size: 16px;
+		color: #757575;
+		cursor: pointer;
+	}
+
+	.sidebar-item:hover {
+		text-decoration: none;
+		color: #bbb;
+	}
+
+	.sidebar-item-active {
+		text-decoration: none;
+		color: #484848;
+		font-weight: bold;
+	}
+}

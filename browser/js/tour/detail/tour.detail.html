@@ -39,6 +39,9 @@
 									<span class="glyph-infotext" > {{tour.guide.numReviews}} reviews</span>
 								</div>
 							</div>
+							  <div ng-repeat="tag in tour.tags" class="chip tour-tags">
+							    <span class="single-tag">{{tag}}</span>
+							  </div>
 						</div>
 
 					</div>
@@ -53,6 +56,9 @@
 						Table with additional information
 							Tour duration
 							Expires
+
+
+        
 				</div>
 				<div class="reviews">
 				</div>

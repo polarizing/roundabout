@@ -15,6 +15,12 @@ app.config(function ($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.when('/auth/:provider', function () {
         window.location.reload();
     });
+    // Redirections for abstract parent states. .. https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#how-to-set-up-a-defaultindex-child-state
+    $urlRouterProvider.when('/users/listings', '/users/listings/offered');
+    $urlRouterProvider.when('/users/profile', '/users/profile/edit');
+
+
+
 });
 
 // This app.run is for controlling access to specific states.
