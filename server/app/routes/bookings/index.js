@@ -22,7 +22,7 @@ router.get('/:id', check.admin, function(req, res, next) {
     .catch(next);
 });
 
-router.post('/', check.user, function(req, res, next) {
+router.post('/', /*check.user,*/ function(req, res, next) {
     var _booking;
     Booking.create(req.body)
     .then(function(booking) {

@@ -30,4 +30,5 @@ Review.belongsTo(User, {as: 'guide'});
 
 
 Order.hasMany(Booking, {as: 'bookings'});
+Order.belongsTo(User, {as: "user"})
 
