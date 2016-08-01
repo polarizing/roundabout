@@ -2,7 +2,7 @@
 
 app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, $state, Tour, Session, Cart, Order, $http) {
 
-	// TESTING UPLOAD
+
 
 	$scope.uploadFile = function(){
         var file = $scope.myFile;
@@ -19,7 +19,7 @@ app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, $st
         else alert('Please upload a valid image of type .jpeg, .png, or .jpg of less than 5MB.')
 
     };
-    
+
 	// $scope.uploadPhoto = function(){
 	// 	console.log('prevented default action');
 
