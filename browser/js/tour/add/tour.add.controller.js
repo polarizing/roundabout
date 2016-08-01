@@ -22,7 +22,7 @@ app.controller('TourAdd', function($scope, Tour, $state) {
                 floor: 45,
                 ceil: 300,
                 translate: function(value) {
-                    return value + "m";
+                    return value;
                 }
             }
         },

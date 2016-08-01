@@ -48,6 +48,9 @@ app.factory('Tour', function($http, $log) {
         console.log("in factory")
         return $http.post('/api/tours', {
                 title: tour.name,
+                location: tour.location,
+                duration: tour.duration.value,
+                image: tour.image,
                 description: tour.description,
                 tags: tour.tags,
                 price: tour.price.value
