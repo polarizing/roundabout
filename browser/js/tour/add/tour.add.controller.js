@@ -6,6 +6,16 @@ app.controller('TourAdd', function($scope, Tour, $state, Session) {
         name: null,
         description: null,
         image: null,
+        expire_in:  {
+            value: 30,
+            options: {
+                floor: 0,
+                ceil: 12000,
+                translate: function(value) {
+                    return value;
+                }
+            }
+        },
         price: {
             value: 150,
             options: {
