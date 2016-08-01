@@ -10,7 +10,7 @@ app.controller('TourAdd', function($scope, Tour, $state, Session) {
             value: 30,
             options: {
                 floor: 0,
-                ceil: 12000,
+                ceil: 1200,
                 translate: function(value) {
                     return value;
                 }

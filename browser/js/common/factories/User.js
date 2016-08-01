@@ -1,5 +1,7 @@
 'use-strict'
 
+var check = require('../../../../server/app/routes/check-handler');
+
 app.factory('User', function($http) {
 
   var User = {};
@@ -36,7 +38,33 @@ app.factory('User', function($http) {
                 .then(user => user.data)
   }
 
+  User.create = function(user){
+    return $http.post('/api/users', {
+                name: user.name,
+                photo: user.photo,
+                email: user.email,
+                phone: user.phone,
+                password: user.password
+            })
+            .then(function(response) {
+                return response.data
+            })
+  }
 
+  User.edit = function(user) {
+      console.log(user);
+      return $http.put('/api/users/' + user.id, {
+               name: user.name,
+               photo: user.photo,
+               phone: user.phone,
+               email: user.email,
+               password: user.newpassword
+            })
+            .then(function(resp){
+              return resp.data;
+            })
+            .catch(console.error)
+  }
 
   return User;
 })

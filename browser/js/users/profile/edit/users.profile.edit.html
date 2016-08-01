@@ -1,8 +1,29 @@
 <div class="panel">
-	Edit Page
-	<div class="panel-header">
-		Required
-	</div>
-	<div class="panel-body">
-	</div>
+	<form name="colorForm" ng-submit="editUser()">
+        <h8>Name:</h8>
+        <md-input-container md-no-float class="md-block">
+            <input name="user-name" ng-model="user.name" placeholder={{user.name}} required>
+        </md-input-container>
+        <h8>Old password:</h8>
+        <md-input-container md-no-float class="md-block">
+            <input name="user-new-password" ng-model="user.oldpassword" placeholder="old password here">
+        </md-input-container>
+        <h8>New password:</h8>
+        <md-input-container md-no-float class="md-block">
+            <input name="user-new-password" ng-model="user.newpassword" placeholder="new password here">
+        </md-input-container>
+        <h8>Email:</h8>
+        <md-input-container md-no-float class="md-block">
+            <input name="user-email" ng-model="user.email" placeholder={{user.email}} required>
+        </md-input-container>
+        <h8>Profile picture:</h8>
+        <md-input-container md-no-float class="md-block">
+            <input name="user-photo" ng-model="user.photo" placeholder={{user.photo}} required>
+        </md-input-container>
+        <h8>Phone number:</h8>
+        <md-input-container md-no-float class="md-block">
+            <input name="user-phone" ng-model="user.phone" placeholder={{user.phone}} required>
+        </md-input-container>
+        <md-button class="create-button" type="submit">Submit Changes</md-button>
+    </form>
 </div>

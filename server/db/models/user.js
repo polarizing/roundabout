@@ -28,7 +28,8 @@ module.exports = db.define('user', {
        type: Sequelize.STRING
    },
    is_admin: {
-       type: Sequelize.BOOLEAN
+       type: Sequelize.BOOLEAN,
+       defaultValue: false
    },
    twitter_id: {
        type: Sequelize.STRING
