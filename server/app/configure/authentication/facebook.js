@@ -17,7 +17,7 @@ module.exports = function (app, db) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-        console.log(profile)
+        console.log("profile", profile)
         User.findOne({
                 where: {
                     facebook_id: profile.id
@@ -29,7 +29,7 @@ module.exports = function (app, db) {
                 } else {
                     return User.create({
                         facebook_id: profile.id,
-                        name: profile.displayName,
+                        name: profile.displayName || profile.emails[0].value.split("@").shift(),
                         email: profile.emails[0].value
                     });
                 }
