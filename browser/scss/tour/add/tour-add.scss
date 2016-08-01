@@ -21,6 +21,30 @@
                 }
             }
         }
+        .duration-slider {
+            span {
+                outline: none;
+
+            }
+            span.rz-pointer {
+                background-color: #26a69a;
+                &:after {
+                    background-color: white;
+                }
+            }
+        }
+        .expire_in-slider {
+            span {
+                outline: none;
+
+            }
+            span.rz-pointer {
+                background-color: #26a69a;
+                &:after {
+                    background-color: white;
+                }
+            }
+        }
         md-chips-wrap {
             box-shadow: none;
         }
@@ -29,6 +53,10 @@
             color: white;
             padding: 0 30px;
             float: right;
+        }
+
+        md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+        border-color: #26a69a;
         }
     }
 }

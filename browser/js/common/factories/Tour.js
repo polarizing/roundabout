@@ -66,6 +66,7 @@ app.factory('Tour', function($http, $log) {
                 title: tour.name,
                 location: tour.location,
                 duration: tour.duration.value,
+                expire_in: tour.expire_in.value,
                 image: tour.image,
                 description: tour.description,
                 tags: tour.tags,
