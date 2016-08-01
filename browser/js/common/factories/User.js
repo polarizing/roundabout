@@ -50,7 +50,6 @@ app.factory('User', function($http, $rootScope) {
   }
 
   User.edit = function(user) {
-      console.log(user);
       return $http.put('/api/users/' + user.id, {
                name: user.name,
                photo: user.photo,
