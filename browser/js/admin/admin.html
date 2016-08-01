@@ -1,0 +1,153 @@
+<section id="admin">
+
+<div layout="row" id="admin-options">
+	<div flex="75" class="admin-hotkeys">
+	<button type="button" ng-click="addRandomItem(row)" class="btn btn-sm btn-success">
+			<i class="glyphicon glyphicon-plus">
+			</i> Add new row to DB
+		</button>
+
+<!-- 	<button type="button" ng-click="addRandomItem(row)" class="btn btn-sm btn-success">
+			<i class="glyphicon glyphicon-plus">
+			</i> Add random item
+		</button> -->
+		</div>
+		<div flex="25" class="admin-navigation">
+		   <div class="btn-group">
+		        <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Users'">Users</label>
+		        <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Tours'">Tours</label>
+		    </div>
+    </div>
+    </div>
+
+<!-- <div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active" ng-click="">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked> Users
+  </label>
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option2" autocomplete="off"> Tours
+  </label>
+</div>
+ -->
+<div layout="row" id="admin-table-container">
+
+	<table ng-if="radioModel == 'Tours' " st-table="tours" class="table table-striped" id="admin-table">
+		<thead>
+		<tr>
+			<th st-sort="id">ID</th>
+			<th st-sort="title">Title</th>
+			<th st-sort="description">Description</th>
+			<th st-sort="tags">Tags</th>
+			<th st-sort="price">Price</th>
+			<th st-sort="image">Image</th>
+			<th st-sort="duration">Duration</th>
+			<th st-sort="booked">Booked</th>
+			<th st-sort="guideId">GuideID</th>
+			<th>Delete Tour</th>
+<!-- 			<th>email</th>
+ -->		</tr>
+
+ <tr>
+				<th colspan="10"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+			</tr>
+		<tr>
+			<th colspan="2">
+				<input st-search="title" placeholder="search by title" class="input-sm form-control" type="search"/>
+			</th>
+			<th colspan="5">
+				<input st-search="description" placeholder="search by description" class="input-sm form-control" type="search"/>
+			</th>
+			<th colspan="3">
+				<input st-search="tags" placeholder="search by tags" class="input-sm form-control" type="search"/>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="tour in tours" ng-hide="removed" class="admin-table-row">
+			<td>{{tour.id}}</td>
+			<td>{{tour.title}}</td>
+			<td><hm-read-more
+        hm-text="{{tour.description }}" 
+        hm-limit="50" 
+        hm-more-text="read more" 
+        hm-less-text="read less"
+        hm-dots-class="dots"
+        hm-link-class="links">
+</hm-read-more></td>
+			<td>{{tour.tags}}</td>
+			<td>{{tour.price}}</td>
+			<td><img class="admin-table-img" ng-src="{{tour.image}}"></td>
+			<td>{{tour.duration }}</td>
+			<td>{{tour.is_booked}}</td>
+			<td>{{tour.guideId}}</td>
+			<td>
+				<button type="button" ng-click="removeTour(tour)" class="btn btn-sm btn-danger">
+					<i class="glyphicon glyphicon-remove-circle">
+					</i>
+				</button>
+				</td>
+<!-- 			<td><a ng-href="mailto:{{row.email}}">email</a></td>
+ -->		</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="10" class="text-center">
+					<div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+<table ng-if="radioModel == 'Users' "st-table="users" class="table table-striped" id="admin-table">
+		<thead>
+		<tr>
+			<th st-sort="id">ID</th>
+			<th st-sort="name">Name</th>
+			<th st-sort="photo">Photo</th>
+			<th st-sort="email">Email</th>
+			<th st-sort="password">Password</th>
+			<th st-sort="phone">Phone</th>
+			<th st-sort="admin">Admin</th>
+			<th>Delete User</th>
+<!-- 			<th>email</th>
+ -->		</tr>
+
+
+		<tr>
+			<th colspan="2">
+				<input st-search="name" placeholder="search by name" class="input-sm form-control" type="search"/>
+			</th>
+				<th colspan="6"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="user in users" ng-hide="removed" class="admin-table-row">
+			<td>{{user.id}}</td>
+			<td>{{user.name}}</td>
+			<td><img class="admin-table-img" ng-src="{{user.photo}}"></td>
+
+			<td>{{user.email}}</td>
+			<td>{{user.password}}</td>
+			<td>{{user.phone}}</td>
+			<td>{{user.is_admin }}</td>
+			<td>
+				<button type="button" ng-click="removeUser(user)" class="btn btn-sm btn-danger">
+					<i class="glyphicon glyphicon-remove-circle">
+					</i>
+				</button>
+				</td>
+<!-- 			<td><a ng-href="mailto:{{row.email}}">email</a></td>
+ -->		</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="8" class="text-center">
+					<div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+
+</div>
+</section>

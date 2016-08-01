@@ -6,9 +6,21 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
+            $rootScope.itemsInCart = Cart.getAll().length;
+            scope.itemsInCart = $rootScope.itemsInCart;
+            $rootScope.$on('added to cart', function(event,data) {
+                scope.itemsInCart += 1;
+            })
+            
+            $rootScope.$on('removed from cart', function(event,data) {
+                scope.itemsInCart -= 1;
+            })
+
             scope.items = [
                 { label: 'Home', state: 'home' },
-                { label: 'Tours', state: 'tours' }
+                { label: 'Tours', state: 'tours' },
+                { label: 'My Dashboard', state: 'users.profile', auth: true},
+                { label: 'My Inbox', state: 'users.inbox', auth: true}
                 // { label: 'Members Only', state: 'membersOnly', auth: true }
             ];
 

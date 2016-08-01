@@ -1,3 +1,5 @@
+
+
 app.factory('Tour', function($http, $log) {
     var Tour = {};
 
@@ -9,6 +11,7 @@ app.factory('Tour', function($http, $log) {
     }
 
     Tour.queryAll = function(params) {
+        console.log(jQuery.param(params));
         return $http.get('/api/tours?' + jQuery.param(params))
             .then(function(response) {
                 return response.data;
@@ -42,6 +45,19 @@ app.factory('Tour', function($http, $log) {
                 $log.info(response.data)
                 return response.data
             })
+            .then(function (res) {
+                console.log('hi', user)
+                return $http.post('/api/messages/conversation', {
+                    travellerId: user.id,
+                    guideId: tour.guideId,
+                    tourId: tour.id
+                })
+            })
+            .then(function (response) {
+
+                $log.info(response.data)
+                return response.data
+            })
     }
 
     Tour.create = function(tour) {
@@ -50,11 +66,19 @@ app.factory('Tour', function($http, $log) {
                 title: tour.name,
                 description: tour.description,
                 tags: tour.tags,
-                price: tour.price.value
+                price: tour.price.value,
+                guideId: tour.guideId
             })
             .then(function(response) {
                 return response.data
             })
+    }
+
+    Tour.remove = function (id) {
+        return $http.delete('/api/tours/' + id)
+                    .then(function (response) {
+                        return response.data;
+                    })
     }
 
     return Tour;

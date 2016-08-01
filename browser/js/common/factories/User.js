@@ -19,10 +19,23 @@ app.factory('User', function($http) {
     .then(bookings => bookings.data);
   }
 
+
+  User.fetchAll = function () {
+    return $http.get('/api/users/')
+                .then(user => user.data)
+  }
+
+// THESE TWO BELOW ARE DEFUNCT, ARE WE STILL USING THEM?
   User.getOfferedTours = function(id) {
     return $http.get('/api/user/'+id+'/tours')
     .then(tours => tours.data)
   }
+ 
+  User.getUserInfo = function (id) {
+    return $http.get('/api/user/' + id)
+                .then(user => user.data)
+  }
+
 
 
   return User;

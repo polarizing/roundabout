@@ -1,0 +1,31 @@
+<div ng-if="!removed" class="fadeOut" id="tour-cart">
+<div class="col-sm-12">
+  <div class="card horizontal">
+    <div class="card-image" ng-style="{'background-image':'url({{tour.image}})'}">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <div class="cart-tour-title md-headline">
+        {{tour.title}}
+        </div>
+        <div class="cart-tour-price md-subhead">
+        ${{tour.price}}
+        </div>
+         <div class="md-caption tour-desc">{{ tour.description | limitTo: 200 }}{{ tour.description.length > 200 ? ' ...' : ''}}</div>
+
+
+      </div>
+      <div class="card-action">
+        <a ng-click="removeFromCart()" href="#">Remove from Cart</a>
+      </div>
+
+<!-- <div ng-if="bool" class="fade1">
+   Fade me in out
+</div>
+<button ng-click="bool=true">Fade In!</button>
+<button ng-click="bool=false">Fade Out!</button>
+ -->
+    </div>
+  </div>
+</div>
+</div>

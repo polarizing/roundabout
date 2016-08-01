@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TourAdd', function($scope, Tour, $state) {
+app.controller('TourAdd', function($scope, Tour, $state, Session) {
     $scope.tour = {
         name: null,
         description: null,
@@ -14,12 +14,17 @@ app.controller('TourAdd', function($scope, Tour, $state) {
                 }
             }
         },
-        tags: []
+        tags: [],
+        guideId: Session.user.id
     }
     $scope.addTour = function() {
+            // console.log(Session.user.id);
+        // $scope.tour.guide = Session.user.id;
         console.log("in controller")
         Tour.create($scope.tour)
         .then(function(tour) {
+                        console.log(tour);
+
             $state.go('tour', { id: tour.id })
         })
     }

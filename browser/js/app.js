@@ -1,10 +1,23 @@
 'use strict';
-window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ui.materialize', 'auto-complete', 'ngKookies', 'rzModule'])
+window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ui.materialize', 'auto-complete', 'ngKookies', 'rzModule', 'luegg.directives', 'smart-table', 'hm.readmore'])
 .config(['$kookiesProvider',
         function ($kookiesProvider) {
             $kookiesProvider.config.json = true;
         }
         ]);
+// allow DI for use in controllers, unit tests
+app.constant('_', window._)
+// use in views, ng-repeat="x in _.range(3)"
+app.run(function ($rootScope) {
+ $rootScope._ = window._;
+});
+
+// prevent auto-default saving scrollbar place on view change
+app.run(function($rootScope, $state, $anchorScroll){
+    $rootScope.$on("$locationChangeSuccess", function(){
+        $anchorScroll();
+    })
+});
 
 app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
@@ -18,7 +31,6 @@ app.config(function ($urlRouterProvider, $locationProvider) {
     // Redirections for abstract parent states. .. https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#how-to-set-up-a-defaultindex-child-state
     $urlRouterProvider.when('/users/listings', '/users/listings/offered');
     $urlRouterProvider.when('/users/profile', '/users/profile/edit');
-
 
 
 });

@@ -1,0 +1,38 @@
+<section id="cart">
+<div class="header-fixed">
+
+	<div class="header-content" layout="row">
+		<div flex="25">
+			<a ui-sref="home"><i class="fa fa-home cart-glyph" aria-hidden="true"></i></a>
+			<a ui-sref="tours"><i class="fa fa-globe cart-glyph" aria-hidden="true"></i></a>
+		</div>
+		<a flex="50" class="header-title">
+			Cart O' Tours
+		</a>
+		<div flex="25"></div>
+	</div>
+</div>
+            
+<div class="row">
+		<div class="container cart-content">
+			<div></div>
+			<tour-cart-card ng-repeat="tour in cart" cart-data="tour"></tour-cart-card>
+		</div>
+</div>
+
+<div class="footer-fixed">
+	<div class="footer-content">
+		<div class="grid-container">
+			<div class="subtotal"> Sub Total ({{numItems}} item): ${{totalPrice}} </div>
+			<div class="cart-buttons">
+			<a ui-sref="tours" class="waves-effect waves-light btn checkout-button">BACK</a>
+			<a class="waves-effect waves-light btn checkout-button" ui-sref="checkout">CHECKOUT
+
+			</a>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</section>

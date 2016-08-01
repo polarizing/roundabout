@@ -1,4 +1,4 @@
-app.factory('Cart', function($kookies, Tour, $log, Session, $q, Order) {
+app.factory('Cart', function(_, $kookies, Tour, $log, Session, $q, Order) {
     var Cart = {};
 
     Cart.empty = function() {
@@ -9,6 +9,15 @@ app.factory('Cart', function($kookies, Tour, $log, Session, $q, Order) {
             $kookies.remove(items, { path: '/' })
         }
 
+        return tours;
+    }
+
+    Cart.getAll = function () {
+        var currentCart = $kookies.get();
+        var tours = [];
+        for (var items in currentCart) {
+            tours.push(currentCart[items]);
+        }
         return tours;
     }
 
@@ -25,14 +34,32 @@ app.factory('Cart', function($kookies, Tour, $log, Session, $q, Order) {
     }
 
     Cart.add = function(tour) {
-     
-        if ($kookies.get(tour.id.toString())) $log.info('item already exists');
-        else $kookies.set(tour.id.toString(), tour, { path: '/' });
-
+        console.log(tour);
+        if ($kookies.get(tour.id.toString())) {
+            console.log('test')
+            $log.info('item already exists');
+            return false;
+        }
+        else {
+                        // console.log('test2')
+                        // console.log(tour.id.toString());
+                        // console.log(tour);
+                        // delete tour[description];
+            tour['description'] = tour['description'].substr(0, 200) + '...'
+            // tour = _.omit(tour, ['description'])
+            $kookies.set(tour.id.toString(), tour, { path: '/' });
+            console.log('cookies', $kookies.get())
+            return true;
+        }
     }
 
     Cart.remove = function(tour) {
-        if ($kookies.get(tour.id.toString())) $kookies.remove(tour.id.toString(), { path: '/' })
+        console.log('in cart factory', tour);
+        if ($kookies.get(tour.id.toString())) {
+            
+            $kookies.remove(tour.id.toString(), { path: '/' })
+            return true;
+        }
     }
 
     return Cart
