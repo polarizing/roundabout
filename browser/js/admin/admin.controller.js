@@ -1,8 +1,7 @@
-app.controller('Admin', function ($scope, tours, users, Tour, User) {
+app.controller('Admin', function ($scope, tours, users, Tour, User, Session) {
     // var
     //     nameList = ['Pierre', 'Pol', 'Jacques', 'Robert', 'Elisa'],
     //     familyName = ['Dupont', 'Germain', 'Delcourt', 'bjip', 'Menez'];
-
     $scope.radioModel = 'Tours';
 
     $scope.tours = tours;
@@ -30,6 +29,10 @@ app.controller('Admin', function ($scope, tours, users, Tour, User) {
         if (index !== -1) {
             $scope.users.splice(index, 1);
         }
+    }
+
+    $scope.isAdmin = function (){
+        return Session.user.is_admin;
     }
 
 });
