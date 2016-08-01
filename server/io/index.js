@@ -35,6 +35,7 @@ module.exports = function (server) {
 		  // broadcast a user's message to other users
 		  socket.on('send:message', function (data) {
 		  	socket.broadcast.to(socket.room).emit('updatechat', data);
+            
 		  });
 
         socket.on('disconnect', function () {

@@ -1,6 +1,48 @@
 'use strict';
 
-app.controller('TourDetail', function ($rootScope, $scope, tour, $state, Tour, Session, Cart, Order) {
+app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, $state, Tour, Session, Cart, Order, $http) {
+
+	// TESTING UPLOAD
+
+	$scope.uploadFile = function(){
+        var file = $scope.myFile;
+        console.log('file is ' );
+        console.dir(file);
+
+        var uploadUrl = "/upload";
+
+        if (['jpeg', 'png','jpg'].includes(file.name.split(".").pop()) && file.size < 5000000)
+        	fileUpload.uploadFileToUrl(file, uploadUrl)
+        		  .then(function (res) {
+        		  	console.log(res.data);
+        		  });
+        else alert('Please upload a valid image of type .jpeg, .png, or .jpg of less than 5MB.')
+
+    };
+    
+	// $scope.uploadPhoto = function(){
+	// 	console.log('prevented default action');
+
+
+	//   var f = document.getElementById('photo').files[0],
+	//       r = new FileReader();
+
+	//       console.log('this is f: ' , f);
+	// 	  r.onloadend = function(e){
+	// 	  	// console.log('ishaan is here');
+	// 	    var data = e.target.result;
+	// 	    $http.post('/upload', data)
+	// 	    	 .then(function (res) {
+	// 	    	 	console.log(res);
+	// 	    	 })
+	// 	    	 .catch(function (err) {
+	// 	    	 	console.log(err);
+	// 	    	 })
+	// 	    // console.log('data', data);
+	// 	    //send your binary data via $http or $resource or do anything else with it
+	// 	  }
+	// 	  r.readAsBinaryString(f);
+	// }
 
 	// DATE WIDGET
 	$scope.tour = tour;

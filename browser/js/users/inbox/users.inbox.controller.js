@@ -1,27 +1,40 @@
 'use strict';
 
 app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, $log, $timeout, socket, conversations) {
+	
+	// REALLY BASIC MOD 
+
+	// All Conversations For User Loaded From DB / RESOLVE
 	$scope.conversations = conversations;
+
+	// CURRENT USER ID FROM SESSION STORE
 	$scope.userId = Session.user.id;
 	$scope.guideId = null;
 
-	// All conversation Id's (for long-polling)
-	$scope.conversationIds = $scope.conversations.map( conversation => conversation.id);
-
-	// For Chat Name Purposes
+	// For CHAT NAME / LOGIC Purposes (Am I a guide talking to traveller or vice-versa?)
 	$scope.userName = Session.user.name;
 	$scope.travellerName = null;
 	$scope.guideName = null;
-	// Conversation Currently Selected
-	$scope.conversation = null;
-	// ID of Conversation Currently Selected
-	$scope.conversationSelected = null;
-	$scope.lines = [];
 	$scope.isGuide = null;
 	$scope.isTraveller = null;
 
+	// Conversation DB Obj Currently Selected
+	$scope.conversation = null;
+
+	// ID of Conversation Currently Selected
+	$scope.conversationSelected = null;
+
+	// All LINES OF CONVERSATION STORED
+	$scope.lines = [];
+
+	// FILTER BY -- SELECT OPTIONS
 	$scope.inboxFilter = "All Messages";
 	$scope.inboxOptions = ['All Messages', 'As Guide', 'As Traveller'];
+
+
+	// MAIN METHODS
+	// CONVERSATION FILTER FILTERS BY GUIDE OR TRAVELLER
+
 	$scope.conversationFilter = function (conversation) {
 		if ($scope.inboxFilter === 'All Messages') {
 			return true;
@@ -34,8 +47,12 @@ app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, 
 		}
 	}
 
-
+	// CHANGESELECTED CHANGES TO SELECTED CONVERSATION
 	$scope.changeSelected = function (conversation) {
+
+		// SET CONVERSATION AND ALL OTHER NULL CONSTANTS
+		// IDENTIFY WHO IS GUIDE AND WHO IS TRAVELLER
+
 		$scope.conversation = conversation
 		$scope.conversationSelected = conversation.id;
 		$scope.guideName = conversation.guide.name;
@@ -52,6 +69,9 @@ app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, 
 			$scope.isGuide = false;
 		}
 
+		// GET CHAT LOG FOR CONVERSATION
+		// IDENTIFY WHICH LINE IS "MINE"
+
 		$http.get('/api/messages/chat/' + conversation.id)
                 .then(res => {
                 	return res.data;
@@ -67,12 +87,16 @@ app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, 
                 	})
 				})
 
+		// EMIT EVENT THAT CONVERSATION HAS BEEN SWITCHED (ON SERVER IO.JS)
+		// CREATES AND BINDS A "ROOM" TO SOCKET FOR EVERY UNIQUE CONVERSATION
+
 		socket.emit('switch:conversation', conversation.id, $scope.userId);
 
 	}
 
-
+	// SEND MESSAGE SENDS A MESSAGE TO ROOM HOLDING THE CONVERSATION
 	$scope.sendMessage = function () {
+		
 		// "not 'me' who receives the message"
 	    socket.emit('send:message', {
 	      content: $scope.message,
@@ -80,6 +104,7 @@ app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, 
 	      me: false
 	    });
 
+	    // PERSIST CHAT TO DATABASE
 
 	    $http.post('/api/messages/chat/', {content: $scope.message, conversationId: $scope.conversationSelected, userId: $scope.userId})
                 .then(res => {
@@ -89,27 +114,29 @@ app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, 
                 	console.log(line);
 				})
 
-	    // add the message to our model locally
+	    // ADD MESSAGE TO OUR MODEL LOCALLY
 	    $scope.lines.push({
 	      content: $scope.message,
 	      userId: $scope.userId,
 	      me: true
 	    });
 
-	    // clear message box
+	    // CLEAR MESSAGE BOX
 	    $scope.message = '';
 	  };
 
-	$scope.formatChatLine = function (line) {
-			if (line.me) return 'Me: ' + line.content;
-			else return 'Test: ' + line.content;
-	}
+	  // FORMATS CHAT LINE -- NOT USED BUT MOVE TEMPLATE LOGIC HERE IN THE FUTURE
+		$scope.formatChatLine = function (line) {
+				if (line.me) return 'Me: ' + line.content;
+				else return 'Test: ' + line.content;
+		}
 
 
 
 		 // Socket listeners
 	  // ================
 
+	  // NOT REALLY USED BUT MIGHT BE USEFUL
 	  socket.on('init', function (data) {
 	    $scope.name = data.name;
 	    $scope.users = data.users;
@@ -125,10 +152,12 @@ app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, 
 	  	$scope.lines.push(data)
 	  })
 
+
+	  // THESE THREE SOCKET LISTENERS BELOW ARE NOT BEING USED
+
 	  socket.on('change:name', function (data) {
 	    changeName(data.oldName, data.newName);
 	  });
-
 
 	  socket.on('user:join', function (data) {
 	    $scope.messages.push({
@@ -153,44 +182,5 @@ app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, 
 	      }
 	    }
 	  });
-
-	  // Private helpers
-	  // ===============
-
-	  var changeName = function (oldName, newName) {
-	    // rename user in list of users
-	    var i;
-	    for (i = 0; i < $scope.users.length; i++) {
-	      if ($scope.users[i] === oldName) {
-	        $scope.users[i] = newName;
-	      }
-	    }
-
-	    $scope.messages.push({
-	      user: 'chatroom',
-	      text: 'User ' + oldName + ' is now known as ' + newName + '.'
-	    });
-	  }
-
-	  // Methods published to the scope
-	  // ==============================
-
-	  $scope.changeName = function () {
-	    socket.emit('change:name', {
-	      name: $scope.newName
-	    }, function (result) {
-	      if (!result) {
-	        alert('There was an error changing your name');
-	      } else {
-
-	        changeName($scope.name, $scope.newName);
-
-	        $scope.name = $scope.newName;
-	        $scope.newName = '';
-	      }
-	    });
-	  };
-
-
 
 });
