@@ -1,0 +1,33 @@
+#review-add {
+    h4 {
+        margin-top: 40px;
+        text-align: center;
+        font-family: Circular, Arial, sans-serif;
+    }
+    .rating {
+        font-size: 30px;
+    }
+    p {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 40px;
+        color: gray;
+    }
+    md-card {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        md-content {
+            background-color: white;
+        }
+        .slider-container {
+            margin: 20px 0 40px 0;
+        }
+        .review-button {
+            background-color: #26a69a;
+            color: white;
+            padding: 0 30px;
+            float: right;
+        }
+    }
+}
