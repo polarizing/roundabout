@@ -7,7 +7,6 @@ app.controller('UserProfileEdit', function ($scope, $state, Session, $kookies, U
 		photo: Session.user.photo,
 		email: Session.user.email,
 		phone: Session.user.phone,
-		password: Session.user.password
 	}
 	console.log(Session.user);
 	$scope.editUser = function(){
