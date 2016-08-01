@@ -1,6 +1,6 @@
 'use-strict'
 
-app.factory('User', function($http) {
+app.factory('User', function($http, $rootScope) {
 
   var User = {};
 
@@ -59,9 +59,10 @@ app.factory('User', function($http) {
                password: user.newpassword
             })
             .then(function(resp){
+              console.log('about to log event')
+              $rootScope.$emit('edit profile', resp.data);
               return resp.data;
             })
-            .catch(console.error)
   }
 
   return User;
