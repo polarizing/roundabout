@@ -8,11 +8,11 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
 
             $rootScope.itemsInCart = Cart.getAll().length;
             scope.itemsInCart = $rootScope.itemsInCart;
-            $rootScope.$on('added to cart', function(event,data) {
+            $rootScope.$on('added to cart', function(event, data) {
                 scope.itemsInCart += 1;
             })
             
-            $rootScope.$on('removed from cart', function(event,data) {
+            $rootScope.$on('removed from cart', function(event, data) {
                 scope.itemsInCart -= 1;
             })
 
@@ -52,6 +52,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
+            $rootScope.$on('edit profile', function(event, data){
+                scope.user = data;
+                scope.$evalAsync();
+            });
 
         }
 
