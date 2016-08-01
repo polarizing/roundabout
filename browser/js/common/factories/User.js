@@ -59,7 +59,6 @@ app.factory('User', function($http, $rootScope) {
                password: user.newpassword
             })
             .then(function(resp){
-              console.log('about to log event')
               $rootScope.$emit('edit profile', resp.data);
               return resp.data;
             })
