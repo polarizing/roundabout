@@ -1,7 +1,8 @@
 'use strict';
 
-app.controller('TourDetail', function ($scope, tour, $state, Tour, Session, Cart, Order) {
+app.controller('TourDetail', function ($rootScope, $scope, tour, $state, Tour, Session, Cart, Order) {
 
+	// DATE WIDGET
 	$scope.tour = tour;
 	$scope.numTravellers = "1";
 	$scope.numbers = ['1', '2', '3', '4', '5'];
@@ -18,24 +19,29 @@ app.controller('TourDetail', function ($scope, tour, $state, Tour, Session, Cart
 	var days = 15;
 	$scope.minDate = (new Date($scope.currentTime.getTime() - ( 1000 * 60 * 60 *24 * days ))).toISOString();
 	$scope.maxDate = (new Date($scope.currentTime.getTime() + ( 1000 * 60 * 60 *24 * days ))).toISOString();
-	$scope.onStart = function () {
-		console.log('onStart');
-	};
-	$scope.onRender = function () {
-		console.log('onRender');
-	};
-	$scope.onOpen = function () {
-		console.log('onOpen');
-	};
-	$scope.onClose = function () {
-		console.log('onClose');
-	};
-	$scope.onSet = function () {
-		console.log('onSet');
-	};
-	$scope.onStop = function () {
-		console.log('onStop');
-	};
+	// $scope.onStart = function () {
+	// 	console.log('onStart');
+	// };
+	// $scope.onRender = function () {
+	// 	console.log('onRender');
+	// };
+	// $scope.onOpen = function () {
+	// 	console.log('onOpen');
+	// };
+	// $scope.onClose = function () {
+	// 	console.log('onClose');
+	// };
+	// $scope.onSet = function () {
+	// 	console.log('onSet');
+	// };
+	// $scope.onStop = function () {
+	// 	console.log('onStop');
+	// };
+
+	// END DATE WIDGET
+
+
+	$scope.addedToCart = false;
 	$scope.book = function() {
 
 		Order.create(Session.user.id)
@@ -47,7 +53,17 @@ app.controller('TourDetail', function ($scope, tour, $state, Tour, Session, Cart
 		})
 	};
 
-	$scope.addToCart = function() {
-		Cart.add(tour)
+	$scope.toggleAddToCart = function(tour) {
+		if ($scope.addedToCart) {
+			var successfullyRemoved = Cart.remove(tour)
+			if (successfullyRemoved) $rootScope.$broadcast('removed from cart', 1)
+		}
+		else {
+			var successfullyAdded = Cart.add(tour)
+			if (successfullyAdded) $rootScope.$broadcast('added to cart', 1);
+		}
+		$scope.addedToCart = !$scope.addedToCart;
+
 	}
+
 });

@@ -1,0 +1,79 @@
+#admin {
+	#admin-options {
+		padding-top: 30px;
+		padding-bottom: 20px;
+		padding-left: 30px;
+		padding-right: 30px;
+	
+		.admin-navigation {
+			text-align: right;
+		}
+	}
+
+	#admin-table-container {
+		padding: 25px;
+			#admin-table {
+				
+				.admin-table-img {
+					width:75px;
+				}
+
+					.admin-table-row.ng-enter,
+.admin-table-row.ng-leave,
+.admin-table-row.ng-move {
+  transition: 0.5s linear all;
+}
+
+.admin-table-row.ng-enter,
+.admin-table-row.ng-move {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.admin-table-row.ng-enter.ng-enter-active,
+.admin-table-row.ng-move.ng-move-active {
+  height: 120px;
+  opacity: 1;
+}
+
+.admin-table-row.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+.admin-table-row.ng-leave.ng-leave-active {
+  height: 0;
+  opacity: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+					/* The starting CSS styles for the enter animation */
+					.fadeOut.ng-enter {
+					  transition:0.5s linear all;
+					  opacity:0;
+					}
+
+					/* The finishing CSS styles for the enter animation */
+					.fadeOut.ng-enter.ng-enter-active {
+					  opacity:1;
+					}
+					/* now the element will fade out before it is removed from the DOM */
+					.fadeOut.ng-leave {
+					  transition:0.5s linear all;
+					  opacity:1;
+					}
+					.fadeOut.ng-leave.ng-leave-active {
+					  opacity:0;
+					}
+
+
+			}
+
+
+
+	}
+
+
+}
+

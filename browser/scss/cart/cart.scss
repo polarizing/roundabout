@@ -1,0 +1,130 @@
+#cart {
+font-family: Circular;
+	.col-centered{
+	    float: none;
+	    margin: 0 auto;
+	}
+
+	.glyph-pad {
+		padding-left: 10px;
+	}
+
+	.header-fixed {
+		width:100%;
+		position:fixed;
+		top: 0px;
+		z-index: 20000;
+	}
+
+	.header-content {
+		background:#26a69a;
+		height: 80px;
+		text-align: center;
+	}
+
+	.header-title {
+		height: 80px;
+		margin-top: 0;
+		padding: 30px 2%;
+		display: inline-block;
+		position: relative;
+		color: white;
+		font-size: 22px;
+		font-weight: bold;
+		text-transform: uppercase;
+		cursor: pointer;
+		background-color: transparent;
+	}
+
+	.header-title:after {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		animation: box-tab-caret .5s ease;
+		background: #26A69A;
+		content: '';
+		height: 16px;
+		margin: auto;
+		transform: translate(0, 50%) rotate(45deg);
+		width: 16px;
+	}
+
+	.cart-content {
+		margin: auto;
+		height: 100vh;
+		margin-top: 35px;
+		margin-bottom: 80px;
+	}
+
+	.cart-glyph {
+		margin-top: 30px;
+		font-size: 20px;
+		color:black;
+		padding-right: 10px;
+	}
+
+	.cart-glyph:hover {
+	cursor: pointer;
+		color:white;
+		  /* First we need to help some browsers along for this to work.
+     Just because a vendor prefix is there, doesn't mean it will
+     work in a browser made by that vendor either, it's just for
+     future-proofing purposes I guess. */
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  /* ...and now for the proper property */
+  transition:.5s;
+	}
+
+	.cart-body {
+		height: 500px;
+	}
+
+	.footer-fixed {
+	   position:fixed;
+	   left:0px;
+	   bottom:0px;
+	   top:auto;
+	   height:160px;
+	   width:100%;
+	   background:#26A69A;
+	}
+
+	.grid-container {
+		margin-left: auto;
+		margin-right: auto;
+		padding: 0 2rem 4rem;
+		width: 320px;
+		margin-top: 20px;
+	}
+
+	.checkout-button {
+		margin-right: 3px;
+		margin-left: 3px;
+	}
+
+	.subtotal {
+		margin-bottom: 20px;
+		color: white;
+		font-size: 16px;
+	}
+
+	.footer-content {
+		text-align: center;
+	}
+
+	header {
+		padding: 1rem;
+		margin: 0 auto;
+		opacity: 1;
+		position: relative;
+		border: 1px solid #2C2A29;
+		border-width: 1px 1px 0;
+	}
+
+
+
+}

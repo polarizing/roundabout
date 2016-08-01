@@ -16,6 +16,8 @@
             {{ user.name }}
             </span>
             <a ui-sref="addtour" class="search-button waves-effect waves-light btn">Create Tour</a>
+            <a class="navbar-cart" ui-sref="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><div class="numberCircle">{{itemsInCart}}</div>
+</a>
             <a ng-click="logout()" class="logout-button">Logout</a>
         </ul>
     </div>

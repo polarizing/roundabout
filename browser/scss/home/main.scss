@@ -119,9 +119,11 @@
         font-family: Circular, Arial, sans-serif;
         font-size: 18px;
         padding-bottom: 10px;
+        margin-top: 20px;
       }
       .content {
         font-size: 15px;
+        margin-top: 25px;
       }
     }
   }
@@ -140,6 +142,11 @@
   .row {
     margin-right: 12.5%;
     margin-left: 12.5%;
+  }
+  
+  .home-glyph {
+    font-size: 45px;
+    color: #26a69a;
   }
 }
 

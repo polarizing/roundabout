@@ -1,0 +1,85 @@
+<section id="inbox">
+<subnav ></subnav>
+	<div class="container">
+		<div class="row">
+				<md-input-container>
+			        <md-select ng-model="inboxFilter">
+			          <md-option ng-repeat="option in inboxOptions" value="{{option}}">
+			            {{option}}
+			          </md-option>
+			        </md-select>
+			      </md-input-container>
+		</div>
+		<div class="row chat-app" layout-gt-md="row" layout-sm="column">
+				<div flex="25" class="chat-sidebar">
+					<div ng-click="changeSelected(conversation)" 
+						ng-repeat="conversation in conversations | filter: conversationFilter" 
+						class="conversation effect6" 
+						ng-class="{isGuide: conversation.guide.id === userId, isTraveller: conversation.traveller.id === userId}">
+						<div class="conversationStyle">
+								<a href="#">
+							    	<div class="pull-left media-photo media-round card-profile-picture card-profile-picture-offset">
+							    		<img ng-src="{{ conversation.traveller.id === userId ? conversation.guide.photo : conversation.traveller.photo}}">
+							    	</div>
+							    	
+							    </a>
+							    <div class="card-profile-picture-text-offset">{{ conversation.traveller.id === userId ? conversation.guide.name : conversation.traveller.name}}<i class="fa fa-circle status-circle-online" aria-hidden="true"></i>
+								</div>
+								<!-- 	<div class="online-offline">Status: <i class="fa fa-circle status-circle-online" aria-hidden="true"></i>
+</div> -->
+							</div>
+
+					</div>
+				</div>
+				<div flex="75" class="chat-main">
+			<!-- 		<div ng-show="conversationSelected" id="messages-info">
+					{{conversation.tour.title}}
+					</div> -->
+
+					<div ng-hide="conversationSelected" id="messages-home">
+						Once you have booked a tour,
+						you can connect with your tour guide! Ask your guide about your upcoming itinerary or get to know them better!
+					</div>
+
+					<div ng-show="conversationSelected" id="messages-container" scroll-glue>
+						<ul id="messages">
+							<li ng-repeat="line in lines">
+								<span ng-if="line.me">
+								Me: {{ line.content }}
+								</span>
+								<span ng-if="!line.me">
+								{{ isTraveller ? guideName + ' (Tour Guide)': travellerName + ' (Traveller)'}}: {{ line.content }}
+								</span>
+							</li>
+						</ul>
+					</div>
+
+				<!-- 	<div id="messages-container" scroll-bottom="lines">
+          <div ng-repeat="line in lines">
+            <div class="chatMessage">
+            <span ng-if="line.me">
+								Me: {{ line.content }}
+								</span>
+								<span ng-if="!line.me">
+								{{ isTraveller ? guideName + ' (Tour Guide)': travellerName + ' (Traveller)'}}: {{ line.content }}
+								</span>
+              <div class="messageTextInMessage">{{message.msg}}</div>
+            </div>
+          </div>
+        </div> -->
+
+					<div id="chat-input">
+						<form>
+						<input id="m" ng-model="message" autocomplete="off" /><button ng-click="sendMessage()">Send</button>
+						</form>
+					</div>
+				</div>
+<!-- 
+    			<ul id="messages"></ul>
+				<form action="">
+			      <input id="m" autocomplete="off" /><button>Send</button>
+			    </form> -->
+				</div>
+		</div>
+	</div>
+</section>

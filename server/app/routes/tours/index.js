@@ -49,19 +49,28 @@ router.delete('/:id', check.admin, function(req, res, next) {
     .catch(next);
 });
 
+
 router.get('/', function(req, res, next) {
-    console.log('QUERY OBJECT', req.query);
+        // DEFAULT GET ALL TOURS, INCLUDING GUIDE MODEL AND FILTER BY TIMELEFT + ACTIVE
     if (Object.keys(req.query).length === 0) {
-        Tour.findAll({include: [{model: Guide, as: 'guide'}]})
-        .then(function(tours) {
-            tours = tours.filter(tour => tour.timeLeft > 0 && tour.isActive)
-            res.send(tours)
-        })
-        .catch(next);
+            Tour.findAll({include: [{model: Guide, as: 'guide'}]})
+            .then(function(tours) {
+                tours = tours.filter(tour => tour.timeLeft > 0 && tour.isActive)
+                res.send(tours)
+            })
+            .catch(next);
     }
     else {
-        console.log('QUERRRY OBJECT', req.query);
-        Tour.findAll({where: {
+        // GET ALL TOURS -- NO FILTER IS TRUE, RETURNS ALL TOURS
+        if (req.query.options.noFilter) {
+            Tour.findAll()
+                .then(function (tours) {
+                    res.send(tours);
+                })
+        }
+        // GET ALL TOURS MATCHING TITLE, DESC, OR TAGS
+        else {
+                Tour.findAll({where: {
                             $or: [
                                 {
                                     title: {
@@ -86,5 +95,6 @@ router.get('/', function(req, res, next) {
                     res.send(tours)
                 })
                 .catch(next);
+        }
     }
 });
