@@ -1,7 +1,5 @@
 'use-strict'
 
-var check = require('../../../../server/app/routes/check-handler');
-
 app.factory('User', function($http) {
 
   var User = {};
