@@ -1,7 +1,8 @@
 'use strict';
 
-app.controller('HomeCtrl', function () {
+app.controller('HomeCtrl', function (Session) {
 
+    console.log(Session.user)
     var self = this;
     self.query = '';
 

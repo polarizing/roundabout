@@ -96,12 +96,12 @@
                 });
         };
 
-
+        var self = this;
         this.signup = function (credentials) {
 
             return $http.post('/signup', credentials)
             .then(function() {
-                return $q.resolve({message: 'signed up'})
+                return self.login(credentials)//$q.resolve({message: 'signed up'})
             })
             .catch(function () {
                 return $q.reject({ message: 'User already exist'})
