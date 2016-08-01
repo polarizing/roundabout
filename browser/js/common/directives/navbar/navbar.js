@@ -19,7 +19,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             scope.items = [
                 { label: 'Home', state: 'home' },
                 { label: 'Tours', state: 'tours' },
-                { label: 'My Dashboard', state: 'users.profile', auth: true},
+                { label: 'My Dashboard', state: 'users', auth: true},
                 { label: 'My Inbox', state: 'users.inbox', auth: true}
                 // { label: 'Members Only', state: 'membersOnly', auth: true }
             ];

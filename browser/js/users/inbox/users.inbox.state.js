@@ -5,6 +5,9 @@ app.config(function ($stateProvider) {
         controller: 'UserInbox',
         resolve: {
             conversations: function (Inbox, $stateParams, Session) {
+                console.log('hi');
+                console.log('this is session',Session);
+                console.dir(Session.user)
                 return Inbox.getConversations(Session.user.id);
             }
         }

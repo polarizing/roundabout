@@ -3,11 +3,13 @@ app.config(function ($stateProvider) {
         url: '/tours',
         templateUrl: 'js/users/tours/users.tours.html',
         controller: 'UserTours',
-        resolve: {
-        	bookings: function (User, Session) {
-        		console.log(User.getUserBookings(Session.user.id));
-        		return User.getUserBookings(Session.user.id);
-        	}
-        },
+        redirectTo: 'users.tours.booked'
     });
 });
+
+//         resolve: {
+        //     bookings: function (User, Session) {
+        //         console.log(User.getUserBookings(Session.user.id));
+        //         return User.getUserBookings(Session.user.id);
+        //     }
+        // },
