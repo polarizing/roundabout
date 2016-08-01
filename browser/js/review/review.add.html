@@ -1,0 +1,27 @@
+<section id="review-add">
+    <h4>Review your trip</h4>
+    <p>{{ tour.title }} by {{ tour.guide.name }}</p>
+    <md-card ng-show="reviewed">
+        <md-content>
+            <h4>Thank you!</h4>
+            <p>Redirecting you to more awesome tours in {{ countDown }} seconds...</p>
+        </md-content>
+    </md-card>
+    <md-card ng-hide="reviewed">
+        <md-content>
+            <form name="colorForm" ng-submit="addReview(review)">
+                <h5>Describe your experience in one line</h5>
+                <md-input-container md-no-float class="md-block">
+                    <input name="tour-title" ng-model="review.title" placeholder="Type here" required>
+                </md-input-container>
+                <h5>Tell us the details</h5>
+                <md-input-container md-no-float class="md-block">
+                    <textarea name="tour-description" ng-model="review.content" rows="5" placeholder="Review Details"></textarea>
+                </md-input-container>
+                <h5>Give a rating</h5>
+                <span class="rating" uib-rating ng-model="review.rate" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></span>
+                <md-button class="review-button" type="submit">POST REVIEW</md-button>
+            </form>
+        </md-content>
+    </md-card>
+</section>
