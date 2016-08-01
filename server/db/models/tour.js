@@ -19,7 +19,7 @@ module.exports = db.define('tour', {
     },
 
     price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
 

@@ -2,8 +2,10 @@
 
 app.controller('TourAdd', function($scope, Tour, $state, Session) {
     $scope.tour = {
+        location: null,
         name: null,
         description: null,
+        image: null,
         price: {
             value: 150,
             options: {
@@ -14,17 +16,27 @@ app.controller('TourAdd', function($scope, Tour, $state, Session) {
                 }
             }
         },
+        duration: {
+            value: 90,
+            options: {
+                floor: 45,
+                ceil: 300,
+                translate: function(value) {
+                    return value;
+                }
+            }
+        },
         tags: [],
         guideId: Session.user.id
+
     }
     $scope.addTour = function() {
-            // console.log(Session.user.id);
+        // console.log(Session.user.id);
         // $scope.tour.guide = Session.user.id;
         console.log("in controller")
         Tour.create($scope.tour)
         .then(function(tour) {
-                        console.log(tour);
-
+            console.log(tour);
             $state.go('tour', { id: tour.id })
         })
     }
