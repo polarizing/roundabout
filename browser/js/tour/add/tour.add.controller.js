@@ -2,8 +2,10 @@
 
 app.controller('TourAdd', function($scope, Tour, $state) {
     $scope.tour = {
+        location: null,
         name: null,
         description: null,
+        image: null,
         price: {
             value: 150,
             options: {
@@ -11,6 +13,16 @@ app.controller('TourAdd', function($scope, Tour, $state) {
                 ceil: 450,
                 translate: function(value) {
                     return '$' + value;
+                }
+            }
+        },
+        duration: {
+            value: 90,
+            options: {
+                floor: 45,
+                ceil: 300,
+                translate: function(value) {
+                    return value + "m";
                 }
             }
         },
