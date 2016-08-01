@@ -62,7 +62,7 @@ router.get('/', function(req, res, next) {
     }
     else {
         // GET ALL TOURS -- NO FILTER IS TRUE, RETURNS ALL TOURS
-        if (req.query.options.noFilter) {
+        if (req.query.options && req.query.options.noFilter) {
             Tour.findAll()
                 .then(function (tours) {
                     res.send(tours);
