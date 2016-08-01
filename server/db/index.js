@@ -8,6 +8,8 @@ var Booking = require('./models/booking');
 var Review = require('./models/review');
 var Tag = require('./models/tag'); //needed for node seed
 var Order = require('./models/order')
+var Conversation = require('./models/conversation');
+var Line = require('./models/line');
 
 User.hasMany(Tour, {foreignKey: 'guideId'});
 User.hasMany(Booking, {foreignKey: 'userId'});
@@ -30,5 +32,9 @@ Review.belongsTo(User, {as: 'guide'});
 
 
 Order.hasMany(Booking, {as: 'bookings'});
-Order.belongsTo(User, {as: "user"})
+Order.belongsTo(User, {as: "user"});
+
+Conversation.hasMany(Line, {foreignKey: 'conversationId'});
+Line.belongsTo(User, {as: 'user'});
+
 

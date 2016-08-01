@@ -115,11 +115,13 @@
 					</div>
 
 					<div class="col-sm-12">
-						<a class="waves-effect waves-light btn add-cart-btn" ng-click="addToCart(tour)">Add to Cart</a>
+						<a class="waves-effect waves-light btn add-cart-btn" ng-click="toggleAddToCart(tour)">{{ !addedToCart ? 'Add to Cart' : 'Remove from Cart'}}</a>
+<!-- 						<a ng-if="addedToCart" class="waves-effect waves-light btn add-cart-btn" ng-click="removeFromCart(tour)">Remove from Cart</a> -->
+
 					</div>
 
 					<div class="col-sm-12">
-					<a class="waves-effect waves-light btn request-btn" ng-click="book()">Proceed to Checkout</a>
+					<a class="waves-effect waves-light btn request-btn" ui-sref="checkout">Proceed to Checkout</a>
 					</div>
 
 

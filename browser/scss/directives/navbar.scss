@@ -10,9 +10,10 @@ navbar {
 
   .navbar-custom {
     height: 70px;
-    background-color: rgba(0,0,0,0);
+    // background-color: rgba(0,0,0,0);
     box-shadow: none;
     margin-bottom: -10;
+    background-color: #2b2d2e;
   }
 
   .container {
@@ -39,14 +40,47 @@ navbar {
     font-weight: bold;
     color: #d3d3d3;
     &.active {
-      color: darken(#19A79A, 10%);
+      // color: darken(#19A79A, 10%);
+      color: #19A79A;
     }
     &:hover {
       background: none;
-      color: #19A79A;
+      color: lighten(#19A79A, 10%);
     }
     &:focus {
       background: none;
+    }
+  }
+
+  .navbar-cart {
+    display: inline-block;
+    z-index: 2;
+  }
+
+  .navbar-cart i {
+    font-size: 17px;
+  }
+
+  .numberCircle {
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    background: #26a69a;
+    color: white;
+    text-align: center;
+    font: 11px Circular, sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    position: relative;
+    bottom: 9px;
+    right: 3px;
+  }
+
+
+  .navbar-cart:hover {
+    background-color: transparent;
+    i {
+      color: #26a69a;
     }
   }
 

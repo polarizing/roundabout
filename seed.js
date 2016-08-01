@@ -71,6 +71,14 @@ function generateUsers() {
         phone: '(718) 762-6752',
         is_admin: true
     }));
+    users.push(User.build({
+        name: 'Kevin',
+        photo: 'http://staff.itee.uq.edu.au/kevinz/kevin.jpg',
+        email: 'kevin@gmail.com',
+        password: 'kevin',
+        phone: '(718) 762-6752',
+        is_admin: true
+    }));
     return users;
 }
 
@@ -190,7 +198,7 @@ function randTour(createdUsers) {
         tod: randTourTimeOfDay(),
         duration: randTourDuration(),
         expire_in: randExpireIn(),
-        guideId: user.id,
+        guideId: chance.integer({ min: 95, max: 102 }),
     });
 }
 
