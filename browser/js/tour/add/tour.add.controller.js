@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TourAdd', function($scope, Tour, $state, Session) {
+app.controller('TourAdd', function($scope, Tour, $state, Session, fileUpload, $log) {
     $scope.tour = {
         location: null,
         name: null,
@@ -48,5 +48,25 @@ app.controller('TourAdd', function($scope, Tour, $state, Session) {
             $state.go('tour', { id: tour.id })
         })
     }
+
+    $scope.uploadFile = function(newfile){
+       // console.log('this is the flow thingy', $scope.$flow.files[0])
+        $log.info('I am here')
+        console.log('hello')
+        console.log('passing in the newestfile' , newfile)
+        var file = newfile.file;
+        console.log('file is ' );
+        console.dir(file);
+
+        var uploadUrl = "/upload";
+
+        if (['jpeg', 'png','jpg'].includes(file.name.split(".").pop()) && file.size < 5000000)
+            fileUpload.uploadFileToUrl(file, uploadUrl)
+                  .then(function (res) {
+                    console.log(res.data);
+                  });
+        else alert('Please upload a valid image of type .jpeg, .png, or .jpg of less than 5MB.')
+
+    };
 
 })

@@ -23,9 +23,16 @@
                     <rzslider class="expire_in-slider" rz-slider-model="tour.expire_in.value" rz-slider-options="tour.expire_in.options"></rzslider>
                 </div>
                 <h5>Provide an image!</h5>
-                <md-input-container md-no-float class="md-block">
-                    <input name="tour-image" ng-model="tour.image" placeholder="Image Url"></input>
-                </md-input-container>
+                <div flow-init flow-files-submitted="$flow.upload()">
+                    <!-- <md-divider md-no-float class="md-block"> -->
+                    <!-- <input name="tour-image" ng-model="tour.image" placeholder="Image Url"></input> -->
+                    <input type="file" name="photo" file-model="myFile" flow-btn/>
+                    <button ng-click="uploadFile($flow.files[0])">upload me</button>
+
+                    <img flow-img="$flow.files[0]" />
+                    <!-- </md-divider> -->
+
+                </div>
 
 
 
