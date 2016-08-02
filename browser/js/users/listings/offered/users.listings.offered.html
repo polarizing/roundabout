@@ -1,8 +1,8 @@
 <div class="panel">
-	Reviews Page
 	<div class="panel-header">
-		Required
+		Your Offered Tours
 	</div>
 	<div class="panel-body">
+		<tour-offered-card ng-repeat="tour in tours | filter: tour.timeLeft" tour-data="tour">
 	</div>
 </div>

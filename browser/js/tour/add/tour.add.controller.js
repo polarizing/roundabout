@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TourAdd', function($scope, Tour, $state, Session) {
+app.controller('TourAdd', function($scope, Tour, AuthService, $state, Session) {
     $scope.tour = {
         location: null,
         name: null,
@@ -37,8 +37,12 @@ app.controller('TourAdd', function($scope, Tour, $state, Session) {
             }
         },
         tags: [],
-        guideId: Session.user.id
+        guideId: null
 
+    }
+
+    if (AuthService.isAuthenticated()) {
+        $scope.tour.guideId = Session.user.id;
     }
     $scope.addTour = function() {
         // console.log(Session.user.id);
