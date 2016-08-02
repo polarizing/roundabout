@@ -3,6 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var Booking = require('../../../db/models/booking');
 var Tour = require('../../../db/models/tour')
+var Traveller = require('../../../db/models/user')
 var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
@@ -21,6 +22,14 @@ router.get('/:id', check.admin, function(req, res, next) {
     })
     .catch(next);
 });
+
+// /api/bookings/101
+router.get('/guide/:guideId', function (req, res, next) {
+    Booking.findAll({where: {guideId: req.params.guideId}, include: [{model: Traveller, as: 'user'}, {model: Tour, as: 'tour'}] })
+           .then(function (bookings) {
+            res.send(bookings);
+           })
+})
 
 router.post('/', /*check.user,*/ function(req, res, next) {
     var _booking;
