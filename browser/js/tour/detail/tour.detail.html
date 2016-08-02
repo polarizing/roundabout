@@ -44,24 +44,14 @@
 						</div>
 
 					</div>
-
-					Summary (tour title, location, star rating, num reviews, profile pic, tags list + ... in the future (user defined options [ie, categories, family, etc])
-					}
 				</div>
 				<div class="details">
-					About this tour
-						Tour Description
-
-						Table with additional information
-							Tour duration
-							Expires
 
 
         
 				</div>
 				<div class="reviews">
 				</div>
-					<div>{{tour}}</div>
 
 			</div>
 			<div class="col-lg-4">
@@ -100,7 +90,7 @@
 						    on-close="onClose()"
 						    on-set="onSet()"
 						    on-stop="onStop()" />
-        </div>
+        			</div>
 						<div class="col-sm-4">
 
 						<label for="inputSelected">Travellers</label>
@@ -133,6 +123,21 @@
 			</div>
 		</div>
 	</div>
+
+	<div>
+		<div class="step col-sm-12 desc-card">
+	        <div class="card">
+	            <div class="card-content-big">
+	            	<h5 class="title"> About the tour:</h5>
+	            	<div class="content">{{tour.description}}</div>
+	          	</div>
+	        </div>
+	    </div>
+	</div>
+	<div>
+		<!-- this is basically what Im ng-repeating, I need to make sure there are factory methods and controller methods for this, also html for this<review-card ng-repeat="review in tour.review orderBy: '+rating'" tour-data="tour"> -->
+	</div>
+
 
     <!--     <form method='post' ng-submit="uploadPhoto()" enctype="multipart/form-data">
         <input type='file' id="photo" name='photo'>

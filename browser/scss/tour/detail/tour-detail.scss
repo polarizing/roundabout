@@ -26,6 +26,7 @@
 		min-height: 225px;
 		border: 1px solid #dce0e0;
 		background-color: #fff;
+		box-shadow: 0 10px 6px -6px #777;
 	}
 
 	.book-it-panel-body {
@@ -151,4 +152,21 @@
 	.reviews {
 
 	}
+	.card-content-big {
+		.title{
+			margin-top: 10px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.content{
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+	}
+
+	.desc-card {
+		padding: 0px;
+		padding-right: 4px;
+	}
+
 }
