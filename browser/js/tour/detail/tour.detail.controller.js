@@ -3,7 +3,6 @@
 app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, $state, Tour, Session, Cart, Order, $http) {
 
 
-
 	$scope.uploadFile = function(){
         var file = $scope.myFile;
         console.log('file is ' );
