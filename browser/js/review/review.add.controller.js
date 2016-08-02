@@ -1,14 +1,17 @@
 'use strict';
 
-app.controller('Review', function($scope, Review, $state, $stateParams, Tour, Session, $interval) {
-    console.log(Session.user.id)
-
+app.controller('Review', function($scope, Review, $state, $stateParams, Tour, AuthService, Session, $interval) {
+    
     $scope.review = {
         title: null,
         content: null,
         rate: 3,
         guideId: null,
-        userId: Session.user.id
+        userId: null
+    }
+
+    if (AuthService.isAuthenticated()) {
+        $scope.review.userId = Session.user.id;
     }
 
     Tour.fetch($stateParams.id)

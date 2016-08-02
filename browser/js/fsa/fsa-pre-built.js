@@ -51,8 +51,13 @@
     app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, $log) {
 
         function onSuccessfulLogin(response) {
+            console.log('INSIDE SUCCESSFUL LOGIN');
+
             var data = response.data;
+            console.log(data);
             Session.create(data.id, data.user);
+            console.log(Session);
+
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             return data.user;
         }
@@ -82,6 +87,7 @@
             // If it returns a user, call onSuccessfulLogin with the response.
             // If it returns a 401 response, we catch it and instead resolve to null.
             return $http.get('/session').then(onSuccessfulLogin).catch(function () {
+                console.log('ERROR WITH SESSION');
                 return null;
             });
 

@@ -9,11 +9,30 @@ font-family: Circular;
 		padding-left: 10px;
 	}
 
+
+	tour-cart-card.ng-enter {
+		transition: 2s;
+		opacity: 0;
+	}
+
+	tour-cart-card.ng-enter-active {
+		opacity: 1;
+	}
+
 	.header-fixed {
 		width:100%;
 		position:fixed;
 		top: 0px;
 		z-index: 20000;
+	}
+
+	.header-fixed.ng-enter {
+		transition: 2s;
+		opacity: 0;
+	}
+
+	.header-fixed.ng-enter-active {
+		opacity: 1;
 	}
 
 	.header-content {

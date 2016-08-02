@@ -1,5 +1,6 @@
 'use strict';
 
+
 app.controller('TourAdd', function($scope, Tour, $state, Session, fileUpload, $log) {
     $scope.tour = {
         location: null,
@@ -37,8 +38,12 @@ app.controller('TourAdd', function($scope, Tour, $state, Session, fileUpload, $l
             }
         },
         tags: [],
-        guideId: Session.user.id
+        guideId: null
 
+    }
+
+    if (AuthService.isAuthenticated()) {
+        $scope.tour.guideId = Session.user.id;
     }
     $scope.addTour = function() {
         // console.log(Session.user.id);

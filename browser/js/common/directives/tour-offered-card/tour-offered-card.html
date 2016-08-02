@@ -1,0 +1,35 @@
+<div class="col-sm-12 tour-booked-card">
+    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{tour.title}}</span>
+                <span class="md-subhead">${{tour.price}}</span>
+                <span class="md-subhead">
+                    <span ng-repeat="tag in tour.tags track by $index" class="chip tour-tags">
+                        <span class="single-tag">{{tag}}</span>
+                    </span>
+                </span>
+                <span class="md-caption tour-desc">{{ tour.description | limitTo: 200 }}{{tour.description.length > 200 ? ' ...' : ''}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <div class="md-media-sm card-image" ng-style="{'background-image':'url({{tour.image}})'}"></div>
+            </md-card-title-media>
+        </md-card-title>
+
+        <md-card-actions layout="row" layout-align="end center">
+            <div flex="75" class="order-info">
+                <i class="fa fa-calendar-check-o glyph-pad" aria-hidden="true"></i>
+                <span class="glyph-text-pad">Still Available</span>
+                <i class="fa fa-credit-card-alt glyph-pad" aria-hidden="true"></i>
+                <span class="glyph-text-pad">Accepts Stripe</span>
+                <i class="fa fa-info-circle glyph-pad" aria-hidden="true"></i>
+                <span class="glyph-text-pad">Expires In: {{tour.timeLeft}} minutes </span>
+            </div>
+            <div flex="25" layout="row">
+                <md-button ui-sref="addReview({id: tour.id})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    Edit Tour Options
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
