@@ -26,11 +26,6 @@ Booking.belongsTo(User, {as: 'user'});
 Booking.belongsTo(User, {as: 'guide'});
 Booking.belongsTo(Order, {as: 'order'});
 
-Review.belongsTo(User, {as: 'user'});
-Review.belongsTo(User, {as: 'guide'});
-
-
-
 Order.hasMany(Booking, {as: 'bookings'});
 Order.belongsTo(User, {as: "user"});
 

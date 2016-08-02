@@ -24,7 +24,6 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', check.user, function(req, res, next) {
-    console.log("in routes")
     Tour.create(req.body)
     .then(function(tour) {
         res.status(201);

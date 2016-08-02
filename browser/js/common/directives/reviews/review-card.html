@@ -1,0 +1,31 @@
+<div class="col-md-4 col-sm-6 col-xs-12">
+
+  <div class="card">
+    <span class="review-title" >{{review.title}}</span></a>
+    <div class="card-price">
+      <div class="card-price-label">
+      	<span>
+          <i ng-repeat="i in getNumber(review.rating) track by $index" class="fa fa-star" aria-hidden="true"></i>
+          <span class="glyph-infotext" >
+          </span>
+        </span>
+      </div>
+
+    <a href="#">
+    	<div class="pull-right media-photo media-round card-profile-picture card-profile-picture-offset">
+    		<img ng-src="{{user.photo}}">
+    	</div>
+    </a>
+    <div class="card-content">
+      <hm-read-more
+        hm-text="{{ review.content }}" 
+        hm-limit="75" 
+        hm-more-text="read more" 
+        hm-less-text="read less"
+        hm-dots-class="dots"
+        hm-link-class="links">
+      </hm-read-more>
+    </div>
+  </div>
+  </div>
+</div>

@@ -31,11 +31,8 @@
 								<div class="col-sm-3"><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span class="tour-duration glyph-infotext"> {{tour.duration}}m</span></div>
 								<div class="col-sm-3"><i class="fa fa-users" aria-hidden="true"></i><span class="num-people glyph-infotext"> 1-4 people</span></div>
 								<div class="col-sm-4">
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<span class="glyph-infotext" > {{tour.guide.numReviews}} reviews</span>
+									<i ng-repeat="i in getAvgRev() track by $index" class="fa fa-star" aria-hidden="true"></i> <br>
+									<span class="glyph-infotext" > {{getNumRev()}} review(s)</span>
 								</div>
 							</div>
 							  <div ng-repeat="tag in tour.tags" class="chip tour-tags">
@@ -135,16 +132,15 @@
 	    </div>
 	</div>
 	<div>
-		<!-- this is basically what Im ng-repeating, I need to make sure there are factory methods and controller methods for this, also html for this<review-card ng-repeat="review in tour.review orderBy: '+rating'" tour-data="tour"> -->
+		<review-card ng-repeat="review in reviews" review-data="review" user-data="review.userId">
 	</div>
-
 
     <!--     <form method='post' ng-submit="uploadPhoto()" enctype="multipart/form-data">
         <input type='file' id="photo" name='photo'>
         <input type="submit" >
         </form> -->
 
-        <div>
+        <div class="end-page-buttons">
 		    <input type="file" name="photo" file-model="myFile"/>
 		    <button ng-click="uploadFile()">upload me</button>
 		</div>
