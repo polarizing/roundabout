@@ -8,25 +8,31 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state, $log) {
+app.controller('LoginCtrl', function ($scope, AuthService, $state, $log, $kookies) {
 
     $scope.login = {};
     $scope.signup = {};
     $scope.error = {};
 
-    $scope.sendLogin = function (loginInfo) {
+    $scope.sendLogin = function (loginInfo, cart) {
 
         $scope.error = {};
 
         AuthService.login(loginInfo).then(function () {
-            $state.go('home');
+            if (!$kookies.get('cart')) {
+                $state.go('home');
+            }
+            else {
+                $kookies.remove('cart', {path: '/'})
+                $state.go('checkout')
+            }
         }).catch(function () {
             $scope.error.login = 'Invalid login credentials.';
         });
 
     };
 
-    $scope.sendSignup = function (signupInfo) {
+    $scope.sendSignup = function (signupInfo, cart) {
         $log.warn(signupInfo)
         console.log(signupInfo)
         $scope.error = {};
@@ -37,7 +43,13 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $log) {
             return AuthService.login(signupInfo)
         })
         .then(function() {
-            $state.go('home')
+            if (!$kookies.get('cart')) {
+                $state.go('home');
+            }
+            else {
+                $kookies.remove('cart', {path: '/'})
+                $state.go('checkout')
+            }
         })
         .catch(function() {
             $scope.error.signup = 'User already exists'
