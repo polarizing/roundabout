@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('Cart', function ($scope, $state, Cart) {
+app.controller('Cart', function ($scope, $state, Cart, AuthService, $kookies) {
 	$scope.cart = Cart.getAll();
 	$scope.numItems = $scope.cart.length;
 
@@ -11,7 +11,13 @@ app.controller('Cart', function ($scope, $state, Cart) {
 		return total;
 	}
 
-	$scope.test = function () {
-		console.log('hi');
+	$scope.checkout = function() {
+		if (!!AuthService.isAuthenticated()) {
+			$state.go('checkout')
+		} else {
+			$kookies.set('cart', true, {path: '/'});
+			$state.go('login');
+		}
 	}
+
 });

@@ -11,7 +11,7 @@
 		<div flex="25"></div>
 	</div>
 </div>
-            
+
 <div class="row">
 		<div class="container cart-content">
 			<div></div>
@@ -25,7 +25,8 @@
 			<div class="subtotal"> Sub Total ({{numItems}} item): ${{totalPrice}} </div>
 			<div class="cart-buttons">
 			<a ui-sref="tours" class="waves-effect waves-light btn checkout-button">BACK</a>
-			<a class="waves-effect waves-light btn checkout-button" ui-sref="checkout"><form action="/charge" method="POST">
+
+			<a class="waves-effect waves-light btn checkout-button" ng-click="checkout()"><form action="/charge" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
@@ -36,7 +37,6 @@
     data-locale="auto">
   </script>
 </form>
-
 			</a>
 			</div>
 		</div>
