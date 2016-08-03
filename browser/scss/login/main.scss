@@ -3,6 +3,8 @@
 
 
   .form-cool {
+
+
           font-family: 'Circular', sans-serif;
 
           .uptext {
@@ -28,6 +30,7 @@
 .upload-field {
   height: 80px;
 }
+
 
 .upload-info {
   height: 80px;
@@ -81,10 +84,26 @@
           box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
         }
 
+        oauth-button a {
+          width:100%;
+          color:white;
+        }
+
         .tab-group {
           list-style: none;
           padding: 0;
-          margin: 0 0 40px 0;
+          // margin: 0 0 40px 0;
+          margin: 0;
+        }
+
+
+        .oauth-toggle {
+        background: rgba(19, 35, 47, 0.9);
+        margin-bottom: 40px;
+        }
+
+        .oauth-toggle:hover {
+        background: #179b77
         }
         .tab-group:after {
           content: "";
@@ -104,6 +123,10 @@
           cursor: pointer;
           -webkit-transition: .5s ease;
           transition: .5s ease;
+        }
+
+        .oauth-toggle li a {
+          width: 100%;
         }
         .tab-group li a:hover {
           background: #179b77;

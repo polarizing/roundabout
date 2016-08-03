@@ -15,6 +15,33 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $log, $kookie
     $scope.error = {};
     $scope.signup.uploaded = false;
 
+    $scope.onSignUp = true;
+    $scope.onLogin = false;
+    $scope.onOAuthSignUpLogin = false;
+
+    $scope.setOnLogin = function () {
+        $scope.onSignUp = false;
+        $scope.onLogin = true;
+        $scope.onOAuthSignUpLogin = false;
+    }
+
+    $scope.setOnSignUp = function () {
+        $scope.onSignUp = true;
+        $scope.onLogin = false;
+        $scope.onOAuthSignUpLogin = false;
+    }
+
+    $scope.setOnOAuthSignUpLogin = function () {
+        $scope.onOAuthSignUpLogin = true;
+        $scope.onLogin = false;
+        $scope.onSignUp = false;
+
+
+    }
+
+
+
+
     $scope.sendLogin = function (loginInfo, cart) {
 
         $scope.error = {};

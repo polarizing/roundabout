@@ -36,6 +36,7 @@ app.factory('Cart', function(_, $kookies, Tour, $log, Session, $q, Order, $rootS
 
     Cart.add = function(tour) {
         console.log(tour);
+        var _tour = _.cloneDeep(tour)
         if ($kookies.get(tour.id.toString())) {
             console.log('test')
             $log.info('item already exists');
@@ -46,9 +47,10 @@ app.factory('Cart', function(_, $kookies, Tour, $log, Session, $q, Order, $rootS
                         // console.log(tour.id.toString());
                         // console.log(tour);
                         // delete tour[description];
-            tour['description'] = tour['description'].substr(0, 200) + '...'
+            _tour['description'] = _tour['description'].substr(0, 200) + '...'
             // tour = _.omit(tour, ['description'])
-            $kookies.set(tour.id.toString(), tour, { path: '/' });
+            console.log(_tour)
+            $kookies.set(tour.id.toString(), _tour, { path: '/' });
             console.log('cookies', $kookies.get())
             return true;
         }

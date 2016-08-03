@@ -39,4 +39,16 @@
 		margin: 0;
 	}
 
+	.animate-hide {
+  transition: all linear 0.5s;
+  line-height: 20px;
+  opacity: 1;
+  background: white;
+}
+
+.animate-hide.ng-hide {
+  opacity: 0;
+  padding: 0 10px;
+}
+
 }
