@@ -1,58 +1,118 @@
 <section id="login">
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <form id="signup-form" name="signupForm" ng-submit="signupForm.$valid && uploaded && sendSignup(signup)">
-            <div>CREATE A NEW ACCOUNT</div>
-            <alert type="danger" ng-show="error.signup">
+<div class="form-cool">
+
+ <alert type="danger" ng-show="error.signup">
                 {{ error.signup }}
             </alert>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" ng-model="signup.name" class="form-control" id="name" placeholder="Enter name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="text" ng-model="signup.email" class="form-control" id="email" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="login-password">Password</label>
-                <input type="password" ng-model="signup.password" class="form-control" id="login-password" placeholder="Password">
-            </div>
-            <div class="form-group" flow-init>
-            <label for="file">Profile pic</label>
-                <!-- <input type="imageUrl" ng-model="signup.imageUrl" class="form-control" id="imageUrl" placeholder="Image URL (we recommend imgur)"> -->
-                <div class="row">
-                    <div>
-                    <input class="choose-files" type="file" name="photo" file-model="myFile" flow-btn/>
-                    <img flow-img="$flow.files[0]" id='profile'/>
-                    <a ng-click="uploadFile($flow.files[0])" class="btn upload">Upload Me</a>
-                    </div>
+<div class="form">
+      
+          <ul class="tab-group">
+            <li class="tab active"><a href="#signup">Sign Up</a></li>
+            <li class="tab"><a href="#login">Log In</a></li>
+          </ul>
+          
+          <div class="tab-content">
+            <div id="signup">   
+              <h1>Sign Up </h1>
+              
+<!--               <form ng-submit="testSignup()">
+ -->               <form name="signupForm" ng-submit="signupForm.$valid && uploaded && sendSignup(signup)">
+              
+                <div class="field-wrap">
+                  <label>
+                    Name<span class="req">*</span>
+                  </label>
+                  <input type="text" ng-model="signup.name" class="form-control" id="name"  required>
                 </div>
-                <div>
-                <p ng-if="uploaded" class='uptext'>Uploaded!</p>
-                <p ng-if="!uploaded" class='uptext'>Once file is selected, press upload!</p>
+            
+
+              <div class="field-wrap">
+                <label>
+                  Email Address<span class="req">*</span>
+                </label>
+                <input type="text" ng-model="signup.email" class="form-control" id="email" >
+              </div>
+              
+              <div class="field-wrap">
+                <label>
+                  Set A Password<span class="req">*</span>
+                </label>
+                <input ng-model="signup.password" type="password" autocomplete="off"/>
+              </div>
+
+              <div class="field-wrap upload-field" flow-init>
+<!--             <label for="file">Profile pic</label>
+ -->                <!-- <input type="imageUrl" ng-model="signup.imageUrl" class="form-control" id="imageUrl" placeholder="Image URL (we recommend imgur)"> -->
+
+<!--       <label class="btn btn-default btn-file">
+    Browse                 
+    <input class="choose-files" type="file" name="photo" file-model="myFile" flow-btn/>  
+
+</label>
+ -->
+
+            <div flow-init flow-files-submitted="$flow.upload()">
+            <div class="col-sm-6 upload-fields">
+              <div class="drop" flow-drop ng-class="dropClass">
+                <span class="btn btn-default select-upload" name="photo" file-model="myFile" flow-btn>Select Profile Photo</span>
+              </div>
+              <div>
+                <span ng-click="uploadFile($flow.files[0])" class="btn btn-default upload-me">Upload Photo</span></div>                     
+             </div>
+             <div class="col-sm-6 upload-info">
+                <div class="img-container">
+                        <img class="upload-img" flow-img="$flow.files[0]" id='profile'/>
+                        </div>
+
+                <div class="text-container">
+                        <p ng-if="!uploaded" class='uptext'>Image Not Uploaded :(</p>
+                       <p ng-if="uploaded" class='uptext'>Image Uploaded!</p>
+
+<!--                         <p ng-if="!uploaded" class='uptext'>Once file is selected, press upload!</p>
+ -->                </div>
                 </div>
+
+                </div>
+                </div>
+
+
+    <div class="field-wrap" >
+                <button class="btn btn-default">Sign Up!</button>
+                </div>
+
+              </form>
+
             </div>
-            <button type="submit" class="btn btn-default">SIGN UP</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
-            <div>LOG IN</div>
-            <alert type="danger" ng-show="error.login">
-                {{ error.login }}
-            </alert>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="text" ng-model="login.email" class="form-control" id="email" placeholder="Enter email">
+            <!-- 
+            <div id="login">   
+              <h1>Welcome Back!</h1>
+              
+              <form action="/" method="post">
+              
+                <div class="field-wrap">
+                <label>
+                  Email Address<span class="req">*</span>
+                </label>
+                <input type="email"required autocomplete="off"/>
+              </div>
+              
+              <div class="field-wrap">
+                <label>
+                  Password<span class="req">*</span>
+                </label>
+                <input type="password" ng-model="signup.password" class="form-control" id="login-password">
+              </div>
+              
+              <p class="forgot"><a href="#">Forgot Password?</a></p>
+              
+              <button class="button button-block"/>Log In</button>
+              
+              </form>
+
             </div>
-            <div class="form-group">
-                <label for="login-password">Password</label>
-                <input type="password" ng-model="login.password" class="form-control" id="login-password" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-default">LOG IN</button>
-        </form>
-        <div><p><oauth-button provider-name="Facebook" id="facebook"></oauth-button></p></div>
-        <div><p><oauth-button provider-name="Twitter" id="twitter"></oauth-button></p></div>
-        <div><p><oauth-button provider-name="Google" id="google"></oauth-button></p></div>
-    </div>
-</section>
+            
+          </div>
+          
+    </div> <!-- /form -->
+</div>
+

@@ -33,6 +33,10 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $log, $kookie
 
     };
 
+    $scope.testSignup = function () {
+        $state.go('tours');
+    }
+
     $scope.sendSignup = function (signupInfo, cart) {
         $log.warn(signupInfo)
         console.log(signupInfo)
@@ -53,7 +57,8 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $log, $kookie
                 $state.go('checkout')
             }
         })
-        .catch(function() {
+        .catch(function(err) {
+            console.log(err);
             $scope.error.signup = 'User already exists'
         })
 
