@@ -18,7 +18,7 @@ app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, rev
         else alert('Please upload a valid image of type .jpeg, .png, or .jpg of less than 5MB.')
 
     };
-	
+
 	// $scope.uploadPhoto = function(){
 	// 	console.log('prevented default action');
 
@@ -128,7 +128,7 @@ app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, rev
 		if(!$scope.reviews.length){
 			return "no reviews";
 		}else {
-			return $scope.reviews.length;
+			return $scope.reviews.length + 'review(s)';
 		}
 	}
 
