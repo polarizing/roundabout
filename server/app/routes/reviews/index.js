@@ -13,13 +13,17 @@ router.param('id', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/:id', function(req, res, next) {
-    req.requestedReview.reload()
-    .then(function(review) {
-        res.send(review);
+
+router.get('/:guideId', function(req, res, next){
+    Review.findAll({
+        where: {
+            guideId: req.params.guideId
+        }
     })
-    .catch(next);
-});
+    .then(function(review){
+        res.send(review)
+    })
+})
 
 router.post('/', check.user, function(req, res, next) {
     Review.create(req.body)

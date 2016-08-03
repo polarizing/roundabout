@@ -1,11 +1,11 @@
 'use strict';
 
-app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, $state, Tour, Session, Cart, Order, $http) {
+app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, reviews, $state, Tour, Session, Cart, Order) {
 
 
 	$scope.uploadFile = function(){
         var file = $scope.myFile;
-        console.log('file is ' );
+        console.log('file is ');
         console.dir(file);
 
         var uploadUrl = "/upload";
@@ -42,8 +42,8 @@ app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, $st
 	// 	  }
 	// 	  r.readAsBinaryString(f);
 	// }
-
 	// DATE WIDGET
+	$scope.reviews = reviews;
 	$scope.tour = tour;
 	$scope.numTravellers = "1";
 	$scope.numbers = ['1', '2', '3', '4', '5'];
@@ -60,6 +60,8 @@ app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, $st
 	var days = 15;
 	$scope.minDate = (new Date($scope.currentTime.getTime() - ( 1000 * 60 * 60 *24 * days ))).toISOString();
 	$scope.maxDate = (new Date($scope.currentTime.getTime() + ( 1000 * 60 * 60 *24 * days ))).toISOString();
+
+
 	// $scope.onStart = function () {
 	// 	console.log('onStart');
 	// };
@@ -104,7 +106,31 @@ app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, $st
 			if (successfullyAdded) $rootScope.$broadcast('added to cart', 1);
 		}
 		$scope.addedToCart = !$scope.addedToCart;
-
 	}
 
+	$scope.getNumber = function(number){
+		return new Array(number);
+	}
+
+	$scope.getAvgRev = function(){
+		var num = 0;
+		$scope.reviews.forEach(function(rev){
+			num += rev.rating;
+		})
+		if(num === 0){
+			return "";
+		} else {
+			return new Array(Math.floor(num / $scope.reviews.length));
+		}
+	}
+
+	$scope.getNumRev = function(){
+		if(!$scope.reviews.length){
+			return "no reviews";
+		}else {
+			return $scope.reviews.length + 'review(s)';
+		}
+	}
+
+		console.log($scope.reviews);
 });
