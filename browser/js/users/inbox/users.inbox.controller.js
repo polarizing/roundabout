@@ -1,11 +1,22 @@
 'use strict';
 
 app.controller('UserInbox', function ($http, $scope, $state, Session, $kookies, $log, $timeout, socket, conversations) {
-	
+	        // resolve: {
+        //     conversations: function (Inbox, $stateParams, Session) {
+        //         return Inbox.getConversations(Session.user.id);
+        //     }
+        // }
+    console.log(Session.user);
+    $scope.conversations = conversations;
+	// Inbox.getConversations(Session.user.id)
+	//  .then( function (res) {
+	//  	console.log(res);
+	//  	$scope.conversations = res;
+	//  })
 	// REALLY BASIC MOD 
 
 	// All Conversations For User Loaded From DB / RESOLVE
-	$scope.conversations = conversations;
+	// $scope.conversations = conversations;
 
 	// CURRENT USER ID FROM SESSION STORE
 	$scope.userId = Session.user.id;

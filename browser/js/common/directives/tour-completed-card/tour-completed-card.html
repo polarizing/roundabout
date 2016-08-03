@@ -1,31 +1,4 @@
-<!--   <div class="col-sm-12 tour-booked-card">
-    <div class="card horizontal">
-      <div class="card-image" ng-style="{'background-image':'url({{tour.image}})'}">
-     </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <div class="booked-title">
-           Tour Title: {{tour.title}}
-          </div>
-          <div class="booked-price">
-           Tour Price: {{tour.price}}
-          </div>
-          <div class="booked-userid">
-            User ID: ??
-          </div>
-          <div class="booked-guideid">
-            Guide ID: {{tour.guideId}}
-          </div>
-          <div class="booked-orderid">
-            Order ID: ??
-          </div>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
 <div class="col-sm-12 tour-booked-card">
     <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
         <md-card-title>
@@ -37,7 +10,7 @@
                         <span class="single-tag">{{tag}}</span>
                     </span>
                 </span>
-                <span class="md-caption tour-desc">{{ booking.tour.description | limitTo: 200 }}{{booking.tour.description.length > 200 ? ' ...' : ''}}</span>
+                <span class="md-caption tour-desc">{{ booking.tour.description | limitTo: 200 }}{{ booking.tour.description.length > 200 ? ' ...' : ''}}</span>
             </md-card-title-text>
             <md-card-title-media>
                 <div class="md-media-sm card-image" ng-style="{'background-image':'url({{booking.tour.image}})'}"></div>
@@ -54,15 +27,15 @@
                 <i class="fa fa-credit-card-alt glyph-pad" aria-hidden="true"></i>
                 <span class="glyph-text-pad">Paid</span>
                 <i class="fa fa-info-circle glyph-pad" aria-hidden="true"></i>
-                <span class="glyph-text-pad">Guide:
-                    {{booking.guide.name | getFirstName}}</span>
+                <span class="glyph-text-pad">Traveller:
+                    {{booking.user.name | getFirstName}}</span>
             </div>
             <div flex="40" layout="row">
-                <md-button href="mailto:{{booking.guide.email}}">
+                <md-button href="mailto:{{booking.user.email}}">
                     <i class="fa fa-question-circle-o" aria-hidden="true"></i>
-                    Contact Guide
+                    Contact Traveller
                 </md-button>
-                <md-button ui-sref="addReview({id: booking.tour.id})">
+                <md-button ui-sref="addReview({id: booking.user.id})">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     Write a Review
                 </md-button>

@@ -7,12 +7,10 @@ app.directive('subnav', function ($rootScope, $state, AuthService) {
         link: function (scope) {
 
             scope.items = [
-                { label: 'Dashboard', state: 'users.dashboard', auth: true},
                 { label: 'Inbox', state: 'users.inbox', auth: true },
                 { label: 'Your Listings', state: 'users.listings', auth: true },
                 { label: 'Your Tours', state: 'users.tours', auth: true },
                 { label: 'Profile', state: 'users.profile', auth: true },
-                { label: 'Account', state: 'users.account', auth: true }
             ];
 
 

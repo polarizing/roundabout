@@ -33,6 +33,13 @@ app.factory('Tour', function($http, $log) {
             })
     }
 
+    Tour.queryAllByGuide = function (id, params) {
+        return $http.get('/api/tours/guide/' + id + '/?' + jQuery.param(params))
+                    .then(function (response) {
+                        return response.data
+                    })
+    }
+
     Tour.book = function(tour, user, orderId) {
         return $http.post('/api/bookings', {
                 userId: user.id,

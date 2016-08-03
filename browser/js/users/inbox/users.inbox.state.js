@@ -4,8 +4,18 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/users/inbox/users.inbox.html',
         controller: 'UserInbox',
         resolve: {
-            conversations: function (Inbox, $stateParams, Session) {
-                return Inbox.getConversations(Session.user.id);
+            conversations: function (Inbox, $stateParams, Session, AuthService) {
+                // console.log('hi');
+                // console.log('this is session',Session);
+                // console.dir(Session.user)
+
+                return AuthService.getLoggedInUser()
+                           .then(user => {
+                            return Inbox.getConversations(Session.user.id);
+                           })
+                    // return Inbox.getConversations(Session.user.id);
+                // }
+                // return Inbox.getConversations(Session.user.id);
             }
         }
     });

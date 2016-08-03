@@ -56,7 +56,11 @@
         }
 
         md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-        border-color: #26a69a;
+            border-color: #26a69a;
         }
-    }
+        input[type='file'] {
+          color: transparent;
+          display: inline;
+      }
+  }
 }

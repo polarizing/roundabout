@@ -37,6 +37,28 @@
     }
   }
 
+  .choose-files {
+
+  }
+
+   input[type='file'] {
+          color: transparent;
+          width: 85px;
+          display: inline;
+      }
+
+      #profile {
+        width: 40px;
+      }
+
+      .uptext {
+        text-align: center;
+      }
+
+      .upload {
+        float: right;
+      }
+
   @media(max-width: 767px) {
     #signup-form {
       margin-bottom: 20px;

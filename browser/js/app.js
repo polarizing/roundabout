@@ -29,14 +29,17 @@ app.config(function ($urlRouterProvider, $locationProvider) {
         window.location.reload();
     });
     // Redirections for abstract parent states. .. https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#how-to-set-up-a-defaultindex-child-state
+    $urlRouterProvider.when('/users', '/users/profile/edit');
     $urlRouterProvider.when('/users/listings', '/users/listings/offered');
     $urlRouterProvider.when('/users/profile', '/users/profile/edit');
-
-
+    $urlRouterProvider.when('/users/tours', '/users/tours/booked');
 });
+
+
 
 // This app.run is for controlling access to specific states.
 app.run(function ($rootScope, AuthService, $state) {
+
 
     // The given state requires an authenticated user.
     var destinationStateRequiresAuth = function (state) {
@@ -74,5 +77,9 @@ app.run(function ($rootScope, AuthService, $state) {
         });
 
     });
+
+      $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+            console.error('Error transitioning from "' + fromState.name + '" to "' + toState.name + '":', error);
+          });
 
 });

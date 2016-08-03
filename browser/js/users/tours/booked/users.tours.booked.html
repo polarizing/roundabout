@@ -1,0 +1,10 @@
+<div class="panel">
+	<div class="panel-header">
+		Your Booked Tours
+	</div>
+	<div class="panel-body">
+		<div ng-if="bookings.length === 0" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">You have no booked tours. Go <a ui-sref="tours">Book A Tour!</a></div>
+		<tour-booked-card ng-repeat="booking in bookings" booking-data="booking">
+	
+	</div>
+</div>

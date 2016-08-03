@@ -48,6 +48,25 @@ router.delete('/:id', check.admin, function(req, res, next) {
     .catch(next);
 });
 
+router.get('/guide/:guideId', function (req, res, next) {
+    console.log(req.query.booked);
+    if (req.query.booked === 'true') {
+        console.log('is in 1')
+        Tour.findAll({where: {guideId: req.params.guideId, is_booked: true},include: [{model: Guide, as: 'guide'}]})
+            .then(function (tours) {
+                res.send(tours);
+            })
+    } else if (req.query.booked === 'false') {
+        console.log('is in 2')
+         Tour.findAll({where: {guideId: req.params.guideId, is_booked: false},include: [{model: Guide, as: 'guide'}]})
+            .then(function (tours) {
+                tours = tours.filter(tour => tour.timeLeft > 0 && tour.isActive)
+                res.send(tours);
+            })
+    }
+
+})
+
 
 router.get('/', function(req, res, next) {
         // DEFAULT GET ALL TOURS, INCLUDING GUIDE MODEL AND FILTER BY TIMELEFT + ACTIVE
@@ -61,7 +80,7 @@ router.get('/', function(req, res, next) {
     }
     else {
         // GET ALL TOURS -- NO FILTER IS TRUE, RETURNS ALL TOURS
-        if (req.query.options.noFilter) {
+        if (req.query.options && req.query.options.noFilter) {
             Tour.findAll()
                 .then(function (tours) {
                     res.send(tours);
