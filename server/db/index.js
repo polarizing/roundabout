@@ -18,6 +18,10 @@ User.hasMany(Review, {foreignKey: 'userId'});
 User.hasMany(Review, {foreignKey: 'guideId'}); // guide is being reviewed
 // user is reviewing
 
+// apparently "include" works with belongsTo and not hasMany
+Review.belongsTo(User, {as: 'guide'})
+Review.belongsTo(User, {as: 'user'})
+
 Tour.hasOne(Booking, {foreignKey: 'tourId'});
 Tour.belongsTo(User, {as: 'guide'});
 
@@ -26,15 +30,8 @@ Booking.belongsTo(User, {as: 'user'});
 Booking.belongsTo(User, {as: 'guide'});
 Booking.belongsTo(Order, {as: 'order'});
 
-Review.belongsTo(User, {as: 'user'});
-Review.belongsTo(User, {as: 'guide'});
-
-
-
 Order.hasMany(Booking, {as: 'bookings'});
 Order.belongsTo(User, {as: "user"});
 
 Conversation.hasMany(Line, {foreignKey: 'conversationId'});
 Line.belongsTo(User, {as: 'user'});
-
-

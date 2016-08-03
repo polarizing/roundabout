@@ -92,5 +92,12 @@ app.factory('Tour', function($http, $log) {
                     })
     }
 
+    Tour.reviews = function(guideId){
+        return $http.get('/api/reviews/' + guideId)
+                .then(function(response){
+                    return response.data;
+                })
+    }
+
     return Tour;
 });

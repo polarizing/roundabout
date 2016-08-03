@@ -1,47 +1,45 @@
 <section id="cart" class="ng-enter">
-<div class="header-fixed">
-	<div class="header-content" layout="row">
-		<div flex="25">
-			<a ui-sref="home"><i class="fa fa-home cart-glyph" aria-hidden="true"></i></a>
-			<a ui-sref="tours"><i class="fa fa-globe cart-glyph" aria-hidden="true"></i></a>
-		</div>
-		<a flex="50" class="header-title">
-			Cart O' Tours
-		</a>
-		<div flex="25"></div>
-	</div>
-</div>
+    <div class="header-fixed">
+        <div class="header-content" layout="row">
+            <div flex="25">
+                <a ui-sref="home">
+                    <i class="fa fa-home cart-glyph" aria-hidden="true"></i>
+                </a>
+                <a ui-sref="tours">
+                    <i class="fa fa-globe cart-glyph" aria-hidden="true"></i>
+                </a>
+            </div>
+            <a flex="50" class="header-title">
+                Cart O' Tours
+            </a>
+            <div flex="25"></div>
+        </div>
+    </div>
 
-<div class="row">
-		<div class="container cart-content">
-			<div></div>
-			<tour-cart-card ng-repeat="tour in cart" cart-data="tour"></tour-cart-card>
-		</div>
-</div>
+    <div class="row">
+        <div class="container cart-content">
+            <div></div>
+            <tour-cart-card ng-repeat="tour in cart" cart-data="tour"></tour-cart-card>
+        </div>
+    </div>
 
-<div class="footer-fixed">
-	<div class="footer-content">
-		<div class="grid-container">
-			<div class="subtotal"> Sub Total ({{numItems}} item): ${{totalPrice}} </div>
-			<div class="cart-buttons">
-			<a ui-sref="tours" class="waves-effect waves-light btn checkout-button">BACK</a>
-
-			<a class="waves-effect waves-light btn checkout-button" ng-click="checkout()"><form action="/charge" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-    data-amount="2000"
-    data-name="Stripe.com"
-    data-description="2 widgets"
-    data-image="/img/documentation/checkout/marketplace.png"
-    data-locale="auto">
-  </script>
-</form>
-			</a>
-			</div>
-		</div>
-	</div>
-
-</div>
-
+    <div class="footer-fixed">
+        <div class="footer-content">
+            <div class="grid-container">
+                <div class="subtotal">
+                    Sub Total ({{numItems}}
+                    item): ${{totalPrice}}
+                </div>
+                <div class="cart-buttons" layout="row">
+                    <a ui-sref="tours" class="waves-effect waves-light btn checkout-button">BACK</a>
+                    <!--  ng-click="checkout()" -->
+                    <a class="checkout-button">
+                        <form ui-sref="users.tours.booked">
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh" data-amount="2000" data-name="Stripe.com" data-description="2 widgets" data-image="/img/documentation/checkout/marketplace.png" data-locale="auto"></script>
+                        </form>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

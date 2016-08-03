@@ -2,6 +2,7 @@
 var router = require('express').Router();
 module.exports = router;
 var Review = require('../../../db/models/review');
+var User = require('../../../db/models/user');
 var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
@@ -13,13 +14,20 @@ router.param('id', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/:id', function(req, res, next) {
-    req.requestedReview.reload()
-    .then(function(review) {
-        res.send(review);
+
+router.get('/:guideId', function(req, res, next){
+    Review.findAll({
+        where: {
+            guideId: req.params.guideId
+        },
+        include: [
+            { model: User, as: 'user' }
+        ]
     })
-    .catch(next);
-});
+    .then(function(review){
+        res.send(review)
+    })
+})
 
 router.post('/', check.user, function(req, res, next) {
     Review.create(req.body)

@@ -13,8 +13,10 @@ app.run(function ($rootScope) {
 });
 
 // prevent auto-default saving scrollbar place on view change
-app.run(function($rootScope, $state, $anchorScroll){
+app.run(function($rootScope, $state, $anchorScroll, $stateParams){
     $rootScope.$on("$locationChangeSuccess", function(){
+        console.log('in appjs', $state.params)
+        console.log('part2',$stateParams)
         $anchorScroll();
     })
 });

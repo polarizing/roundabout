@@ -1,13 +1,21 @@
 'use strict';
 
-app.controller('UserToursBooked', function ($scope, $state, Session, $kookies, $log, User) {
-	console.log(Session.user);
+app.controller('UserToursBooked', function ($scope, $state, Session, $kookies, $log, User, $stateParams, $location, Cart, $rootScope) {
 
+  if ($location.search().stripeToken) {
+    Cart.bookAll()
+    .then(function() {
+      $rootScope.$broadcast('checkout', 1);
+    })
+
+
+  }
 	 User.getUserBookings(Session.user.id)
 	 	 .then( function (res) {
 	 	 	console.log('this is res', res);
 	 	 		$scope.bookings = res;
 	 	 });
+
 
 	console.log($scope.bookings);
 	// $scope.bookings = bookings;

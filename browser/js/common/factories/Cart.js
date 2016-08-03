@@ -1,4 +1,4 @@
-app.factory('Cart', function(_, $kookies, Tour, $log, Session, $q, Order) {
+app.factory('Cart', function(_, $kookies, Tour, $log, Session, $q, Order, $rootScope) {
     var Cart = {};
 
     Cart.empty = function() {
@@ -9,6 +9,7 @@ app.factory('Cart', function(_, $kookies, Tour, $log, Session, $q, Order) {
             $kookies.remove(items, { path: '/' })
         }
 
+        $rootScope.$broadcast('checkout', 1)
         return tours;
     }
 
@@ -56,7 +57,7 @@ app.factory('Cart', function(_, $kookies, Tour, $log, Session, $q, Order) {
     Cart.remove = function(tour) {
         console.log('in cart factory', tour);
         if ($kookies.get(tour.id.toString())) {
-            
+
             $kookies.remove(tour.id.toString(), { path: '/' })
             return true;
         }

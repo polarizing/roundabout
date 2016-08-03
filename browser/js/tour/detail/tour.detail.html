@@ -1,153 +1,175 @@
 <section id="tour-detail">
 
-	<div class="cover-img" style="background-image:url({{tour.image}})"><!-- GET BACKGROUND IMAGE FROM TOUR OBJECT ANGULAR-->
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="summary">
-					<div class="row">
-						<div class="col-md-3 user-profile-name">
-							<div class="row">
-								<p>
-								<a href="#">
-							    	<div class="media-photo media-round card-profile-picture">
-							    		<img ng-src="{{tour.guide.photo}}">
-							    	</div>
-							    </a>
-							    </p>
-						    </div>
+    <div class="cover-img" style="background-image:url({{tour.image}})">
+        <!-- GET BACKGROUND IMAGE FROM TOUR OBJECT ANGULAR-->
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="summary">
+                    <div class="row">
+                        <div class="col-md-3 user-profile-name">
+                            <div class="row">
+                                <p>
+                                    <a href="#">
+                                        <div class="media-photo media-round card-profile-picture">
+                                            <img ng-src="{{tour.guide.photo}}">
+                                        </div>
+                                    </a>
+                                </p>
+                            </div>
 
-						    <div class="row">
-						    	<div class="guide-name">{{tour.guide.name}}
-						    	</div>
-						    </div>
-						</div>
-						<div class="col-md-9 listing-info">
-							<div class="tour-title">{{tour.title}}</div>
-							<div class="tour-location">{{tour.location}}</div>
-							<div class="row tour-info-widgets">
+                            <div class="row">
+                                <div class="guide-name">{{tour.guide.name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 listing-info">
+                            <div class="tour-title">{{tour.title}}</div>
+                            <div class="tour-location">{{tour.location}}</div>
+                            <div class="row tour-info-widgets">
 
-								<div class="col-sm-3"><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span class="tour-duration glyph-infotext"> {{tour.duration}}m</span></div>
-								<div class="col-sm-3"><i class="fa fa-users" aria-hidden="true"></i><span class="num-people glyph-infotext"> 1-4 people</span></div>
-								<div class="col-sm-4">
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<span class="glyph-infotext" > {{tour.guide.numReviews}} reviews</span>
-								</div>
-							</div>
-							  <div ng-repeat="tag in tour.tags" class="chip tour-tags">
-							    <span class="single-tag">{{tag}}</span>
-							  </div>
-						</div>
+                                <div class="col-sm-3">
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                    <span class="tour-duration glyph-infotext">
+                                        {{tour.duration}}m</span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    <span class="num-people glyph-infotext">
+                                        1-4 people</span>
+                                </div>
+                                <div class="col-sm-4">
+                                    <i ng-repeat="i in getAvgRev() track by $index" class="fa fa-star" aria-hidden="true"></i>
+                                    <span class="glyph-infotext">
+                                        {{getNumRev()}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div ng-repeat="tag in tour.tags" class="chip tour-tags">
+                                <span class="single-tag">{{tag}}</span>
+                            </div>
+                        </div>
 
-					</div>
-				</div>
-				<div class="details">
+                    </div>
+                </div>
+                <div class="details"></div>
+                <div class="reviews"></div>
 
+            </div>
+            <div class="col-lg-4">
+                <div class="book-it">
+                    <div class="row">
+                        <span class="col-sm-8 price">${{tour.price}}</span>
+                        <span class="col-sm-4 price-per">Per Tour</span>
+                    </div>
+                </div>
+                <div class="book-it-panel">
+                    <div class="book-it-panel-body">
+                        <div class="col-sm-8">
+                            <label for="inputCreated">Date</label>
+                            <input input-date type="text" name="created" id="inputCreated" ng-model="currentTime" container="" format="dd/mm/yyyy" months-full="{{ month }}" months-short="{{ monthShort }}" weekdays-full="{{ weekdaysFull }}" weekdays-short="{{ weekdaysShort }}" weekdays-letter="{{ weekdaysLetter }}" disable="disable" min="{{ minDate }}" max="{{ maxDate }}" today="today" clear="clear" close="close" select-years="15" on-start="onStart()" on-render="onRender()" on-open="onOpen()" on-close="onClose()" on-set="onSet()" on-stop="onStop()"/>
+                        </div>
+                        <div class="col-sm-4">
 
+                            <label for="inputSelected">Travellers</label>
+                            <md-input-container>
+                                <md-select ng-model="numTravellers">
+                                    <md-option ng-repeat="number in numbers" value="{{number}}">
+                                        {{number}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
 
-				</div>
-				<div class="reviews">
-				</div>
+                        </div>
 
-			</div>
-			<div class="col-lg-4">
-				<div class="book-it">
-					<div class="row">
-						<span class="col-sm-8 price">${{tour.price}}</span>
-						<span class="col-sm-4 price-per">Per Tour</span>
-					</div>
-				</div>
-				<div class="book-it-panel">
-					<div class="book-it-panel-body">
-						<div class="col-sm-8">
-						<label for="inputCreated">Date</label>
-						<input input-date
-						    type="text"
-						    name="created"
-						    id="inputCreated"
-						    ng-model="currentTime"
-						    container=""
-						    format="dd/mm/yyyy"
-						    months-full="{{ month }}"
-						    months-short="{{ monthShort }}"
-						    weekdays-full="{{ weekdaysFull }}"
-						    weekdays-short="{{ weekdaysShort }}"
-						    weekdays-letter="{{ weekdaysLetter }}"
-						    disable="disable"
-						    min="{{ minDate }}"
-						    max="{{ maxDate }}"
-						    today="today"
-						    clear="clear"
-						    close="close"
-						    select-years="15"
-						    on-start="onStart()"
-						    on-render="onRender()"
-						    on-open="onOpen()"
-						    on-close="onClose()"
-						    on-set="onSet()"
-						    on-stop="onStop()" />
-        			</div>
-						<div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <a class="waves-effect waves-light btn add-cart-btn" ng-click="toggleAddToCart(tour)">{{ !addedToCart ? 'Add to Cart' : 'Remove from Cart'}}</a>
+                            <!-- 						<a ng-if="addedToCart" class="waves-effect waves-light btn add-cart-btn" ng-click="removeFromCart(tour)">Remove from Cart</a> -->
 
-						<label for="inputSelected">Travellers</label>
-						<md-input-container>
-					        <md-select ng-model="numTravellers">
-					          <md-option ng-repeat="number in numbers" value="{{number}}">
-					            {{number}}
-					          </md-option>
-					        </md-select>
-					      </md-input-container>
+                        </div>
 
-					</div>
+                        <div class="col-sm-12">
+                            <a class="waves-effect waves-light btn request-btn" ui-sref="cart">Proceed to Checkout</a>
+                        </div>
 
-					<div class="col-sm-12">
-						<a class="waves-effect waves-light btn add-cart-btn" ng-click="toggleAddToCart(tour)">{{ !addedToCart ? 'Add to Cart' : 'Remove from Cart'}}</a>
-<!-- 						<a ng-if="addedToCart" class="waves-effect waves-light btn add-cart-btn" ng-click="removeFromCart(tour)">Remove from Cart</a> -->
-
-					</div>
-
-					<div class="col-sm-12">
-					<a class="waves-effect waves-light btn request-btn" ui-sref="cart">Proceed to Checkout</a>
-					</div>
-
-
-					<!-- <div class="col-sm-12">
+                        <!-- <div class="col-sm-12">
 					<a class="waves-effect waves-light btn request-btn">Add to Cart</a>
 					</div> -->
 
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	<div>
-		<div class="step col-sm-12 desc-card">
-	        <div class="card">
-	            <div class="card-content-big">
-	            	<h5 class="title"> About the tour:</h5>
-	            	<div class="content">{{tour.description}}</div>
-	          	</div>
-	        </div>
-	    </div>
-	</div>
-	<div>
-		<!-- this is basically what Im ng-repeating, I need to make sure there are factory methods and controller methods for this, also html for this<review-card ng-repeat="review in tour.review orderBy: '+rating'" tour-data="tour"> -->
-	</div>
+        <div>
+            <div class="step col-sm-12 desc-card">
+                <div class="card">
+                    <div class="card-content-big">
+                        <h5 class="title">
+                            About the tour</h5>
+                        <div class="content">{{tour.description}}</div>
+                    </div>
+                </div>
+                <div class="tour-reviews">
+                    <h5>What other people are saying</h5>
+                </div>
+            </div>
+        </div>
+        <div>
+            <review-card ng-repeat="review in reviews" review-data="review" user-data="review.userId"></div>
 
-
-    <!--     <form method='post' ng-submit="uploadPhoto()" enctype="multipart/form-data">
+            <!--     <form method='post' ng-submit="uploadPhoto()" enctype="multipart/form-data">
         <input type='file' id="photo" name='photo'>
         <input type="submit" >
         </form> -->
 
-        <div>
+            <!-- <div class="end-page-buttons">
 		    <input type="file" name="photo" file-model="myFile"/>
 		    <button ng-click="uploadFile()">upload me</button>
-		</div>
+		</div> -->
 
+        </section>
 
-</section>
+        <footer id="footer">
+            <div class="col-sm-12">
+                <div class="box col-sm-4">
+                    <p>
+                        <b>Roundabout</b>
+                    </p>
+                    <p>
+                        <a href>Home</a>
+                    </p>
+                    <p>
+                        <a href>About</a>
+                    </p>
+                    <p>
+                        <a href>Company</a>
+                    </p>
+                    <p>
+                        <a href>Team</a>
+                    </p>
+                </div>
+                <div class="box col-sm-4">
+                    <p>
+                        <b>My Settings</b>
+                    </p>
+                    <p>
+                        <a href>Tours</a>
+                    </p>
+                    <p>
+                        <a href>My Cart</a>
+                    </p>
+                    <p>
+                        <a href>Checkout</a>
+                    </p>
+                </div>
+                <div class="box col-sm-4">
+                    <p>Roundabout Inc.</p>
+                    <p class="address">
+                        5 Hanover Square, Floor 25, New York, NY 10004
+                    </p>
+					<p class="copyright">Roundabout © 2016</p>
+                </div>
+            </div>
+        </footer>

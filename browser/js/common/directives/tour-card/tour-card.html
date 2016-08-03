@@ -4,10 +4,10 @@
   <div class="card">
 
     <div class="card-image">
-      <a ui-sref="tour({id: tour.id})">
+      <a ui-sref="tour({id: tour.id, guideId: tour.guideId})">
       <img ng-src="{{tour.image}}">
       </a>
-      <a ui-sref="tour({id: tour.id})"><span class="card-title" >{{tour.title}}</span></a>
+      <a ui-sref="tour({id: tour.id, guideId: tour.guideId})"><span class="card-title" >{{tour.title}}</span></a>
     </div>
     <div class="card-price">
       <div class="card-price-label">
