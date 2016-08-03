@@ -2,11 +2,10 @@
 
 app.controller('UserToursBooked', function ($scope, $state, Session, $kookies, $log, User, $stateParams, $location, Cart, $rootScope) {
 
-  if ($location.search().stripeToken && !$kookies.get($location.search().stripeToken)) {
+  if ($location.search().stripeToken) {
     Cart.bookAll()
     .then(function() {
-      $rootScope.$broadcast('checkout', 1)
-      $kookies.set($location.search().stripeToken, '1', {path: '/'})
+      $rootScope.$broadcast('checkout', 1);
     })
 
 
