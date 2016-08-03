@@ -1,15 +1,23 @@
 'use strict';
 
-app.controller('UserToursBooked', function ($scope, $state, Session, $kookies, $log, User, $stateParams, $location, Cart, $rootScope) {
+app.controller('UserToursBooked', function ($scope, $timeout, $state, Session, $kookies, $log, User, $stateParams, $location, Cart, $rootScope) {
+
+  $scope.bookedAlertMessage = false;
 
   if ($location.search().stripeToken) {
     Cart.bookAll()
     .then(function() {
+      return User.getUserBookings(Session.user.id)
+     })
+    .then( function (res) {
+      console.log('this is res', res);
+      $scope.bookings = res;
       $rootScope.$broadcast('checkout', 1);
+      $scope.bookedAlertMessage = true; 
+      $timeout(function () { $scope.bookedAlertMessage = false; }, 4000);   
     })
-
-
   }
+
 	 User.getUserBookings(Session.user.id)
 	 	 .then( function (res) {
 	 	 	console.log('this is res', res);

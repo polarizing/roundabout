@@ -4,7 +4,9 @@
 	</div>
 	<div class="panel-body">
 		<div ng-if="bookings.length === 0" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">You have no booked tours. Go <a ui-sref="tours">Book A Tour!</a></div>
+
+		<div class="animate-hide" style="padding: 30px; text-align:center;" ng-show="bookedAlertMessage">Thanks for booking a tour! Friendly Reminder: You can now chat with your guide to set up a location meeting point! Head to <a ui-sref="users.inbox">Your Inbox.</a></div>
+
 		<tour-booked-card ng-repeat="booking in bookings" booking-data="booking">
-	
 	</div>
 </div>

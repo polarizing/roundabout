@@ -9,7 +9,9 @@ app.config(function ($stateProvider) {
         	},
 
             reviews: function(Tour, $stateParams) {
-                return Tour.reviews($stateParams.guideId);
+                console.log('reviews',$stateParams.guideId);
+                var guideId = $stateParams.guideId || $stateParams.id;
+                return Tour.reviews(guideId);
             }
         }
     });

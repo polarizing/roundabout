@@ -19,6 +19,7 @@
     "angular-smart-table": "^2.1.8",
     "angular-ui-bootstrap": "^0.14.3",
     "angular-ui-router": "^0.2.15",
+    "angular-ui-router-anim-in-out": "^1.0.2",
     "angular-utils-pagination": "^0.11.1",
     "angularjs-scroll-glue": "^2.0.7",
     "angularjs-slider": "^5.4.0",
