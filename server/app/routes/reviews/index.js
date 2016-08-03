@@ -2,6 +2,7 @@
 var router = require('express').Router();
 module.exports = router;
 var Review = require('../../../db/models/review');
+var User = require('../../../db/models/user');
 var check = require('../check-handler');
 
 router.param('id', function (req, res, next, id) {
@@ -18,7 +19,10 @@ router.get('/:guideId', function(req, res, next){
     Review.findAll({
         where: {
             guideId: req.params.guideId
-        }
+        },
+        include: [
+            { model: User, as: 'user' }
+        ]
     })
     .then(function(review){
         res.send(review)

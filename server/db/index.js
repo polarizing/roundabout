@@ -14,9 +14,13 @@ var Line = require('./models/line');
 User.hasMany(Tour, {foreignKey: 'guideId'});
 User.hasMany(Booking, {foreignKey: 'userId'});
 User.hasMany(Booking, {foreignKey: 'guideId'});
-User.hasMany(Review, {foreignKey: 'userId'});
-User.hasMany(Review, {foreignKey: 'guideId'}); // guide is being reviewed
+// User.hasMany(Review, {foreignKey: 'userId'});
+// User.hasMany(Review, {foreignKey: 'guideId'}); // guide is being reviewed
 // user is reviewing
+
+// apparently "include" works with belongsTo and not hasMany
+Review.belongsTo(User, {as: 'guide'})
+Review.belongsTo(User, {as: 'user'})
 
 Tour.hasOne(Booking, {foreignKey: 'tourId'});
 Tour.belongsTo(User, {as: 'guide'});
@@ -31,5 +35,3 @@ Order.belongsTo(User, {as: "user"});
 
 Conversation.hasMany(Line, {foreignKey: 'conversationId'});
 Line.belongsTo(User, {as: 'user'});
-
-
