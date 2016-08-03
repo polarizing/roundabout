@@ -1,7 +1,8 @@
 'use strict';
 
 
-app.controller('TourAdd', function($scope, Tour, $state, Session, fileUpload, $log) {
+app.controller('TourAdd', function($scope, Tour, $state, Session, fileUpload, $log, AuthService) {
+    $scope.uploaded = false;
     $scope.tour = {
         location: null,
         name: null,
@@ -68,7 +69,8 @@ app.controller('TourAdd', function($scope, Tour, $state, Session, fileUpload, $l
         if (['jpeg', 'png','jpg'].includes(file.name.split(".").pop()) && file.size < 5000000)
             fileUpload.uploadFileToUrl(file, uploadUrl)
                   .then(function (res) {
-                    console.log(res.data);
+                    $scope.tour.image = res.data;
+                    $scope.uploaded = true;
                   });
         else alert('Please upload a valid image of type .jpeg, .png, or .jpg of less than 5MB.')
 

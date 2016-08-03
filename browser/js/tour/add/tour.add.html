@@ -1,7 +1,8 @@
 <section id="tour-add">
     <md-card>
         <md-content>
-            <form name="colorForm" ng-submit="addTour()">
+            <form name="colorForm" ng-submit="uploaded && addTour()">
+
                 <h5>Give your tour a name</h5>
                 <md-input-container md-no-float class="md-block">
                     <input name="tour-title" ng-model="tour.name" placeholder="Tour Name" required>
@@ -27,9 +28,10 @@
                     <!-- <md-divider md-no-float class="md-block"> -->
                     <!-- <input name="tour-image" ng-model="tour.image" placeholder="Image Url"></input> -->
                     <input type="file" name="photo" file-model="myFile" flow-btn/>
-                    <button ng-click="uploadFile($flow.files[0])">upload me</button>
-
-                    <img flow-img="$flow.files[0]" />
+                    <a ng-click="uploadFile($flow.files[0])" class="btn">Upload Me</a>
+                    <p ng-if="uploaded">Uploaded!</p>
+                    <p ng-if="!uploaded">No file uploaded yet</p>
+                    <img flow-img="$flow.files[0]"/>
                     <!-- </md-divider> -->
 
                 </div>
