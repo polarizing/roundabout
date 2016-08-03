@@ -10,6 +10,8 @@
         </ul>
 
         <ul ng-show="!user" class="welcome" ui-sref-active="active">
+        <a ng-mouseover="hoverCart = true" ng-mouseleave="hoverCart = false" class="navbar-cart" ui-sref="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><div class="numberCircle">{{itemsInCart}}</div>
+</a>
             <a ui-sref="login" class="search-button waves-effect waves-light btn">Login</a>
         </ul>
         <ul ng-show="user" class="welcome" ui-sref-active="active">

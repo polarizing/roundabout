@@ -126,9 +126,9 @@ app.controller('TourDetail', function ($rootScope, $scope, fileUpload, tour, rev
 
 	$scope.getNumRev = function(){
 		if(!$scope.reviews.length){
-			return "no reviews";
+			return "No reviews";
 		}else {
-			return $scope.reviews.length + 'review(s)';
+			return $scope.reviews.length + ' review(s)';
 		}
 	}
 
