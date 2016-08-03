@@ -6,19 +6,45 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
+            scope.cart = {};
+            scope.cart.items = Cart.getAll();
+            initCart();
+
+            function initCart() {
+
+                function calculateTotal (tours) {
+                    var total = 0;
+                    tours.forEach( tour => total += tour.price);
+                    return total;
+                }
+
+                scope.cart.items = Cart.getAll();
+                scope.cart.numItems = scope.cart.items.length;
+                scope.cart.totalPrice = calculateTotal(scope.cart.items);
+            }
+
+
+            // BROADCAST FROM OUTSIDE STATES / VIEWS
+
             $rootScope.itemsInCart = Cart.getAll().length;
             scope.itemsInCart = $rootScope.itemsInCart;
+
             $rootScope.$on('added to cart', function(event, data) {
                 scope.itemsInCart += 1;
+                initCart();
             })
             
             $rootScope.$on('removed from cart', function(event, data) {
                 scope.itemsInCart -= 1;
+                initCart();
+
             })
 
             $rootScope.$on('checkout', function (event, data) {
                 scope.itemsInCart = 0;
+                initCart();
             })
+            
 
             scope.items = [
                 { label: 'Home', state: 'home' },

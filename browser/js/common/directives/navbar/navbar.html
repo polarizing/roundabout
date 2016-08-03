@@ -8,7 +8,10 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
+
         <ul ng-show="!user" class="welcome" ui-sref-active="active">
+        <a ng-mouseover="hoverCart = true" ng-mouseleave="hoverCart = false" class="navbar-cart" ui-sref="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><div class="numberCircle">{{itemsInCart}}</div>
+</a>
             <a ui-sref="login" class="search-button waves-effect waves-light btn">Login</a>
         </ul>
         <ul ng-show="user" class="welcome" ui-sref-active="active">
@@ -16,10 +19,36 @@
             {{ user.name }}
             </span>
             <a ui-sref="addtour" class="search-button waves-effect waves-light btn">Create Tour</a>
-            <a class="navbar-cart" ui-sref="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><div class="numberCircle">{{itemsInCart}}</div>
+            <a ng-mouseover="hoverCart = true" ng-mouseleave="hoverCart = false" class="navbar-cart" ui-sref="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><div class="numberCircle">{{itemsInCart}}</div>
 </a>
             <a ng-click="logout()" class="logout-button">Logout</a>
         </ul>
     </div>
 
 </nav>
+
+
+<div class="shopping-cart-container">
+<div class="container">
+  <div class="shopping-cart" ng-mouseleave="inCart = false" ng-mouseover="inCart = true" ng-show="inCart || hoverCart">
+    <div class="shopping-cart-header">
+      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{cart.numItems}}</span>
+      <div class="shopping-cart-total">
+        <span class="lighter-text">Total:</span>
+        <span class="main-color-text">${{cart.totalPrice}}</span>
+      </div>
+    </div> <!--end shopping-cart-header -->
+
+    <ul class="shopping-cart-items">
+      <li ng-repeat="tour in cart.items" class="clearfix">
+        <img ng-src="{{tour.image}}" alt="item1" />
+        <span class="item-name">{{tour.title}}</span>
+        <span class="item-price">${{tour.price}}</span>
+        <span class="item-quantity">Guide: {{tour.guide.name}}</span>
+      </li>
+    </ul>
+
+    <a ui-sref="cart" ng-click="inCart = false" class="button">Checkout</a>
+  </div> <!--end shopping-cart -->
+</div> <!--end container -->
+</div>

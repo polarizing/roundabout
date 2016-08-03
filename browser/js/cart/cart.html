@@ -1,4 +1,4 @@
-<section id="cart" class="ng-enter">
+<section id="cart">
     <div class="header-fixed">
         <div class="header-content" layout="row">
             <div flex="25">
@@ -35,7 +35,7 @@
                     <!--  ng-click="checkout()" -->
                     <a class="checkout-button">
                         <form ui-sref="users.tours.booked">
-                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh" data-amount="2000" data-name="Stripe.com" data-description="2 widgets" data-image="/img/documentation/checkout/marketplace.png" data-locale="auto"></script>
+                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh" data-amount="{{totalPrice*100}}" data-name="Roundabout" data-description="{{numItems}} tours" data-image="http://i.imgur.com/3SZaXoy.png" data-locale="auto"></script>
                         </form>
                     </a>
                 </div>
