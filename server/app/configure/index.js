@@ -44,6 +44,11 @@ module.exports = function (app, db) {
         res.send(req.file.filename)
     });
 
+    // app.post('/charge', function(req, res) {
+    //   console.log('payment complete')
+    //   res.redirect('/users/tours/booked')
+    // })
+
 
     require('./authentication')(app, db);
 
