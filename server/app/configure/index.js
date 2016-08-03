@@ -40,6 +40,7 @@ module.exports = function (app, db) {
 
     // var upload = multer({dest:'./uploads/'});
     app.post('/upload', function (req, res) {
+      console.log('we have reached here')
         res.send(req.file.filename)
     });
 

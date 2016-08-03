@@ -8,11 +8,12 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state, $log, $kookies) {
+app.controller('LoginCtrl', function ($scope, AuthService, $state, $log, $kookies, fileUpload) {
 
     $scope.login = {};
     $scope.signup = {};
     $scope.error = {};
+    $scope.signup.uploaded = false;
 
     $scope.sendLogin = function (loginInfo, cart) {
 
@@ -37,6 +38,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $log, $kookie
         console.log(signupInfo)
         $scope.error = {};
 
+       // if (!signupInfo.name) signupInfo.name = signupInfo.
         AuthService.signup(signupInfo)
         .then(function() {
             console.log("HELLO FROM THE OTHER SIDE")
@@ -56,5 +58,26 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $log, $kookie
         })
 
     }
+
+    $scope.uploadFile = function(newfile){
+       // console.log('this is the flow thingy', $scope.$flow.files[0])
+        $log.info('I am here')
+        console.log('hello')
+        console.log('passing in the newestfile' , newfile)
+        var file = newfile.file;
+        console.log('file is ' );
+        console.dir(file);
+
+        var uploadUrl = "/upload";
+
+        if (['jpeg', 'png','jpg'].includes(file.name.split(".").pop()) && file.size < 5000000)
+            fileUpload.uploadFileToUrl(file, uploadUrl)
+                  .then(function (res) {
+                    $scope.signup.photo = res.data;
+                    $scope.uploaded = true;
+                  });
+        else alert('Please upload a valid image of type .jpeg, .png, or .jpg of less than 5MB.')
+
+    };
 
 });
